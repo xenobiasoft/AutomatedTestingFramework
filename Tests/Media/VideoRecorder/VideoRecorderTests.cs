@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.TestExecutionEventArgs;
 
-namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 {
 	[TestClass]
 	public class VideoRecorderTests : BaseTest<VideoRecorderObserver>

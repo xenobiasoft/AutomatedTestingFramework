@@ -85,8 +85,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Behaviors\ExecutionEngine\TestExecutionProviderTests.cs" />
-    <Compile Include="Behaviors\VideoRecorder\VideoRecorderTests.cs" />
+    <Compile Include="Media\ExecutionEngine\TestExecutionProviderTests.cs" />
+    <Compile Include="Media\VideoRecorder\VideoRecorderTests.cs" />
     <Compile Include="Core\Config\AppConfigurationTests.cs" />
     <Compile Include="Core\Config\BrowserSettingsConfigurationProviderTests.cs" />
     <Compile Include="Core\ExceptionAnalysis\ExceptionAnalysisTests.cs" />
@@ -115,9 +115,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Media\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

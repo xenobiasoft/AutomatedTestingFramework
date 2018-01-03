@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.TestExecutionEventArgs;
 
-namespace AutomatedTestingFramework.Tests.Behaviors.ExecutionEngine
+namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 {
 	[TestClass]
 	public class TestExecutionProviderTests : BaseTest<TestExecutionProvider>
