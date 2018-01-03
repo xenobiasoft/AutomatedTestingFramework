@@ -14,7 +14,7 @@ namespace AutomatedTestingFramework.Tests.Core.Config
 		{
 			// Assemble
 			var expectedBrowserType = BrowserType.PhantomJs;
-			var expectedDriverLocation = @"C:\Users\sstewart\Documents\Visual Studio 2017\Projects\AutomatedTestingFramework\Drivers\";
+			var expectedDriverLocation = @"Drivers\";
 			var expectedImplicitWaitTimeout = 8;
 			var expectedPageLoadTimeout = 10;
 			var expectedScriptTimeout = 10;

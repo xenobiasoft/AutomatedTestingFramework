@@ -51,19 +51,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutomatedTestingFramework.Behaviors\AutomatedTestingFramework.Behaviors.csproj">
+    <ProjectReference Include="..\..\src\AutomatedTestingFramework.Behaviors\AutomatedTestingFramework.Behaviors.csproj">
       <Project>{ddab9ac1-5860-40a8-af33-9cb87b7d6551}</Project>
       <Name>AutomatedTestingFramework.Behaviors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj">
+    <ProjectReference Include="..\..\src\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj">
       <Project>{5055c769-bb9a-4484-855d-c57d473f71d0}</Project>
       <Name>AutomatedTestingFramework.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj">
+    <ProjectReference Include="..\..\src\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj">
       <Project>{b181adfd-b726-438d-b836-34644cf30f0a}</Project>
       <Name>AutomatedTestingFramework.Media</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj">
+    <ProjectReference Include="..\..\src\AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj">
       <Project>{f480bf47-3999-44ad-9a82-60b9fef74cb4}</Project>
       <Name>AutomatedTestingFramework.Selenium</Name>
     </ProjectReference>

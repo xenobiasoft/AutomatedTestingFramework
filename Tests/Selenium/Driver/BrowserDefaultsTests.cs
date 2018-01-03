@@ -74,7 +74,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			var mockBrowserSettingsConfig = ResolveMock<IBrowserSettingsConfiguration>();
 			
 			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(BrowserType.PhantomJs);
-			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(@"C:\Users\sstewart\Documents\Visual Studio 2017\Projects\AutomatedTestingFramework\AutomatedTestingFramework.Tests\Drivers\");
+			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(@"Drivers\");
 			mockBrowserSettingsConfig.Setup(x => x.ImplicitWaitTimeout).Returns(5);
 			mockBrowserSettingsConfig.Setup(x => x.ScriptTimeout).Returns(8);
 			mockBrowserSettingsConfig.Setup(x => x.PageLoadTimeout).Returns(13);
