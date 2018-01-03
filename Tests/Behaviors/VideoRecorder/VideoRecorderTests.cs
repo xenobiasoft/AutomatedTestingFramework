@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using AutomatedTestingFramework.Behaviors.VideoRecorder;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Media.VideoRecorder;

@@ -51,6 +51,9 @@
     <Compile Include="VideoRecorder\ExpressionEncoderVideoRecorder.cs" />
     <Compile Include="VideoRecorder\IVideoRecorder.cs" />
     <Compile Include="VideoRecorder\VideoCaptureException.cs" />
+    <Compile Include="VideoRecorder\VideoRecorderAttribute.cs" />
+    <Compile Include="VideoRecorder\VideoRecorderMode.cs" />
+    <Compile Include="VideoRecorder\VideoRecorderObserver.cs" />
     <Compile Include="VideoRecorder\VideoRecordingStatus.cs" />
   </ItemGroup>
   <ItemGroup>

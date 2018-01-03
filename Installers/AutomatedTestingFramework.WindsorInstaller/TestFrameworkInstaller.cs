@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using AutomatedTestingFramework.Behaviors.VideoRecorder;
 using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Driver;
