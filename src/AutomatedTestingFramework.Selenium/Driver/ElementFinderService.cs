@@ -9,11 +9,11 @@ namespace AutomatedTestingFramework.Selenium.Driver
 {
 	public class ElementFinderService : IElementFinderService
 	{
-		private readonly Dictionary<Type, Type> _ControlMap;
+		private readonly Dictionary<Type, Type> _controlMap;
 
 		public ElementFinderService()
 		{
-			_ControlMap = new Dictionary<Type, Type>();
+			_controlMap = new Dictionary<Type, Type>();
 		}
 
 		public TElement Find<TElement>(ISearchContext searchContext, By by) where TElement : class, IElement
@@ -42,9 +42,9 @@ namespace AutomatedTestingFramework.Selenium.Driver
 			var interfaceType = typeof(TElement);
 			Type controlType;
 
-			if (_ControlMap.ContainsKey(interfaceType))
+			if (_controlMap.ContainsKey(interfaceType))
 			{
-				controlType = _ControlMap[interfaceType];
+				controlType = _controlMap[interfaceType];
 			}
 			else
 			{
@@ -52,7 +52,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 						.Assembly
 						.GetTypes().First(x => x.GetInterfaces().Any(i => i == interfaceType));
 
-				_ControlMap.Add(interfaceType, controlType);
+				_controlMap.Add(interfaceType, controlType);
 			}
 
 			return (TElement) Activator.CreateInstance(controlType, searchContext as IWebDriver, element, this);

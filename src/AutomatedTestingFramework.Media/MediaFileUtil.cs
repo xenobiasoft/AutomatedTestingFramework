@@ -8,18 +8,18 @@ namespace AutomatedTestingFramework.Media
 	{
 		private const string FileNameDateFormat = "yyyyMMddHHmmssfff";
 		
-		private static readonly string _TempMediaFolderPath;
+		private static readonly string TempMediaFolderPath;
 
 		static MediaFileUtil()
 		{
-			_TempMediaFolderPath = Path.GetTempPath();
+			TempMediaFolderPath = Path.GetTempPath();
 		}
 
 		public static string GetTempFilenameWithPath(MediaFileType fileType)
 		{
 			var filename = GetFilenameWithExtension(Guid.NewGuid().ToString(), fileType);
 
-			return Path.Combine(_TempMediaFolderPath, filename);
+			return Path.Combine(TempMediaFolderPath, filename);
 		}
 
 		public static string GetFinalFilenameWithPath(string name, MediaFileType fileType)

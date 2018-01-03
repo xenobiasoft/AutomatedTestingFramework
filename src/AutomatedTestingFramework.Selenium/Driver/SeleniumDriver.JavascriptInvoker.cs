@@ -7,7 +7,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 	{
 		public TType InvokeScript<TType>(string script)
 		{
-			var javascriptExecutor = _Driver as IJavaScriptExecutor;
+			var javascriptExecutor = _driver as IJavaScriptExecutor;
 
 			var results = javascriptExecutor?.ExecuteScript(script);
 

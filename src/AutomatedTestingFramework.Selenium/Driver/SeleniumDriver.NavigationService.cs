@@ -21,7 +21,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 					urlToNavigateTo = HttpUtility.UrlDecode(urlToNavigateTo);
 				}
 
-				_Driver.Navigate().GoToUrl(urlToNavigateTo);
+				_driver.Navigate().GoToUrl(urlToNavigateTo);
 			}
 			catch (Exception ex)
 			{
@@ -32,12 +32,12 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		private string GetAbsoluteUrlFromRelativeUrl(string relativeUrl)
 		{
-			return _AppConfiguration.BaseUrl + relativeUrl;
+			return _appConfiguration.BaseUrl + relativeUrl;
 		}
 
 		public void WaitForUrl(string url)
 		{
-			WaitUntil(_BrowserDefaults.DocumentWait, x => string.Compare(x.Url, url, StringComparison.InvariantCultureIgnoreCase) == 0);
+			WaitUntil(_browserDefaults.DocumentWait, x => string.Compare(x.Url, url, StringComparison.InvariantCultureIgnoreCase) == 0);
 		}
 
 		private void RaiseNavigated(string url)
@@ -54,7 +54,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public void WaitToLeaveUrl(string absoluteUrl)
 		{
-			WaitUntil(_BrowserDefaults.DocumentWait, x => string.Compare(x.Url, absoluteUrl, StringComparison.InvariantCultureIgnoreCase) != 0);
+			WaitUntil(_browserDefaults.DocumentWait, x => string.Compare(x.Url, absoluteUrl, StringComparison.InvariantCultureIgnoreCase) != 0);
 		}
 
 		public void WaitToLeavePartialUrl(string partialUrl)
@@ -64,8 +64,8 @@ namespace AutomatedTestingFramework.Selenium.Driver
 			WaitToLeaveUrl(absoluteUrl);
 		}
 
-		public string Url => _Driver.Url;
-		public string Title => _Driver.Title;
+		public string Url => _driver.Url;
+		public string Title => _driver.Title;
 		public IExceptionAnalyzer ExceptionAnalyzer { get; set; }
 	}
 }

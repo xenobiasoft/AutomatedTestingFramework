@@ -10,10 +10,10 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 	{
 		private const int FrameRate = 5;
 		private const int Quality = 20;
-		private readonly int _Height = Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.Bounds.Height % 16;
-		private readonly int _Width = Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Width % 16;
-		private ScreenCaptureJob _ScreenCaptureJob;
-		private bool _IsDisposed;
+		private readonly int _height = Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.Bounds.Height % 16;
+		private readonly int _width = Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Width % 16;
+		private ScreenCaptureJob _screenCaptureJob;
+		private bool _isDisposed;
 
 		public void StartCapture()
 		{
@@ -23,7 +23,7 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 			}
 			catch (Exception ex)
 			{
-				throw new VideoCaptureException($"Video capture failed with the following exception: {ex.Message}. Resolution: width - {_Width}, height - {_Height}.");
+				throw new VideoCaptureException($"Video capture failed with the following exception: {ex.Message}. Resolution: width - {_width}, height - {_height}.");
 			}
 		}
 
@@ -35,36 +35,36 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 			}
 			catch (Exception ex)
 			{
-				throw new VideoCaptureException($"Video capture failed with the following exception: {ex.Message}. Resolution: width - {_Width}, height - {_Height}.");
+				throw new VideoCaptureException($"Video capture failed with the following exception: {ex.Message}. Resolution: width - {_width}, height - {_height}.");
 			}
 		}
 
 		public void Dispose()
 		{
-			if (!_IsDisposed)
+			if (!_isDisposed)
 			{
 				if (Status == VideoRecordingStatus.Running)
 				{
 					StopCapture();
 				}
 				DeleteTempVideo();
-				_IsDisposed = true;
+				_isDisposed = true;
 			}
 		}
 
 		private void InitializeScreenCapture()
 		{
 			Initialize();
-			_ScreenCaptureJob.Start();
+			_screenCaptureJob.Start();
 		}
 
 		private void Initialize()
 		{
-			_IsDisposed = false;
-			_ScreenCaptureJob = new ScreenCaptureJob
+			_isDisposed = false;
+			_screenCaptureJob = new ScreenCaptureJob
 			{
 				CaptureMouseCursor = true,
-				CaptureRectangle = new Rectangle(0, 0, _Width, _Height),
+				CaptureRectangle = new Rectangle(0, 0, _width, _height),
 				OutputScreenCaptureFileName = MediaFileUtil.GetTempFilenameWithPath(MediaFileType.Wmv),
 				ScreenCaptureVideoProfile =
 				{
@@ -72,7 +72,7 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 					Force16Pixels = true,
 					FrameRate = FrameRate,
 					Quality = Quality,
-					Size = new Size(_Width, _Height)
+					Size = new Size(_width, _height)
 				},
 				ShowFlashingBoundary = true
 			};
@@ -86,7 +86,7 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 			{
 				var moveToPath = MediaFileUtil.GetDateFormattedFilenameWithPath(testName, MediaFileType.Wmv);
 
-				File.Move(_ScreenCaptureJob.OutputScreenCaptureFileName, moveToPath);
+				File.Move(_screenCaptureJob.OutputScreenCaptureFileName, moveToPath);
 			}
 			else
 			{
@@ -96,24 +96,24 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 
 		private void DeleteTempVideo()
 		{
-			if (File.Exists(_ScreenCaptureJob?.OutputScreenCaptureFileName))
+			if (File.Exists(_screenCaptureJob?.OutputScreenCaptureFileName))
 			{
-				File.Delete(_ScreenCaptureJob.OutputScreenCaptureFileName);
+				File.Delete(_screenCaptureJob.OutputScreenCaptureFileName);
 			}
 		}
 
 		private void StopCapture()
 		{
-			_ScreenCaptureJob.Stop();
+			_screenCaptureJob.Stop();
 		}
 
 		public VideoRecordingStatus Status
 		{
 			get
 			{
-				if (_ScreenCaptureJob != null)
+				if (_screenCaptureJob != null)
 				{
-					return (VideoRecordingStatus) _ScreenCaptureJob.Status;
+					return (VideoRecordingStatus) _screenCaptureJob.Status;
 				}
 
 				return VideoRecordingStatus.NotStarted;

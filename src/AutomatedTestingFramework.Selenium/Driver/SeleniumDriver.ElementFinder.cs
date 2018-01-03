@@ -13,7 +13,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			try
 			{
-				return ElementFinderService.Find<TElement>(_Driver, by);
+				return ElementFinderService.Find<TElement>(_driver, by);
 			}
 			catch (Exception ex)
 			{
@@ -26,7 +26,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			try
 			{
-				return ElementFinderService.FindAll<TElement>(_Driver, by);
+				return ElementFinderService.FindAll<TElement>(_driver, by);
 			}
 			catch (Exception ex)
 			{
@@ -39,7 +39,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			try
 			{
-				return ElementFinderService.IsElementPresent(_Driver, by);
+				return ElementFinderService.IsElementPresent(_driver, by);
 			}
 			catch (Exception ex)
 			{

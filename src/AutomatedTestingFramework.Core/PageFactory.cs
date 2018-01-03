@@ -4,16 +4,16 @@ namespace AutomatedTestingFramework.Core
 {
 	public class PageFactory : IPageFactory
 	{
-		private readonly IResolver _Container;
+		private readonly IResolver _container;
 
 		public PageFactory(Func<IResolver> containerFactory)
 		{
-			_Container = containerFactory.Invoke();
+			_container = containerFactory.Invoke();
 		}
 
 		public TPage GetPage<TPage>() where TPage : PartialPage
 		{
-			return _Container.Resolve<TPage>();
+			return _container.Resolve<TPage>();
 		}
 	}
 }

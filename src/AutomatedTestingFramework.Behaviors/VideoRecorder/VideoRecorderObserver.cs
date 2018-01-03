@@ -9,23 +9,23 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 {
 	public class VideoRecorderObserver : BaseTestObserver
 	{
-		private readonly IVideoRecorder _VideoRecorder;
-		private VideoRecorderMode _VideoRecorderMode;
-		private readonly IAppConfiguration _AppConfiguration;
+		private readonly IVideoRecorder _videoRecorder;
+		private VideoRecorderMode _videoRecorderMode;
+		private readonly IAppConfiguration _appConfiguration;
 
 		public VideoRecorderObserver(IVideoRecorder videoRecorder, IAppConfiguration appConfiguration)
 		{
-			_AppConfiguration = appConfiguration;
-			_VideoRecorder = videoRecorder;
+			_appConfiguration = appConfiguration;
+			_videoRecorder = videoRecorder;
 		}
 
 		public override void PostTestInit(object sender, TestExecutionEventArgs e)
 		{
-			_VideoRecorderMode = GetConfiguredVideoRecorderMode(e.MemberInfo);
+			_videoRecorderMode = GetConfiguredVideoRecorderMode(e.MemberInfo);
 
-			if (_VideoRecorderMode != VideoRecorderMode.DoNotRecord)
+			if (_videoRecorderMode != VideoRecorderMode.DoNotRecord)
 			{
-				_VideoRecorder.StartCapture();
+				_videoRecorder.StartCapture();
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 			var methodRecordingMode = GetVideoRecorderModeFromAttribute(memberInfo);
 			var classRecordingMode = GetVideoRecorderModeFromAttribute(memberInfo.DeclaringType);
 			var videoRecorderMode = VideoRecorderMode.DoNotRecord;
-			var allowVideoRecording = _AppConfiguration.AllowVideoRecording;
+			var allowVideoRecording = _appConfiguration.AllowVideoRecording;
 
 			if (methodRecordingMode != VideoRecorderMode.NotDefined && allowVideoRecording)
 			{
@@ -93,21 +93,21 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 			}
 			finally
 			{
-				_VideoRecorder.Dispose();
+				_videoRecorder.Dispose();
 			}
 		}
 
 		private void SaveVideoDependingOnTestOutcome(string testName, bool hasTestPassed)
 		{
-			if (_VideoRecorderMode != VideoRecorderMode.DoNotRecord && _VideoRecorder.Status == VideoRecordingStatus.Running)
+			if (_videoRecorderMode != VideoRecorderMode.DoNotRecord && _videoRecorder.Status == VideoRecordingStatus.Running)
 			{
-				var shouldRecordAlways = _VideoRecorderMode == VideoRecorderMode.Always;
-				var shouldRecordForPassedTest = hasTestPassed && _VideoRecorder.Status.Equals(VideoRecorderMode.OnlyPass);
-				var shouldRecordForFailedTest = !hasTestPassed && _VideoRecorder.Status.Equals(VideoRecorderMode.OnlyFail);
+				var shouldRecordAlways = _videoRecorderMode == VideoRecorderMode.Always;
+				var shouldRecordForPassedTest = hasTestPassed && _videoRecorder.Status.Equals(VideoRecorderMode.OnlyPass);
+				var shouldRecordForFailedTest = !hasTestPassed && _videoRecorder.Status.Equals(VideoRecorderMode.OnlyFail);
 
 				if (shouldRecordAlways || shouldRecordForPassedTest || shouldRecordForFailedTest)
 				{
-					_VideoRecorder.SaveVideo(testName);
+					_videoRecorder.SaveVideo(testName);
 				}
 			}
 		}

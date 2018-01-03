@@ -7,9 +7,9 @@ namespace AutomatedTestingFramework.Selenium.Driver
 {
 	public partial class SeleniumDriver : IDriver
 	{
-		private readonly IWebDriver _Driver;
-		private readonly IAppConfiguration _AppConfiguration;
-		private readonly IBrowserDefaults _BrowserDefaults;
+		private readonly IWebDriver _driver;
+		private readonly IAppConfiguration _appConfiguration;
+		private readonly IBrowserDefaults _browserDefaults;
 
 		public SeleniumDriver(IBrowserDefaults browserDefaults, IElementFinderService elementFinderService)
 			: this(browserDefaults, elementFinderService, new AppConfiguration())
@@ -17,26 +17,26 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public SeleniumDriver(IBrowserDefaults browserDefaults, IElementFinderService elementFinderService, IAppConfiguration appConfiguration)
 		{
-			_BrowserDefaults = browserDefaults;
-			_AppConfiguration = appConfiguration;
+			_browserDefaults = browserDefaults;
+			_appConfiguration = appConfiguration;
 			ElementFinderService = elementFinderService;
-			_Driver = browserDefaults.DefaultBrowser;
+			_driver = browserDefaults.DefaultBrowser;
 		}
 
 		public void Dispose()
 		{
-			_Driver.Quit();
-			_Driver.Dispose();
+			_driver.Quit();
+			_driver.Dispose();
 		}
 
 		private void TurnOffImplicitWait()
 		{
-			_Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+			_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
 		}
 
 		private void TurnOnImplicitWait()
 		{
-			_Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_BrowserDefaults.PageLoadTimeoutValue);
+			_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_browserDefaults.PageLoadTimeoutValue);
 		}
 	}
 }

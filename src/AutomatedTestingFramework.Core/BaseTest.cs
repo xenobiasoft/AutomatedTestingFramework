@@ -10,9 +10,9 @@ namespace AutomatedTestingFramework.Core
 	[TestClass]
 	public abstract class BaseTest
 	{
-		private ITestExecutionProvider _TestExecutionProvider;
-		private IPageFactory _PageFactory;
-		private IDriver _Driver;
+		private ITestExecutionProvider _testExecutionProvider;
+		private IPageFactory _pageFactory;
+		private IDriver _driver;
 
 		[TestInitialize]
 		public void TestInit()
@@ -82,11 +82,11 @@ namespace AutomatedTestingFramework.Core
 
 		public string TestName => TestContext.TestName;
 
-		public IDriver Driver => _Driver ?? ( _Driver = Container.Resolve<IDriver>());
+		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
 
-		protected IPageFactory PageFactory => _PageFactory ?? (_PageFactory = Container.Resolve<IPageFactory>());
+		protected IPageFactory PageFactory => _pageFactory ?? (_pageFactory = Container.Resolve<IPageFactory>());
 
-		private ITestExecutionProvider TestExecutionProvider => _TestExecutionProvider ?? (_TestExecutionProvider = Container.Resolve<ITestExecutionProvider>());
+		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionProvider>());
 
 		protected IResolver Container { get; set; }
 	}

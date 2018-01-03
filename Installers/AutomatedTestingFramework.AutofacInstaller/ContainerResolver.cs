@@ -5,21 +5,21 @@ namespace AutomatedTestingFramework.AutofacInstaller
 {
 	public class ContainerResolver : IResolver
 	{
-		private readonly IContainer _Container;
+		private readonly IContainer _container;
 
 		public ContainerResolver(IContainer container)
 		{
-			_Container = container;
+			_container = container;
 		}
 
 		public void Dispose()
 		{
-			_Container.Dispose();
+			_container.Dispose();
 		}
 
 		public TType Resolve<TType>()
 		{
-			return _Container.Resolve<TType>();
+			return _container.Resolve<TType>();
 		}
 	}
 }

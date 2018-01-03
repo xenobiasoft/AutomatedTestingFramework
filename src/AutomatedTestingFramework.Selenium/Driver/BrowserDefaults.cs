@@ -15,24 +15,24 @@ namespace AutomatedTestingFramework.Selenium.Driver
 {
 	public class BrowserDefaults : IBrowserDefaults
 	{
-		private readonly IBrowserSettingsConfiguration _BrowserSettingsConfiguration;
+		private readonly IBrowserSettingsConfiguration _browserSettingsConfiguration;
 
 		public BrowserDefaults(IBrowserSettingsConfiguration browserSettingsConfiguration)
 		{
-			_BrowserSettingsConfiguration = browserSettingsConfiguration;
+			_browserSettingsConfiguration = browserSettingsConfiguration;
 			InitializeDefaultDriver();
 		}
 
 		private void InitializeDefaultDriver()
 		{
-			switch (_BrowserSettingsConfiguration.DefaultBrowser)
+			switch (_browserSettingsConfiguration.DefaultBrowser)
 			{
 				case BrowserType.Chrome:
-					DefaultBrowser = new ChromeDriver(_BrowserSettingsConfiguration.DriverLocation);
+					DefaultBrowser = new ChromeDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				case BrowserType.Edge:
-					DefaultBrowser = new EdgeDriver(_BrowserSettingsConfiguration.DriverLocation);
+					DefaultBrowser = new EdgeDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				case BrowserType.Firefox:
@@ -40,19 +40,19 @@ namespace AutomatedTestingFramework.Selenium.Driver
 					break;
 
 				case BrowserType.InternetExplorer:
-					DefaultBrowser = new InternetExplorerDriver(_BrowserSettingsConfiguration.DriverLocation);
+					DefaultBrowser = new InternetExplorerDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				case BrowserType.PhantomJs:
-					DefaultBrowser = new PhantomJSDriver(_BrowserSettingsConfiguration.DriverLocation);
+					DefaultBrowser = new PhantomJSDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				case BrowserType.Safari:
-					DefaultBrowser = new SafariDriver(_BrowserSettingsConfiguration.DriverLocation);
+					DefaultBrowser = new SafariDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				default:
-					throw new InvalidEnumArgumentException($"Browser type : {_BrowserSettingsConfiguration.DefaultBrowser} is invalid.");
+					throw new InvalidEnumArgumentException($"Browser type : {_browserSettingsConfiguration.DefaultBrowser} is invalid.");
 			}
 
 			SetDefaultImplicitWait();
@@ -60,16 +60,16 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		private void SetDefaultImplicitWait()
 		{
-			DefaultBrowser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_BrowserSettingsConfiguration.ImplicitWaitTimeout);
+			DefaultBrowser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_browserSettingsConfiguration.ImplicitWaitTimeout);
 		}
 
 		public IWebDriver DefaultBrowser { get; private set; }
 
-		public int ImplicitTimeoutValue => _BrowserSettingsConfiguration.ImplicitWaitTimeout;
+		public int ImplicitTimeoutValue => _browserSettingsConfiguration.ImplicitWaitTimeout;
 
-		public int ScriptTimeoutValue => _BrowserSettingsConfiguration.ScriptTimeout;
+		public int ScriptTimeoutValue => _browserSettingsConfiguration.ScriptTimeout;
 
-		public int PageLoadTimeoutValue => _BrowserSettingsConfiguration.PageLoadTimeout;
+		public int PageLoadTimeoutValue => _browserSettingsConfiguration.PageLoadTimeout;
 
 		public WebDriverWait ScriptWait
 			=> new WebDriverWait(DefaultBrowser, TimeSpan.FromSeconds(ScriptTimeoutValue))

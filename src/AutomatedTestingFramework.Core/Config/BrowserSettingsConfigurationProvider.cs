@@ -4,13 +4,13 @@ namespace AutomatedTestingFramework.Core.Config
 {
 	public class BrowserSettingsConfigurationProvider : ConfigurationSection
 	{
-		private static readonly BrowserSettingsConfiguration _BrowserSettingsConfiguration;
+		private static readonly BrowserSettingsConfiguration BrowserSettingsConfiguration;
 
 		static BrowserSettingsConfigurationProvider()
 		{
 			try
 			{
-				_BrowserSettingsConfiguration = (BrowserSettingsConfiguration) ConfigurationManager.GetSection("browserSettings");
+				BrowserSettingsConfiguration = (BrowserSettingsConfiguration) ConfigurationManager.GetSection("browserSettings");
 			}
 			catch (ConfigurationErrorsException ex)
 			{
@@ -20,7 +20,7 @@ namespace AutomatedTestingFramework.Core.Config
 
 		public static BrowserSettingsConfiguration GetSettings()
 		{
-			return _BrowserSettingsConfiguration;
+			return BrowserSettingsConfiguration;
 		}
 	}
 }

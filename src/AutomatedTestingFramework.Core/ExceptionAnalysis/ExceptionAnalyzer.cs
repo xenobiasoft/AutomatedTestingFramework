@@ -5,15 +5,15 @@ namespace AutomatedTestingFramework.Core.ExceptionAnalysis
 {
 	public class ExceptionAnalyzer : IExceptionAnalyzer
 	{
-		private readonly List<IExceptionAnalyzationHandler> _ExceptionAnalyzationHandlers;
+		private readonly List<IExceptionAnalyzationHandler> _exceptionAnalyzationHandlers;
 
 		public ExceptionAnalyzer(IEnumerable<IExceptionAnalyzationHandler> exceptionAnalyzationHandlers)
 		{
-			_ExceptionAnalyzationHandlers = new List<IExceptionAnalyzationHandler>();
+			_exceptionAnalyzationHandlers = new List<IExceptionAnalyzationHandler>();
 
 			foreach (var exceptionAnalyzationHandler in exceptionAnalyzationHandlers)
 			{
-				_ExceptionAnalyzationHandlers.Add(exceptionAnalyzationHandler);
+				_exceptionAnalyzationHandlers.Add(exceptionAnalyzationHandler);
 			}
 		}
 
@@ -22,7 +22,7 @@ namespace AutomatedTestingFramework.Core.ExceptionAnalysis
 
 		public void Analyze(Exception ex = null, params object[] context)
 		{
-			foreach (var exceptionHandler in _ExceptionAnalyzationHandlers)
+			foreach (var exceptionHandler in _exceptionAnalyzationHandlers)
 			{
 				if (exceptionHandler.IsApplicable(ex, context))
 				{
@@ -33,7 +33,7 @@ namespace AutomatedTestingFramework.Core.ExceptionAnalysis
 
 		public void AddExceptionAnalyzationHandler<THandler>(THandler exceptionAnalyzationHandler) where THandler : IExceptionAnalyzationHandler
 		{
-			_ExceptionAnalyzationHandlers.Insert(0, exceptionAnalyzationHandler);
+			_exceptionAnalyzationHandlers.Insert(0, exceptionAnalyzationHandler);
 		}
 
 		public void AddExceptionAnalyzationHandler(string textToSearchInSource, string detailedIssueExplanation)

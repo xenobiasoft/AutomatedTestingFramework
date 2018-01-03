@@ -11,21 +11,21 @@ namespace AutomatedTestingFramework.Selenium.Driver
 {
 	public partial class SeleniumDriver : IBrowser
 	{
-		public string Source => _Driver.PageSource;
+		public string Source => _driver.PageSource;
 
 		public void ClickBackButton()
 		{
-			_Driver.Navigate().Back();
+			_driver.Navigate().Back();
 		}
 
 		public void ClickForwardButton()
 		{
-			_Driver.Navigate().Forward();
+			_driver.Navigate().Forward();
 		}
 
 		public void ClickRefresh()
 		{
-			_Driver.Navigate().Refresh();
+			_driver.Navigate().Refresh();
 		}
 
 		public IFrame GetFrame(string frameName)
@@ -35,27 +35,27 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public void MaximizeBrowserWindow()
 		{
-			_Driver.Manage().Window.Maximize();
+			_driver.Manage().Window.Maximize();
 		}
 
 		public void Quit()
 		{
-			_Driver.Quit();
+			_driver.Quit();
 		}
 
 		public void SwitchToFrame(IFrame frame)
 		{
-			_Driver.SwitchTo().Frame(frame.Name);
+			_driver.SwitchTo().Frame(frame.Name);
 		}
 
 		public void SwitchToDefault()
 		{
-			_Driver.SwitchTo().DefaultContent();
+			_driver.SwitchTo().DefaultContent();
 		}
 
 		public void TakeScreenshot()
 		{
-			var screenshot = _Driver.TakeScreenshot();
+			var screenshot = _driver.TakeScreenshot();
 			var screenshotFilename = MediaFileUtil.GetDateFormattedFilenameWithPath("Screenshot", MediaFileType.Png);
 
 			screenshot.SaveAsFile(screenshotFilename, ScreenshotImageFormat.Png);
@@ -63,17 +63,17 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public void WaitForAjax()
 		{
-			WaitUntil(_BrowserDefaults.ScriptWait, x => InvokeScript<bool>("return (jQuery.ajax.active || jQuery.active || 0) === 0"));
+			WaitUntil(_browserDefaults.ScriptWait, x => InvokeScript<bool>("return (jQuery.ajax.active || jQuery.active || 0) === 0"));
 		}
 
 		public void WaitForElement(IElement element)
 		{
-			WaitUntil(_BrowserDefaults.DocumentWait, x => element.IsVisible);
+			WaitUntil(_browserDefaults.DocumentWait, x => element.IsVisible);
 		}
 
 		public void WaitUntilReady()
 		{
-			WaitUntil(_BrowserDefaults.ScriptWait, x => InvokeScript<bool>("return (document.readyState === 'complete')"));
+			WaitUntil(_browserDefaults.ScriptWait, x => InvokeScript<bool>("return (document.readyState === 'complete')"));
 		}
 
 		protected void WaitUntil(WebDriverWait wait, Func<IWebDriver, bool> condition)

@@ -5,21 +5,21 @@ namespace AutomatedTestingFramework.WindsorInstaller
 {
 	public class ContainerResolver : IResolver
 	{
-		private readonly IWindsorContainer _WindsorContainer;
+		private readonly IWindsorContainer _windsorContainer;
 
 		public ContainerResolver(IWindsorContainer container)
 		{
-			_WindsorContainer = container;
+			_windsorContainer = container;
 		}
 
 		public void Dispose()
 		{
-			_WindsorContainer.Dispose();
+			_windsorContainer.Dispose();
 		}
 
 		public TType Resolve<TType>()
 		{
-			return _WindsorContainer.Resolve<TType>();
+			return _windsorContainer.Resolve<TType>();
 		}
 	}
 }
