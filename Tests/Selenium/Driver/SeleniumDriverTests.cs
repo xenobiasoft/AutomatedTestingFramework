@@ -1,41 +1,40 @@
 ﻿using AutomatedTestingFramework.Selenium.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
-	public class SeleniumDriverTests : BaseTest<SeleniumDriver>
+	[TestFixture]
+	public class SeleniumDriverTests : BaseTestByClass<SeleniumDriver>
 	{
 		private Mock<IWebDriver> _mockWebDriver;
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void DisposeCallsCloseAndDisposeOnWebDriver()
 		{
 			// Assemble
 
 			// Act
-			Uut.Dispose();
+			Sut.Dispose();
 
 			// Assert
 			_mockWebDriver.Verify(x => x.Quit(), Times.Once);
 			_mockWebDriver.Verify(x => x.Dispose(), Times.Once);
 		}
 
-		[TestInitialize]
-		public virtual void TestInit()
+		public override void SetUp()
 		{
 			_mockWebDriver = ResolveMock<IWebDriver>();
 			ResolveMock<IBrowserDefaults>().Setup(x => x.DefaultBrowser).Returns(_mockWebDriver.Object);
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class WebDriverOptionsTests : SeleniumDriverTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Selenium)]
+			[Test]
+			[Category(TestCategories.Selenium)]
 			public void MaximizeBrowserWindowCallsWindowMaximize()
 			{
 				// Assemble
@@ -43,16 +42,15 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				ResolveMock<IOptions>().Setup(x => x.Window).Returns(mockWindow.Object);
 
 				// Act
-				Uut.MaximizeBrowserWindow();
+				Sut.MaximizeBrowserWindow();
 
 				// Assert
 				mockWindow.Verify(x => x.Maximize(), Times.Once);
 			}
 
-			[TestInitialize]
-			public override void TestInit()
+			public override void SetUp()
 			{
-				base.TestInit();
+				base.SetUp();
 
 				ResolveMock<IWebDriver>().Setup(x => x.Manage()).Returns(ResolveMock<IOptions>().Object);
 			}

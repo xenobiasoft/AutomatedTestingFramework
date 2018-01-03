@@ -1,15 +1,15 @@
 ﻿using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class AnchorTests : BaseTest<Anchor>
+	[TestFixture]
+	public class AnchorTests : BaseTestByClass<Anchor>
 	{
-		[TestMethod]
+		[Test]
 		public void UrlReturnsWebElementsHref()
 		{
 			// Assemble
@@ -17,7 +17,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.IsAny<string>())).Returns(expectedUrl);
 
 			// Act
-			var url = Uut.Url;
+			var url = Sut.Url;
 
 			// Assert
 			url.Should().Be(expectedUrl);

@@ -1,40 +1,40 @@
 ﻿using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.TestExecutionEventArgs;
 
 namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 {
-	[TestClass]
-	public class TestExecutionProviderTests : BaseTest<TestExecutionProvider>
+	[TestFixture]
+	public class TestExecutionProviderTests : BaseTestByClass<TestExecutionProvider>
 	{
 		protected Mock<ITestObserver> MockObserver;
 
-		[TestClass]
+		[TestFixture]
 		public class PreTestInitTests : TestExecutionProviderTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PreTestInitRaisesPreTestInitEvent()
 			{
 				// Assemble
 				
 				// Act
-				Uut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PreTestInitDoesNotRaiseEventForOtherEvents()
 			{
 				// Assemble
 
 				// Act
-				Uut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -42,15 +42,15 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				MockObserver.Verify(x => x.PostTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void UnsubscribingDoesNotReceiveAnyCalls()
 			{
 				// Assemble
-				Uut.Unsubscribe(MockObserver.Object);
+				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Uut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -60,30 +60,30 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class PreTestCleanupTests : TestExecutionProviderTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PreTestCleanupRaisesPreTestCleanupEvent()
 			{
 				// Assemble
 
 				// Act
-				Uut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PreTestCleanupDoesNotRaiseEventForOtherEvents()
 			{
 				// Assemble
 
 				// Act
-				Uut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -91,15 +91,15 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				MockObserver.Verify(x => x.PostTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void UnsubscribingDoesNotReceiveAnyCalls()
 			{
 				// Assemble
-				Uut.Unsubscribe(MockObserver.Object);
+				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Uut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -109,30 +109,30 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class PostTestInitTests : TestExecutionProviderTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PostTestInitRaisesPostTestInitEvent()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PostTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PostTestInitDoesNotRaiseEventForOtherEvents()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -140,15 +140,15 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				MockObserver.Verify(x => x.PostTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void UnsubscribingDoesNotReceiveAnyCalls()
 			{
 				// Assemble
-				Uut.Unsubscribe(MockObserver.Object);
+				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Uut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -158,31 +158,31 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class PostTestCleanupTests : TestExecutionProviderTests
 		{
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PostTestCleanupRaisesPostTestCleanupEvent()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PostTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void PostTestCleanupDoesNotRaiseEventForOtherEvents()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -190,15 +190,15 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				MockObserver.Verify(x => x.PostTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void UnsubscribingDoesNotReceiveAnyCalls()
 			{
 				// Assemble
-				Uut.Unsubscribe(MockObserver.Object);
+				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Uut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -208,11 +208,10 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 			}
 		}
 
-		[TestInitialize]
-		public void Initialize()
+		public override void SetUp()
 		{
 			MockObserver = ResolveMock<ITestObserver>();
-			Uut.Subscribe(MockObserver.Object);
+			Sut.Subscribe(MockObserver.Object);
 		}
 	}
 }

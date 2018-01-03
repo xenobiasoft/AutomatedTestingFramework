@@ -1,15 +1,15 @@
 ﻿using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class WebImageTests : BaseTest<WebImage>
+	[TestFixture]
+	public class WebImageTests : BaseTestByClass<WebImage>
 	{
-		[TestMethod]
+		[Test]
 		public void AltTextReturnsWebElementAltAttributeValue()
 		{
 			// Assemble
@@ -19,10 +19,10 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			// Act
 
 			// Assert
-			Uut.AltText.Should().Be(expectedValue);
+			Sut.AltText.Should().Be(expectedValue);
 		}
 
-		[TestMethod]
+		[Test]
 		public void SrcReturnsWebElementSrcAttributeValue()
 		{
 			// Assemble
@@ -32,7 +32,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			// Act
 
 			// Assert
-			Uut.Src.Should().Be(expectedValue);
+			Sut.Src.Should().Be(expectedValue);
 		}
 	}
 }

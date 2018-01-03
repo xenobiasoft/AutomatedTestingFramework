@@ -2,17 +2,17 @@
 using AutomatedTestingFramework.Core.Controls;
 using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
+	[TestFixture]
 	public class SeleniumDriverElementFinderTests : SeleniumDriverTests
 	{
-		[TestMethod]
+		[Test]
 		public void FindDelegatesCallToElementFinderService()
 		{
 			// Assemble
@@ -22,13 +22,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				.Returns(ResolveMock<IContentElement>().Object);
 
 			// Act
-			var contentElement = Uut.Find<IElement>(cssSelector);
+			var contentElement = Sut.Find<IElement>(cssSelector);
 
 			// Assert
 			contentElement.Should().NotBeNull();
 		}
 
-		[TestMethod]
+		[Test]
 		public void FindAllDelegatesCallToElementFinderService()
 		{
 			// Assemble
@@ -44,13 +44,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				.Returns(expectedElements);
 
 			// Act
-			var contentElements = Uut.FindAll<IElement>(cssSelector);
+			var contentElements = Sut.FindAll<IElement>(cssSelector);
 
 			// Assert
 			contentElements.Should().BeEquivalentTo(expectedElements);
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsElementPresentDelegatesCallToElementFinderService()
 		{
 			// Assemble
@@ -59,7 +59,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				.Returns(true);
 
 			// Act
-			var isElementPresent = Uut.IsElementPresent(By.CssClass(Create<string>()));
+			var isElementPresent = Sut.IsElementPresent(By.CssClass(Create<string>()));
 
 			// Assert
 			isElementPresent.Should().BeTrue();

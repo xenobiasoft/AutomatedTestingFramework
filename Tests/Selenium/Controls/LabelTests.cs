@@ -1,14 +1,14 @@
 ﻿using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class LabelTests : BaseTest<Label>
+	[TestFixture]
+	public class LabelTests : BaseTestByClass<Label>
 	{
-		[TestMethod]
+		[Test]
 		public void TextReturnsWebElementText()
 		{
 			// Assemble
@@ -16,7 +16,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Text).Returns(expectedText);
 
 			// Act
-			var actualText = Uut.Text;
+			var actualText = Sut.Text;
 
 			// Assert
 			actualText.Should().Be(expectedText);

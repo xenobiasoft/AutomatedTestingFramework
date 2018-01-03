@@ -1,29 +1,29 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
+	[TestFixture]
 	public class SeleniumDriverNavigationServiceTests : SeleniumDriverTests
 	{
-		[TestClass]
+		[TestFixture]
 		public class NavigateTests : SeleniumDriverNavigationServiceTests
 		{
-			[TestMethod]
+			[Test]
 			public void DelegatesCallToNavigationGoToUrl()
 			{
 				// Assemble
 				var relativeUrl = "/main/subpage";
 
 				// Act
-				Uut.Navigate(relativeUrl);
+				Sut.Navigate(relativeUrl);
 
 				// Assert
 				ResolveMock<INavigation>().Verify(x => x.GoToUrl(It.Is<string>(url => url.EndsWith(relativeUrl))), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			public void UrlDecodesPassedInUrl()
 			{
 				// Assemble
@@ -31,17 +31,16 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				var expectedUrl = "http://www.microsoft.com";
 
 				// Act
-				Uut.Navigate(actualUrl);
+				Sut.Navigate(actualUrl);
 
 				// Assert
 				ResolveMock<INavigation>().Verify(x => x.GoToUrl(It.Is<string>(url => url == expectedUrl)), Times.Once);
 			}
 		}
 
-		[TestInitialize]
-		public override void TestInit()
+		public override void SetUp()
 		{
-			base.TestInit();
+			base.SetUp();
 
 			ResolveMock<IWebDriver>().Setup(x => x.Navigate()).Returns(ResolveMock<INavigation>().Object);
 		}
