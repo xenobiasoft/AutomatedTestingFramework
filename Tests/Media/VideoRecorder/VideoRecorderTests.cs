@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using AutomatedTestingFramework.Behaviors.VideoRecorder;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Media.VideoRecorder;
@@ -9,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.TestExecutionEventArgs;
 
-namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 {
 	[TestClass]
 	public class VideoRecorderTests : BaseTest<VideoRecorderObserver>
@@ -61,7 +60,7 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				Action postTestInit = () => Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("*The test method MemberInfo info cannot be null.");
+				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("Value cannot be null.\r\nParameter name: memberInfo");
 			}
 		}
 

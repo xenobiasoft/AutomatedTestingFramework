@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="BaseTestObserver.cs" />
     <Compile Include="Config\IAppConfiguration.cs" />
     <Compile Include="ElementFinderExtensions.cs" />
     <Compile Include="By.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ExceptionAnalysis\IExceptionAnalyzationHandler.cs" />
     <Compile Include="ExceptionAnalysis\IExceptionAnalyzer.cs" />
     <Compile Include="ExceptionAnalysis\ServiceUnavailableExceptionHandler.cs" />
+    <Compile Include="ExecutionEngine\TestExecutionProvider.cs" />
     <Compile Include="IElementFinder.cs" />
     <Compile Include="Driver\IJavascriptInvoker.cs" />
     <Compile Include="Driver\INavigationService.cs" />

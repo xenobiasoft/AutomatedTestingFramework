@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reflection;
+using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
-using AutomatedTestingFramework.Media.VideoRecorder;
 
-namespace AutomatedTestingFramework.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Media.VideoRecorder
 {
 	public class VideoRecorderObserver : BaseTestObserver
 	{

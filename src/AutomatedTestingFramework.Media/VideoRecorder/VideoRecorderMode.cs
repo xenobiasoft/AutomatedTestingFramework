@@ -1,4 +1,4 @@
-﻿namespace AutomatedTestingFramework.Behaviors.VideoRecorder
+﻿namespace AutomatedTestingFramework.Media.VideoRecorder
 {
 	public enum VideoRecorderMode
 	{

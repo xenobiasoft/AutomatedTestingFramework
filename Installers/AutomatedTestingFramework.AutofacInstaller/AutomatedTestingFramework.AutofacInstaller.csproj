@@ -51,10 +51,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AutomatedTestingFramework.Behaviors\AutomatedTestingFramework.Behaviors.csproj">
-      <Project>{ddab9ac1-5860-40a8-af33-9cb87b7d6551}</Project>
-      <Name>AutomatedTestingFramework.Behaviors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj">
       <Project>{5055c769-bb9a-4484-855d-c57d473f71d0}</Project>
       <Name>AutomatedTestingFramework.Core</Name>
