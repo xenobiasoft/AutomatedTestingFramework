@@ -1,17 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace AutomatedTestingFramework.Tests
 {
-	[TestClass]
-	public class TestContainerTests : BaseTest<RootObject>
+	[TestFixture]
+	public class TestContainerTests : BaseTestByClass<RootObject>
 	{
-		[TestMethod]
+		[Test]
 		public void TestContainerCanCreateInstanceWithClassDependencies()
 		{
 			// Assemble
 
 			// Act
-			Uut.GetDependantName();
+			Sut.GetDependantName();
 
 			// Assert
 		}

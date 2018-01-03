@@ -3,21 +3,21 @@ using System.Linq;
 using AutomatedTestingFramework.Core.Controls;
 using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Core.By;
 using SeleniumBy = OpenQA.Selenium.By;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
-	public class ElementFinderServiceTests : BaseTest<ElementFinderService>
+	[TestFixture]
+	public class ElementFinderServiceTests : BaseTestByClass<ElementFinderService>
 	{
-		[TestClass]
+		[TestFixture]
 		public class FindTests : ElementFinderServiceTests
 		{
-			[TestMethod]
+			[Test]
 			public void DelegatesCallToSearchContext()
 			{
 				// Assemble
@@ -25,13 +25,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				mockSearchContext.Setup(x => x.FindElement(It.IsAny<SeleniumBy>())).Returns(ResolveMock<IWebElement>().Object);
 
 				// Act
-				Uut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
+				Sut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
 				mockSearchContext.Verify(x => x.FindElement(It.IsAny<SeleniumBy>()), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			public void ReturnsInstanceOfRequestedInterface()
 			{
 				// Assemble
@@ -39,17 +39,17 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				mockSearchContext.Setup(x => x.FindElement(It.IsAny<SeleniumBy>())).Returns(ResolveMock<IWebElement>().Object);
 
 				// Act
-				var control = Uut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
+				var control = Sut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
 				control.Should().BeAssignableTo<IContentElement>();
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class FindAllTests : ElementFinderServiceTests
 		{
-			[TestMethod]
+			[Test]
 			public void DelegatesCallToSearchContext()
 			{
 				// Assemble
@@ -57,13 +57,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				mockSearchContext.Setup(x => x.FindElements(It.IsAny<SeleniumBy>())).Returns(ResolveMock<List<IWebElement>>().Object.AsReadOnly);
 				
 				// Act
-				Uut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
+				Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
 
 				// Assert
 				mockSearchContext.Verify(x => x.FindElements(It.IsAny<SeleniumBy>()), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			public void ReturnsListOfRequestedInterface()
 			{
 				// Assemble
@@ -76,17 +76,17 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				mockSearchContext.Setup(x => x.FindElements(It.IsAny<SeleniumBy>())).Returns(controlList.AsReadOnly());
 
 				// Act
-				var buttons = Uut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
+				var buttons = Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
 
 				// Assert
 				buttons.ToList().ForEach(x => x.Should().BeAssignableTo<IContentElement>());
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class IsElementPresentTests : ElementFinderServiceTests
 		{
-			[TestMethod]
+			[Test]
 			public void ReturnsTrueIfElementIsVisible()
 			{
 				// Assemble
@@ -97,7 +97,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 					.Returns(mockControl.Object);
 
 				// Act
-				var isElementPresent = Uut.IsElementPresent(mockSearchContext.Object, By.Id(Create<string>()));
+				var isElementPresent = Sut.IsElementPresent(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
 				isElementPresent.Should().BeTrue();

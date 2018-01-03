@@ -1,14 +1,14 @@
 ﻿using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class ContentElementTests : BaseTest<ContentElement>
+	[TestFixture]
+	public class ContentElementTests : BaseTestByClass<ContentElement>
 	{
-		[TestMethod]
+		[Test]
 		public void IsEnabledReturnsWebElementEnabledProperty()
 		{
 			// Assemble
@@ -17,7 +17,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			// Act
 
 			// Assert
-			Uut.IsEnabled.Should().BeTrue();
+			Sut.IsEnabled.Should().BeTrue();
 		}
 	}
 }

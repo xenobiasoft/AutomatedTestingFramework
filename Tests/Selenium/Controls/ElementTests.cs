@@ -3,30 +3,30 @@ using AutomatedTestingFramework.Core.Controls;
 using AutomatedTestingFramework.Selenium.Controls;
 using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class ElementTests : BaseTest<Element>
+	[TestFixture]
+	public class ElementTests : BaseTestByClass<Element>
 	{
-		[TestMethod]
+		[Test]
 		public void ClickDelegatesCallToWebElement()
 		{
 			// Assemble
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Uut.Click();
+			Sut.Click();
 
 			// Assert
 			mockWebElement.Verify(x => x.Click(), Times.Once);
 		}
 
-		[TestMethod]
+		[Test]
 		public void FindDelegatesCallToElementFinderService()
 		{
 			// Assemble
@@ -34,14 +34,14 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			var mockElementFinderService = ResolveMock<IElementFinderService>();
 
 			// Act
-			Uut.Find<IButton>(By.Id(expectedId));
+			Sut.Find<IButton>(By.Id(expectedId));
 
 			// Assert
 			mockElementFinderService
 				.Verify(x => x.Find<IButton>(It.IsAny<ISearchContext>(), It.Is<By>(by => by.Value.Equals(expectedId))), Times.Once());
 		}
 
-		[TestMethod]
+		[Test]
 		public void FindAllDelegatesCallToElementFinderService()
 		{
 			// Assemble
@@ -49,27 +49,27 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			var mockElementFinderService = ResolveMock<IElementFinderService>();
 
 			// Act
-			Uut.FindAll<IButton>(By.Id(expectedId));
+			Sut.FindAll<IButton>(By.Id(expectedId));
 
 			// Assert
 			mockElementFinderService
 				.Verify(x => x.FindAll<IButton>(It.IsAny<ISearchContext>(), It.Is<By>(by => by.Value.Equals(expectedId))), Times.Once());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetAttributeDelegatesCallToWebElement()
 		{
 			// Assemble
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Uut.GetAttribute(Create<string>());
+			Sut.GetAttribute(Create<string>());
 
 			// Assert
 			mockWebElement.Verify(x => x.GetAttribute(It.IsAny<string>()), Times.Once());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetAttributeReturnsValueFromWebElement()
 		{
 			// Assemble
@@ -77,26 +77,26 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.IsAny<string>())).Returns(expectedAttributeValue);
 
 			// Act
-			var actualValue = Uut.GetAttribute(Create<string>());
+			var actualValue = Sut.GetAttribute(Create<string>());
 
 			// Assert
 			actualValue.Should().Be(expectedAttributeValue);
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsElementPresentDelegatesCallToElementFinderService()
 		{
 			// Assemble
 			var mockElementFinderService = ResolveMock<IElementFinderService>();
 
 			// Act
-			Uut.IsElementPresent(By.Id(Create<string>()));
+			Sut.IsElementPresent(By.Id(Create<string>()));
 
 			// Assert
 			mockElementFinderService.Verify(x => x.IsElementPresent(It.IsAny<ISearchContext>(), It.IsAny<By>()), Times.Once);
 		}
 
-		[TestMethod]
+		[Test]
 		public void CssClassReturnsClassNameAttribute()
 		{
 			// Assemble
@@ -104,13 +104,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.Is<string>(y => y == "className"))).Returns(expectedValue);
 
 			// Act
-			var actualValue = Uut.CssClass;
+			var actualValue = Sut.CssClass;
 
 			// Assert
 			actualValue.Should().Be(expectedValue);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ContentPullsValueFromWebElementTextProperty()
 		{
 			// Assemble
@@ -118,26 +118,26 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Text).Returns(expectedText);
 
 			// Act
-			var actual = Uut.Content;
+			var actual = Sut.Content;
 
 			// Assert
 			actual.Should().Be(expectedText);
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsVisibleReturnsValueOfWebElementIsDisplayed()
 		{
 			// Assemble
 			ResolveMock<IWebElement>().Setup(x => x.Displayed).Returns(true);
 
 			// Act
-			var isVisible = Uut.IsVisible;
+			var isVisible = Sut.IsVisible;
 
 			// Assert
 			isVisible.Should().BeTrue();
 		}
 
-		[TestMethod]
+		[Test]
 		public void WidthReturnsWebElementWidth()
 		{
 			// Assemble
@@ -145,13 +145,13 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Size).Returns(size);
 
 			// Act
-			var width = Uut.Width;
+			var width = Sut.Width;
 
 			// Assert
 			width.Should().Be(50);
 		}
 
-		[TestMethod]
+		[Test]
 		public void HeightReturnsWebElementHeight()
 		{
 			// Assemble
@@ -159,7 +159,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Size).Returns(size);
 
 			// Act
-			var height = Uut.Height;
+			var height = Sut.Height;
 
 			// Assert
 			height.Should().Be(25);
