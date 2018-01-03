@@ -8,25 +8,25 @@ namespace AutomatedTestingFramework.Tests
 {
 	public abstract class BaseTest<TTestType> where TTestType : class
 	{
-		private readonly IFixture _Fixture;
+		private readonly IFixture _fixture;
 
 		protected BaseTest()
 		{
-			_Fixture = new Fixture().Customize(new AutoConfiguredMoqCustomization());
-			_Fixture.Behaviors.OfType<ThrowingRecursionBehavior>()
+			_fixture = new Fixture().Customize(new AutoConfiguredMoqCustomization());
+			_fixture.Behaviors.OfType<ThrowingRecursionBehavior>()
 				.ToList()
-				.ForEach(b => _Fixture.Behaviors.Remove(b));
-			_Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+				.ForEach(b => _fixture.Behaviors.Remove(b));
+			_fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 		}
 
 		/// <summary>
-		/// Creates a new instance of <cref="TType"></cref>.
+		/// Creates a new instance of <see cref="TType"></see>.
 		/// </summary>
 		/// <typeparam name="TType">Any type</typeparam>
 		/// <returns>A new instance of TType</returns>
 		protected TType Create<TType>()
 		{
-			return _Fixture.Create<TType>();
+			return _fixture.Create<TType>();
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace AutomatedTestingFramework.Tests
 		/// <returns>A mocked instance of TType.</returns>
 		protected Mock<TType> ResolveMock<TType>() where TType : class
 		{
-			return _Fixture.Freeze<Mock<TType>>();
+			return _fixture.Freeze<Mock<TType>>();
 		}
 		
 		/// <summary>
@@ -48,11 +48,11 @@ namespace AutomatedTestingFramework.Tests
 		/// <returns>An instance of TType.</returns>
 		protected TType Resolve<TType>() where TType : class
 		{
-			return _Fixture.Freeze<TType>();
+			return _fixture.Freeze<TType>();
 		}
 		
 		public TestContext TestContext { get; set; }
 		
-		protected TTestType Uut => _Fixture.Freeze<TTestType>();
+		protected TTestType Uut => _fixture.Freeze<TTestType>();
 	}
 }

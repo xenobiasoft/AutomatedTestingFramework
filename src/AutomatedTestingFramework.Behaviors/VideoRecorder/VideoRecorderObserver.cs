@@ -52,7 +52,7 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 		{
 			if (memberInfo == null)
 			{
-				throw new ArgumentNullException("The test method MemberInfo info cannot be null.");
+				throw new ArgumentNullException(nameof(memberInfo));
 			}
 
 			var recordingModeMethodAttribute = memberInfo.GetCustomAttribute<VideoRecorderAttribute>(true);
@@ -69,7 +69,7 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 		{
 			if (currentType == null)
 			{
-				throw new ArgumentNullException("The test method's type cannot be null.");
+				throw new ArgumentNullException(nameof(currentType));
 			}
 
 			var recordingModeClassAttribute = currentType.GetCustomAttribute<VideoRecorderAttribute>(true);

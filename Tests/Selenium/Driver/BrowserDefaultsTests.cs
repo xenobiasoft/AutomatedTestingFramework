@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 	[TestClass]
 	public class BrowserDefaultsTests : BaseTest<BrowserDefaults>
 	{
-		private IBrowserSettingsConfiguration _BrowserSettingsConfiguration;
+		private IBrowserSettingsConfiguration _browserSettingsConfiguration;
 
 		[TestMethod]
 		[TestCategory(TestCategories.Selenium)]
@@ -37,7 +37,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			var actualValue = Uut.ImplicitTimeoutValue;
 
 			// Assert
-			actualValue.Should().Be(_BrowserSettingsConfiguration.ImplicitWaitTimeout);
+			actualValue.Should().Be(_browserSettingsConfiguration.ImplicitWaitTimeout);
 		}
 
 		[TestMethod]
@@ -51,7 +51,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			var actualValue = Uut.ScriptTimeoutValue;
 
 			// Assert
-			actualValue.Should().Be(_BrowserSettingsConfiguration.ScriptTimeout);
+			actualValue.Should().Be(_browserSettingsConfiguration.ScriptTimeout);
 		}
 
 		[TestMethod]
@@ -65,7 +65,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			var actualValue = Uut.PageLoadTimeoutValue;
 
 			// Assert
-			actualValue.Should().Be(_BrowserSettingsConfiguration.PageLoadTimeout);
+			actualValue.Should().Be(_browserSettingsConfiguration.PageLoadTimeout);
 		}
 
 		[TestInitialize]
@@ -79,7 +79,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			mockBrowserSettingsConfig.Setup(x => x.ScriptTimeout).Returns(8);
 			mockBrowserSettingsConfig.Setup(x => x.PageLoadTimeout).Returns(13);
 
-			_BrowserSettingsConfiguration = mockBrowserSettingsConfig.Object;
+			_browserSettingsConfiguration = mockBrowserSettingsConfig.Object;
 		}
 
 		[TestCleanup]

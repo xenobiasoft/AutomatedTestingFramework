@@ -14,9 +14,9 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 	[TestClass]
 	public class VideoRecorderTests : BaseTest<VideoRecorderObserver>
 	{
-		private Mock<IVideoRecorder> _MockVideoRecorder;
-		private Mock<IAppConfiguration> _MockAppConfiguration;
-		private Mock<TestExecutionEventArgs> _MockTestExecutionEventArgs;
+		private Mock<IVideoRecorder> _mockVideoRecorder;
+		private Mock<IAppConfiguration> _mockAppConfiguration;
+		private Mock<TestExecutionEventArgs> _mockTestExecutionEventArgs;
 
 		[TestClass]
 		public class PostTestInitTests : VideoRecorderTests
@@ -26,13 +26,13 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 			public void VideoDoesNotRecordWhenConfigurationIsSetToDisableRecording()
 			{
 				// Assemble
-				_MockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(false);
+				_mockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(false);
 
 				// Act
-				Uut.PostTestInit(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
+				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
 			}
 
 			[TestMethod]
@@ -43,10 +43,10 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
+				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
 			}
 
 			[TestMethod]
@@ -55,10 +55,10 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 			public void WhenTestExecutionEventArgsMemberInfoIsNullThrowsArgumentNullException()
 			{
 				// Assemble
-				_MockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns((MemberInfo)null);
+				_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns((MemberInfo)null);
 
 				// Act
-				Action postTestInit = () => Uut.PostTestInit(this, _MockTestExecutionEventArgs.Object);
+				Action postTestInit = () => Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("*The test method MemberInfo info cannot be null.");
@@ -74,14 +74,14 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 			public void VideoRecordsIfTestFailsAndAttributeSetToOnlyFail()
 			{
 				// Assemble
-				_MockTestExecutionEventArgs.Setup(x => x.TestOutcome).Returns(TestOutcome.Failed);
-				_MockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
+				_mockTestExecutionEventArgs.Setup(x => x.TestOutcome).Returns(TestOutcome.Failed);
+				_mockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
 
 				// Act
-				Uut.PostTestCleanup(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
+				_mockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
 			}
 
 			[TestMethod]
@@ -90,14 +90,14 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 			public void VideoRecordsIfTestPassesAndAttributeSetToOnlyPass()
 			{
 				// Assemble
-				_MockTestExecutionEventArgs.Setup(x => x.TestOutcome).Returns(TestOutcome.Passed);
-				_MockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
+				_mockTestExecutionEventArgs.Setup(x => x.TestOutcome).Returns(TestOutcome.Passed);
+				_mockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
 
 				// Act
-				Uut.PostTestCleanup(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
+				_mockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
 			}
 		}
 
@@ -112,10 +112,10 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
+				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
 			}
 
 			[TestMethod]
@@ -126,23 +126,23 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _MockTestExecutionEventArgs.Object);
+				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				_MockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
+				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
 			}
 		}
 
 		[TestInitialize]
 		public void TestInit()
 		{
-			_MockVideoRecorder = ResolveMock<IVideoRecorder>();
-			_MockAppConfiguration = ResolveMock<IAppConfiguration>();
-			_MockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(true);
+			_mockVideoRecorder = ResolveMock<IVideoRecorder>();
+			_mockAppConfiguration = ResolveMock<IAppConfiguration>();
+			_mockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(true);
 			
-			_MockTestExecutionEventArgs = ResolveMock<TestExecutionEventArgs>();
-			_MockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns(GetType().GetMethod(TestContext.TestName));
-			_MockTestExecutionEventArgs.Setup(x => x.TestName).Returns(TestContext.TestName);
+			_mockTestExecutionEventArgs = ResolveMock<TestExecutionEventArgs>();
+			_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns(GetType().GetMethod(TestContext.TestName));
+			_mockTestExecutionEventArgs.Setup(x => x.TestName).Returns(TestContext.TestName);
 		}
 	}
 }

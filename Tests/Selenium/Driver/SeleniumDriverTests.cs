@@ -8,7 +8,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 	[TestClass]
 	public class SeleniumDriverTests : BaseTest<SeleniumDriver>
 	{
-		private Mock<IWebDriver> _MockWebDriver;
+		private Mock<IWebDriver> _mockWebDriver;
 
 		[TestMethod]
 		[TestCategory(TestCategories.Selenium)]
@@ -20,15 +20,15 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			Uut.Dispose();
 
 			// Assert
-			_MockWebDriver.Verify(x => x.Quit(), Times.Once);
-			_MockWebDriver.Verify(x => x.Dispose(), Times.Once);
+			_mockWebDriver.Verify(x => x.Quit(), Times.Once);
+			_mockWebDriver.Verify(x => x.Dispose(), Times.Once);
 		}
 
 		[TestInitialize]
 		public virtual void TestInit()
 		{
-			_MockWebDriver = ResolveMock<IWebDriver>();
-			ResolveMock<IBrowserDefaults>().Setup(x => x.DefaultBrowser).Returns(_MockWebDriver.Object);
+			_mockWebDriver = ResolveMock<IWebDriver>();
+			ResolveMock<IBrowserDefaults>().Setup(x => x.DefaultBrowser).Returns(_mockWebDriver.Object);
 		}
 
 		[TestClass]

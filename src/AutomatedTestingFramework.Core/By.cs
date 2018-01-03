@@ -16,11 +16,11 @@ namespace AutomatedTestingFramework.Core
 			Parent = parent;
 		}
 
-		public SearchType Type { get; private set; }
+		public SearchType Type { get; }
 
-		public IElement Parent { get; private set; }
+		public IElement Parent { get; }
 
-		public string Value { get; private set; }
+		public string Value { get; }
 
 		#region Static By Selectors
 

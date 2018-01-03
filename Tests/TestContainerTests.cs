@@ -19,20 +19,20 @@ namespace AutomatedTestingFramework.Tests
 
 	public class RootObject
 	{
-		private readonly TestDependency _TestDependency;
-		private readonly string _SomeString;
-		private readonly int _SomeNumber;
+		private readonly TestDependency _testDependency;
+		private readonly string _someString;
+		private readonly int _someNumber;
 
 		public RootObject(TestDependency dependency, string someString, int someNumber)
 		{
-			_SomeNumber = someNumber;
-			_SomeString = someString;
-			_TestDependency = dependency;
+			_someNumber = someNumber;
+			_someString = someString;
+			_testDependency = dependency;
 		}
 
 		public string GetDependantName()
 		{
-			return string.IsNullOrEmpty(_SomeString) ? _TestDependency.Name : _SomeString;
+			return string.IsNullOrEmpty(_someString) ? _testDependency.Name : _someString;
 		}
 	}
 
