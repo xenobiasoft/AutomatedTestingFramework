@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{DE531A09-57B0-4941-B520-CD9DA82D844E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{60F9AF7B-9600-4270-BF2D-F9283B4F0C08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installers", "Installers", "{C3DAADFB-FAE5-4806-B752-2D15C30FCDFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.AutofacInstaller", "AutomatedTestingFramework.AutofacInstaller\AutomatedTestingFramework.AutofacInstaller.csproj", "{571F095E-16EE-4DE0-A18A-E3037012E50C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.WindsorInstaller", "AutomatedTestingFramework.WindsorInstaller\AutomatedTestingFramework.WindsorInstaller.csproj", "{A86B3D7E-6B16-4E19-935C-04668D6FD79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Tests", "AutomatedTestingFramework.Tests\AutomatedTestingFramework.Tests.csproj", "{7AE92BEC-A873-46D6-B651-BAA87EED63DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Behaviors", "AutomatedTestingFramework.Behaviors\AutomatedTestingFramework.Behaviors.csproj", "{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Core", "AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj", "{5055C769-BB9A-4484-855D-C57D473F71D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Media", "AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj", "{B181ADFD-B726-438D-B836-34644CF30F0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Selenium", "AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj", "{F480BF47-3999-44AD-9A82-60B9FEF74CB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5055C769-BB9A-4484-855D-C57D473F71D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5055C769-BB9A-4484-855D-C57D473F71D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5055C769-BB9A-4484-855D-C57D473F71D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5055C769-BB9A-4484-855D-C57D473F71D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B181ADFD-B726-438D-B836-34644CF30F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B181ADFD-B726-438D-B836-34644CF30F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B181ADFD-B726-438D-B836-34644CF30F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B181ADFD-B726-438D-B836-34644CF30F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3DAADFB-FAE5-4806-B752-2D15C30FCDFE} = {DE531A09-57B0-4941-B520-CD9DA82D844E}
+		{571F095E-16EE-4DE0-A18A-E3037012E50C} = {C3DAADFB-FAE5-4806-B752-2D15C30FCDFE}
+		{A86B3D7E-6B16-4E19-935C-04668D6FD79C} = {C3DAADFB-FAE5-4806-B752-2D15C30FCDFE}
+		{7AE92BEC-A873-46D6-B651-BAA87EED63DE} = {60F9AF7B-9600-4270-BF2D-F9283B4F0C08}
+		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551} = {DE531A09-57B0-4941-B520-CD9DA82D844E}
+		{5055C769-BB9A-4484-855D-C57D473F71D0} = {DE531A09-57B0-4941-B520-CD9DA82D844E}
+		{B181ADFD-B726-438D-B836-34644CF30F0A} = {DE531A09-57B0-4941-B520-CD9DA82D844E}
+		{F480BF47-3999-44AD-9A82-60B9FEF74CB4} = {DE531A09-57B0-4941-B520-CD9DA82D844E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDDB3020-FC7C-4904-BE05-C6C206F482C4}
+	EndGlobalSection
+EndGlobal

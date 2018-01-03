@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F480BF47-3999-44AD-9A82-60B9FEF74CB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutomatedTestingFramework.Selenium</RootNamespace>
+    <AssemblyName>AutomatedTestingFramework.Selenium</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="WebDriver, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.8.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.8.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByExtensions.cs" />
+    <Compile Include="Controls\Anchor.cs" />
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\Checkbox.cs" />
+    <Compile Include="Controls\ContentElement.cs" />
+    <Compile Include="Controls\Div.cs" />
+    <Compile Include="Controls\DropDown.cs" />
+    <Compile Include="Controls\Element.cs" />
+    <Compile Include="Controls\WebImage.cs" />
+    <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\SubmitButton.cs" />
+    <Compile Include="Controls\TextBox.cs" />
+    <Compile Include="Driver\BrowserDefaults.cs" />
+    <Compile Include="Driver\IBrowserDefaults.cs" />
+    <Compile Include="Driver\IElementFinderService.cs" />
+    <Compile Include="Driver\SeleniumDriver.Browser.cs" />
+    <Compile Include="Driver\SeleniumDriver.CookieService.cs" />
+    <Compile Include="Driver\SeleniumDriver.cs" />
+    <Compile Include="Driver\SeleniumDriver.DialogService.cs" />
+    <Compile Include="Driver\SeleniumDriver.ElementFinder.cs" />
+    <Compile Include="Driver\SeleniumDriver.JavascriptInvoker.cs" />
+    <Compile Include="Driver\SeleniumDriver.NavigationService.cs" />
+    <Compile Include="Driver\ElementFinderService.cs" />
+    <Compile Include="Controls\Frame.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj">
+      <Project>{5055c769-bb9a-4484-855d-c57d473f71d0}</Project>
+      <Name>AutomatedTestingFramework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj">
+      <Project>{b181adfd-b726-438d-b836-34644cf30f0a}</Project>
+      <Name>AutomatedTestingFramework.Media</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5055C769-BB9A-4484-855D-C57D473F71D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutomatedTestingFramework.Core</RootNamespace>
+    <AssemblyName>AutomatedTestingFramework.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Config\IAppConfiguration.cs" />
+    <Compile Include="ElementFinderExtensions.cs" />
+    <Compile Include="By.cs" />
+    <Compile Include="Config\AppConfiguration.cs" />
+    <Compile Include="Config\BrowserSettingsConfiguration.cs" />
+    <Compile Include="Config\BrowserSettingsConfigurationProvider.cs" />
+    <Compile Include="Config\IBrowserSettingsConfiguration.cs" />
+    <Compile Include="Controls\IWebImage.cs" />
+    <Compile Include="ElementTimeoutException.cs" />
+    <Compile Include="Enums\DialogButton.cs" />
+    <Compile Include="Enums\ExecutionEngineType.cs" />
+    <Compile Include="Enums\SearchType.cs" />
+    <Compile Include="Controls\IAnchor.cs" />
+    <Compile Include="Controls\IButton.cs" />
+    <Compile Include="Controls\ICheckbox.cs" />
+    <Compile Include="Controls\IContentElement.cs" />
+    <Compile Include="Controls\IDiv.cs" />
+    <Compile Include="Controls\IDropDown.cs" />
+    <Compile Include="Controls\IElement.cs" />
+    <Compile Include="Controls\IFrame.cs" />
+    <Compile Include="Controls\ILabel.cs" />
+    <Compile Include="Controls\ISubmitButton.cs" />
+    <Compile Include="Controls\ITextBox.cs" />
+    <Compile Include="Driver\IBrowser.cs" />
+    <Compile Include="Driver\ICookieService.cs" />
+    <Compile Include="Driver\IDriver.cs" />
+    <Compile Include="Enums\TestOutcome.cs" />
+    <Compile Include="ExceptionAnalysis\AnalyzedTestException.cs" />
+    <Compile Include="ExceptionAnalysis\CustomHtmlExceptionHandler.cs" />
+    <Compile Include="ExceptionAnalysis\ExceptionAnalyzer.cs" />
+    <Compile Include="ExceptionAnalysis\FileNotFoundExceptionHandler.cs" />
+    <Compile Include="ExceptionAnalysis\HtmlSourceExceptionHandler.cs" />
+    <Compile Include="ExceptionAnalysis\IExceptionAnalyzationHandler.cs" />
+    <Compile Include="ExceptionAnalysis\IExceptionAnalyzer.cs" />
+    <Compile Include="ExceptionAnalysis\ServiceUnavailableExceptionHandler.cs" />
+    <Compile Include="IElementFinder.cs" />
+    <Compile Include="Driver\IJavascriptInvoker.cs" />
+    <Compile Include="Driver\INavigationService.cs" />
+    <Compile Include="Driver\IDialogService.cs" />
+    <Compile Include="BasePage.cs" />
+    <Compile Include="IPageFactory.cs" />
+    <Compile Include="IResolver.cs" />
+    <Compile Include="ExecutionEngine\ITestExecutionProvider.cs" />
+    <Compile Include="ExecutionEngine\ITestObserver.cs" />
+    <Compile Include="PageEventArgs.cs" />
+    <Compile Include="Enums\BrowserType.cs" />
+    <Compile Include="PageFactory.cs" />
+    <Compile Include="PartialPage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExecutionEngine\TestExecutionEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
