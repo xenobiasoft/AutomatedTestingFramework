@@ -39,8 +39,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseTestObserver.cs" />
-    <Compile Include="ExecutionEngine\TestExecutionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoRecorder\VideoRecorderObserver.cs" />
     <Compile Include="VideoRecorder\VideoRecorderAttribute.cs" />

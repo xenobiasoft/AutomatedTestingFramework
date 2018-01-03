@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using AutomatedTestingFramework.Behaviors.ExecutionEngine;
 using AutomatedTestingFramework.Behaviors.VideoRecorder;
 using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;

@@ -61,7 +61,7 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				Action postTestInit = () => Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("*The test method MemberInfo info cannot be null.");
+				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("Value cannot be null.\r\nParameter name: memberInfo");
 			}
 		}
 

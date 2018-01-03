@@ -1,5 +1,4 @@
-﻿using AutomatedTestingFramework.Behaviors.ExecutionEngine;
-using AutomatedTestingFramework.Core.Enums;
+﻿using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

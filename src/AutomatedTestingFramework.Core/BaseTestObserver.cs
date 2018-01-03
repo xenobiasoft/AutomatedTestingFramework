@@ -1,6 +1,6 @@
 ﻿using AutomatedTestingFramework.Core.ExecutionEngine;
 
-namespace AutomatedTestingFramework.Behaviors
+namespace AutomatedTestingFramework.Core
 {
 	public abstract class BaseTestObserver : ITestObserver
 	{

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
