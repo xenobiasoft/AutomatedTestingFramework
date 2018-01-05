@@ -2,9 +2,9 @@
 
 namespace AutomatedTestingFramework.Core
 {
-	public class BasePage
+	public abstract class BasePage
 	{
-		public BasePage(IDriver driver) => Driver = driver;
+		protected BasePage(IDriver driver) => Driver = driver;
 		
 		protected IDriver Driver { get; }
 	}
