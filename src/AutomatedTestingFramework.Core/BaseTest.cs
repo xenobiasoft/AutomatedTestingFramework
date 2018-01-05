@@ -3,17 +3,17 @@ using System.Reflection;
 using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AutomatedTestingFramework.Core
 {
-	[TestClass]
+	[TestFixture]
 	public abstract class BaseTest
 	{
 		private ITestExecutionProvider _testExecutionProvider;
 		private IDriver _driver;
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInit()
 		{
 			InitializeContainer();
@@ -22,9 +22,9 @@ namespace AutomatedTestingFramework.Core
 			
 			SubscribeTestExecutionObservers();
 			Driver.MaximizeBrowserWindow();
-			TestExecutionProvider.PreTestInit((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
-			TestInitialize();
-			TestExecutionProvider.PostTestInit((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
+			TestExecutionProvider.PreTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
+			Setup();
+			TestExecutionProvider.PostTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 		}
 
 
@@ -42,17 +42,17 @@ namespace AutomatedTestingFramework.Core
 			}
 		}
 
-		protected virtual void TestInitialize()
+		protected virtual void Setup()
 		{ }
 
-		[TestCleanup]
+		[TearDown]
 		public void TestCleanup()
 		{
 			var memberInfo = GetCurrentExecutionMemberInfo();
 
-			TestExecutionProvider.PreTestCleanup((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
-			TeardownTest();
-			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
+			TestExecutionProvider.PreTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
+			Teardown();
+			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 			UnsubscribeTestExecutionObservers();
 			Driver.Dispose();
 		}
@@ -67,19 +67,19 @@ namespace AutomatedTestingFramework.Core
 			}
 		}
 
-		protected virtual void TeardownTest()
+		protected virtual void Teardown()
 		{ }
 
-		[ClassCleanup]
+		[OneTimeTearDown]
 		public void ClassCleanup()
 		{
 			Container.Dispose();
 		}
 
 
-		public TestContext TestContext { get; set; }
+		public TestContext TestContext => TestContext.CurrentContext;
 
-		public string TestName => TestContext.TestName;
+		public string TestName => TestContext.Test.Name;
 
 		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
 		
