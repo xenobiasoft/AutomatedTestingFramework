@@ -2,7 +2,7 @@ using AutomatedTestingFramework.Core.Driver;
 
 namespace AutomatedTestingFramework.Core
 {
-	public abstract class NavigatablePage<TPage> : BasePage
+	public abstract class NavigatablePage : BasePage
 	{
 		protected NavigatablePage(IDriver driver)
 			: base(driver)
