@@ -21,7 +21,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 				
 				// Act
-				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
@@ -34,7 +34,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -50,7 +50,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Sut.PreTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -70,7 +70,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
@@ -83,7 +83,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -99,7 +99,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Sut.PreTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PreTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -119,7 +119,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PostTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
@@ -132,7 +132,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -148,7 +148,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Sut.PostTestInit(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestInit(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -169,7 +169,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PostTestCleanup(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Once);
@@ -182,7 +182,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				// Assemble
 
 				// Act
-				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
@@ -198,7 +198,7 @@ namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 				Sut.Unsubscribe(MockObserver.Object);
 
 				// Act
-				Sut.PostTestCleanup(TestOutcome.InProgress, Create<string>(), null);
+				Sut.PostTestCleanup(TestOutcome.Inconclusive, Create<string>(), null);
 
 				// Assert
 				MockObserver.Verify(x => x.PreTestInit(It.IsAny<object>(), It.IsAny<TestExecutionEventArgs>()), Times.Never);
