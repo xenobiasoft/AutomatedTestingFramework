@@ -59,7 +59,7 @@ namespace AutomatedTestingFramework.Tests.Core
 		}
 	}
 
-	public class TestPage : BasePage
+	public class TestPage : NavigatablePage
 	{
 		public TestPage(IDriver driver, IPageFactory pageFactory) : base(driver, pageFactory)
 		{}
