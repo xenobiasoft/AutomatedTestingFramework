@@ -1,25 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using Autofac;
 using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AutomatedTestingFramework.Core
 {
 	[TestFixture]
 	public abstract class BaseTest
 	{
+		private IContainer _container;
 		private ITestExecutionProvider _testExecutionProvider;
 		private IDriver _driver;
 
 		[SetUp]
 		public void TestInit()
 		{
-			InitializeContainer();
+			_container = InitializeContainer();
 
-			var memberInfo = GetCurrentExecutionMemberInfo();
-			
+			var memberInfo = GetType().GetMethod(TestName);
+
 			SubscribeTestExecutionObservers();
 			Driver.MaximizeBrowserWindow();
 			TestExecutionProvider.PreTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
@@ -27,28 +28,10 @@ namespace AutomatedTestingFramework.Core
 			TestExecutionProvider.PostTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 		}
 
-
-		protected abstract void InitializeContainer();
-
-		private MemberInfo GetCurrentExecutionMemberInfo() => GetType().GetMethod(TestName);
-
-		private void SubscribeTestExecutionObservers()
-		{
-			var observers = Container.Resolve<IEnumerable<ITestObserver>>();
-
-			foreach (var observer in observers)
-			{
-				TestExecutionProvider.Subscribe(observer);
-			}
-		}
-
-		protected virtual void Setup()
-		{ }
-
 		[TearDown]
 		public void TestCleanup()
 		{
-			var memberInfo = GetCurrentExecutionMemberInfo();
+			var memberInfo = GetType().GetMethod(TestName);
 
 			TestExecutionProvider.PreTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 			Teardown();
@@ -57,9 +40,25 @@ namespace AutomatedTestingFramework.Core
 			Driver.Dispose();
 		}
 
+		[OneTimeTearDown]
+		public void ClassCleanup()
+		{
+			_container.Dispose();
+		}
+
+		private void SubscribeTestExecutionObservers()
+		{
+			var observers = _container.Resolve<IEnumerable<ITestObserver>>();
+
+			foreach (var observer in observers)
+			{
+				TestExecutionProvider.Subscribe(observer);
+			}
+		}
+
 		private void UnsubscribeTestExecutionObservers()
 		{
-			var observers = Container.Resolve<IEnumerable<ITestObserver>>();
+			var observers = _container.Resolve<IEnumerable<ITestObserver>>();
 
 			foreach (var observer in observers)
 			{
@@ -67,24 +66,20 @@ namespace AutomatedTestingFramework.Core
 			}
 		}
 
-		protected virtual void Teardown()
+		protected abstract IContainer InitializeContainer();
+
+		protected virtual void Setup()
 		{ }
 
-		[OneTimeTearDown]
-		public void ClassCleanup()
-		{
-			Container.Dispose();
-		}
-
+		protected virtual void Teardown()
+		{ }
 
 		public TestContext TestContext => TestContext.CurrentContext;
 
 		public string TestName => TestContext.Test.Name;
 
-		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
+		public IDriver Driver => _driver ?? ( _driver = _container.Resolve<IDriver>());
 		
-		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionProvider>());
-
-		protected IResolver Container { get; set; }
+		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = _container.Resolve<ITestExecutionProvider>());
 	}
 }

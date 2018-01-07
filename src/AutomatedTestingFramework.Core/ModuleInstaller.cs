@@ -17,7 +17,6 @@ namespace AutomatedTestingFramework.Core
 			builder.RegisterInstance(browserSettingsConfig).As<IBrowserSettingsConfiguration>();
 			builder.RegisterType<AppConfiguration>().As<IAppConfiguration>();
 			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>();
-			builder.RegisterType<PageFactory>().As<IPageFactory>();
 		}
 	}
 }
