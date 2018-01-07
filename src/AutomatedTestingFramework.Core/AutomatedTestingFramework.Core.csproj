@@ -100,7 +100,6 @@
     <Compile Include="Driver\INavigationService.cs" />
     <Compile Include="Driver\IDialogService.cs" />
     <Compile Include="NavigatablePage.cs" />
-    <Compile Include="IResolver.cs" />
     <Compile Include="ExecutionEngine\ITestExecutionProvider.cs" />
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
     <Compile Include="ModuleInstaller.cs" />
