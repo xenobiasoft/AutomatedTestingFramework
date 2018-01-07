@@ -26,9 +26,7 @@ namespace AutomatedTestingFramework.AutofacInstaller
 			builder.RegisterType<AppConfiguration>().As<IAppConfiguration>();
 
 			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>();
-
-			builder.RegisterType<PageFactory>().As<IPageFactory>();
-
+			
 			builder.Register(x => new SeleniumDriver(
 				x.Resolve<IBrowserDefaults>(), 
 				x.Resolve<IElementFinderService>()))

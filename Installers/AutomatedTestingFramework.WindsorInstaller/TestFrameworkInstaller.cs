@@ -31,7 +31,6 @@ namespace AutomatedTestingFramework.WindsorInstaller
 			container.Register(Component.For<IAppConfiguration>().ImplementedBy<AppConfiguration>());
 
 			container.Register(Component.For<IExceptionAnalyzer>().ImplementedBy<ExceptionAnalyzer>());
-			container.Register(Component.For<IPageFactory>().ImplementedBy<PageFactory>());
 
 			SeleniumDriver WebDriverFactoryMethod() => new SeleniumDriver(container.Resolve<IBrowserDefaults>(), container.Resolve<IElementFinderService>());
 			container.Register(Component.For<IDriver>()
