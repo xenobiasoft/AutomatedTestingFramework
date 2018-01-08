@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>AutomatedTestingFramework.Core</id>
+		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
 		<authors>Shannon Stewart</authors>

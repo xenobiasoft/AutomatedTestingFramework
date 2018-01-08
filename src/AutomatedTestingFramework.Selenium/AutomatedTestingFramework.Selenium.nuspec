@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>AutomatedTestingFramework.Selenium</id>
+		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
 		<authors>Shannon Stewart</authors>
@@ -15,6 +15,7 @@
 			<dependency id="Autofac" version="4.6.2" />
 			<dependency id="Selenium.Support" version="3.8.0" />
 			<dependency id="Selenium.Webdriver" version="3.8.0" />
+			<dependency id="AutomatedTestingFramework.Core" version="1.0.0" />
 		</dependencies>
 	</metadata>
 </package>
