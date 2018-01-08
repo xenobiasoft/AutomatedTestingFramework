@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>AutomatedTestingFramework.Selenium</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>Shannon Stewart</authors>
+		<owners>Shannon Stewart</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Selenium implementation of the Automated Testing Framework.</description>
+		<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+		<copyright>Copyright 2018</copyright>
+		<tags>Tag1 Tag2</tags>
+		<dependencies>
+			<dependency id="Autofac" version="4.6.2" />
+			<dependency id="Selenium.Support" version="3.8.0" />
+			<dependency id="Selenium.Webdriver" version="3.8.0" />
+		</dependencies>
+	</metadata>
+</package>
