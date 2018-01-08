@@ -8,7 +8,6 @@
 		<owners>Shannon Stewart</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Selenium implementation of the Automated Testing Framework.</description>
-		<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
 		<copyright>Copyright 2018</copyright>
 		<tags>Automated Testing Framework Selenium</tags>
 		<dependencies>
