@@ -10,7 +10,7 @@
 		<description>Selenium implementation of the Automated Testing Framework.</description>
 		<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
 		<copyright>Copyright 2018</copyright>
-		<tags>Tag1 Tag2</tags>
+		<tags>Automated Testing Framework Selenium</tags>
 		<dependencies>
 			<dependency id="Autofac" version="4.6.2" />
 			<dependency id="Selenium.Support" version="3.8.0" />
