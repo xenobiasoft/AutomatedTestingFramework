@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>AutomatedTestingFramework.Media</id>
+		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
 		<authors>Shannon Stewart</authors>
@@ -14,6 +14,7 @@
 		<dependencies>
 			<dependency id="Microsoft.Expression.Encoder" version="4.0.4276.3" />
 			<dependency id="Autofac" version="4.6.2" />
+			<dependency id="AutomatedTestingFramework.Core" version="1.0.0" />
 		</dependencies>
 	</metadata>
 </package>
