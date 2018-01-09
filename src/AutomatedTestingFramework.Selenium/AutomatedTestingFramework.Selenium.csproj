@@ -83,7 +83,7 @@
     <Compile Include="Driver\SeleniumDriver.NavigationService.cs" />
     <Compile Include="Driver\ElementFinderService.cs" />
     <Compile Include="Controls\Frame.cs" />
-    <Compile Include="ModuleInstaller.cs" />
+    <Compile Include="SeleniumInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

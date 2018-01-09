@@ -6,7 +6,7 @@ using AutomatedTestingFramework.Selenium.Driver;
 
 namespace AutomatedTestingFramework.Selenium
 {
-	public class ModuleInstaller : Module
+	public class SeleniumInstaller : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{

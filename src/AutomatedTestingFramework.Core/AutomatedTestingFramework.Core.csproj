@@ -102,7 +102,7 @@
     <Compile Include="NavigatablePage.cs" />
     <Compile Include="ExecutionEngine\ITestExecutionProvider.cs" />
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
-    <Compile Include="ModuleInstaller.cs" />
+    <Compile Include="CoreInstaller.cs" />
     <Compile Include="PageEventArgs.cs" />
     <Compile Include="Enums\BrowserType.cs" />
     <Compile Include="BasePage.cs" />
