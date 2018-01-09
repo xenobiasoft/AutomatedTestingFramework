@@ -10,6 +10,8 @@ namespace AutomatedTestingFramework.Selenium
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
+			builder.RegisterType<ElementFinderService>().As<IElementFinderService>();
+			builder.RegisterType<BrowserDefaults>().As<IBrowserDefaults>();
 			builder.Register(x => new SeleniumDriver(
 					x.Resolve<IBrowserDefaults>(),
 					x.Resolve<IElementFinderService>()))
