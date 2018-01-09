@@ -102,7 +102,7 @@
     <Compile Include="NavigatablePage.cs" />
     <Compile Include="ExecutionEngine\ITestExecutionProvider.cs" />
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
-    <Compile Include="ModuleInstaller.cs" />
+    <Compile Include="CoreInstaller.cs" />
     <Compile Include="PageEventArgs.cs" />
     <Compile Include="Enums\BrowserType.cs" />
     <Compile Include="BasePage.cs" />
@@ -118,6 +118,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

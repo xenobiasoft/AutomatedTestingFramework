@@ -5,9 +5,9 @@ using AutomatedTestingFramework.Core.ExecutionEngine;
 
 namespace AutomatedTestingFramework.Core
 {
-	public class ModuleInstaller : Module
+	public class CoreInstaller : Module
 	{
-		public void Configure(ContainerBuilder builder)
+		protected override void Load(ContainerBuilder builder)
 		{
 			var browserSettingsConfig = BrowserSettingsConfigurationProvider.GetSettings();
 

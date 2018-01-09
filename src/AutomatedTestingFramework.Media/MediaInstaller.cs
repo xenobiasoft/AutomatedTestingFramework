@@ -4,7 +4,7 @@ using AutomatedTestingFramework.Media.VideoRecorder;
 
 namespace AutomatedTestingFramework.Media
 {
-	public class ModuleInstaller : Module
+	public class MediaInstaller : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
