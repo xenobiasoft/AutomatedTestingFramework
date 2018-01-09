@@ -1,23 +1,24 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using Autofac;
 using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace AutomatedTestingFramework.Core
 {
 	[TestFixture]
 	public abstract class BaseTest
 	{
-		private IContainer _container;
 		private ITestExecutionProvider _testExecutionProvider;
 		private IDriver _driver;
+
+		protected IContainer Container;
 
 		[SetUp]
 		public void TestInit()
 		{
-			_container = InitializeContainer();
+			Container = InitializeContainer();
 
 			var memberInfo = GetType().GetMethod(TestName);
 
@@ -43,12 +44,12 @@ namespace AutomatedTestingFramework.Core
 		[OneTimeTearDown]
 		public void ClassCleanup()
 		{
-			_container.Dispose();
+			Container.Dispose();
 		}
 
 		private void SubscribeTestExecutionObservers()
 		{
-			var observers = _container.Resolve<IEnumerable<ITestObserver>>();
+			var observers = Container.Resolve<IEnumerable<ITestObserver>>();
 
 			foreach (var observer in observers)
 			{
@@ -58,7 +59,7 @@ namespace AutomatedTestingFramework.Core
 
 		private void UnsubscribeTestExecutionObservers()
 		{
-			var observers = _container.Resolve<IEnumerable<ITestObserver>>();
+			var observers = Container.Resolve<IEnumerable<ITestObserver>>();
 
 			foreach (var observer in observers)
 			{
@@ -78,8 +79,8 @@ namespace AutomatedTestingFramework.Core
 
 		public string TestName => TestContext.Test.Name;
 
-		public IDriver Driver => _driver ?? ( _driver = _container.Resolve<IDriver>());
+		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
 		
-		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = _container.Resolve<ITestExecutionProvider>());
+		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionProvider>());
 	}
 }
