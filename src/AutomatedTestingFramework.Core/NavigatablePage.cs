@@ -2,13 +2,13 @@ using AutomatedTestingFramework.Core.Driver;
 
 namespace AutomatedTestingFramework.Core
 {
-	public abstract class NavigatablePage : BasePage
+	public abstract class NavigatablePage<TPage> : BasePage where TPage : BasePage
 	{
 		protected NavigatablePage(IDriver driver)
 			: base(driver)
 		{}
 
-		public BasePage Go()
+		public NavigatablePage<TPage> Go()
 		{
 			Driver.Navigate(RelativeUrl);
 
