@@ -19,7 +19,7 @@ namespace AutomatedTestingFramework.Tests.Core
 			Sut.RelativeUrl = url;
 
 			// Act
-			Sut.Go();
+			Sut.Go<TestPage>();
 
 			// Assert
 			mockDriver.Verify(x => x.Navigate(url, true), Times.Once);

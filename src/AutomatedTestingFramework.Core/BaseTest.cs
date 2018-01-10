@@ -39,6 +39,7 @@ namespace AutomatedTestingFramework.Core
 			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 			UnsubscribeTestExecutionObservers();
 			Driver.Dispose();
+			_driver = null;
 		}
 
 		[OneTimeTearDown]
