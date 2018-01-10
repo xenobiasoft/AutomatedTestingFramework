@@ -4,5 +4,6 @@
 	{
 		string SelectedValue { get; }
 		void SelectValue(string value);
+		void SelectText(string value);
 	}
 }
