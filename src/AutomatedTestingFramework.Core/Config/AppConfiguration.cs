@@ -7,10 +7,6 @@ namespace AutomatedTestingFramework.Core.Config
 	{
 		public string BaseUrl => TryGetValue("BaseUrl", string.Empty);
 
-		public string DefaultTestUsername => TryGetValue("DefaultTestUsername", string.Empty);
-
-		public string DefaultTestPassword => TryGetValue("DefaultTestPassword", string.Empty);
-
 		public string MediaFolderPath => TryGetValue("MediaFolderPath", string.Empty);
 
 		public bool AllowVideoRecording => TryGetValue("AllowVideoRecording", false);
