@@ -2,17 +2,17 @@ using AutomatedTestingFramework.Core.Driver;
 
 namespace AutomatedTestingFramework.Core
 {
-	public abstract class NavigatablePage<TPage> : BasePage where TPage : BasePage
+	public abstract class NavigatablePage : BasePage
 	{
 		protected NavigatablePage(IDriver driver)
 			: base(driver)
 		{}
 
-		public NavigatablePage<TPage> Go()
+		public TPage Go<TPage>() where TPage : NavigatablePage
 		{
 			Driver.Navigate(RelativeUrl);
 
-			return this;
+			return (TPage) this;
 		}
 
 		public bool IsAt => Driver.Title == Title;
