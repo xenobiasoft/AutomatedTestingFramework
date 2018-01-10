@@ -8,9 +8,11 @@ namespace AutomatedTestingFramework.Core
 			: base(driver)
 		{}
 
-		public void Go()
+		public BasePage Go()
 		{
 			Driver.Navigate(RelativeUrl);
+
+			return this;
 		}
 
 		public bool IsAt => Driver.Title == Title;
