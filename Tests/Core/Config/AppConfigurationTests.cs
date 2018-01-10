@@ -27,34 +27,6 @@ namespace AutomatedTestingFramework.Tests.Core.Config
 
 		[Test]
 		[Category(TestCategories.Core)]
-		public void LoadsDefaultUsername()
-		{
-			// Assemble
-			var expectedValue = _appSettingsConfig["DefaultTestUsername"];
-
-			// Act
-			var actual = Sut.DefaultTestUsername;
-
-			// Assert
-			expectedValue.Should().Be(actual);
-		}
-
-		[Test]
-		[Category(TestCategories.Core)]
-		public void LoadsDefaultPassword()
-		{
-			// Assemble
-			var expectedValue = _appSettingsConfig["DefaultTestPassword"];
-
-			// Act
-			var actual = Sut.DefaultTestPassword;
-
-			// Assert
-			expectedValue.Should().Be(actual);
-		}
-
-		[Test]
-		[Category(TestCategories.Core)]
 		public void LoadsMediaFolderPath()
 		{
 			// Assemble
