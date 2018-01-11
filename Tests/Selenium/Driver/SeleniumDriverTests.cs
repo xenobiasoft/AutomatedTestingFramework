@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Driver;
+﻿using AutomatedTestingFramework.Core.Driver;
+using AutomatedTestingFramework.Selenium.Driver;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
 	[TestFixture]
-	public class SeleniumDriverTests : BaseTestByClass<SeleniumDriver>
+	public class SeleniumDriverTests : BaseTestByInterface<SeleniumDriver, IDriver>
 	{
 		private Mock<IWebDriver> _mockWebDriver;
 

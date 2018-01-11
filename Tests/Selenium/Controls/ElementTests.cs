@@ -11,7 +11,7 @@ using By = AutomatedTestingFramework.Core.By;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class ElementTests : BaseTestByClass<Element>
+	public class ElementTests : BaseTestByInterface<Element, IElement>
 	{
 		[Test]
 		public void ClickDelegatesCallToWebElement()

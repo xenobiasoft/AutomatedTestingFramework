@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace AutomatedTestingFramework.Tests.Core.Config
 {
 	[TestFixture]
-	public class AppConfigurationTests : BaseTestByClass<AppConfiguration>
+	public class AppConfigurationTests : BaseTestByInterface<AppConfiguration, IAppConfiguration>
 	{
 		private NameValueCollection _appSettingsConfig;
 

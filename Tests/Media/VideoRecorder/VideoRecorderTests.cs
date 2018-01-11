@@ -2,6 +2,7 @@
 using System.Reflection;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Core.ExecutionEngine;
 using AutomatedTestingFramework.Media.VideoRecorder;
 using FluentAssertions;
 using Moq;
@@ -11,7 +12,7 @@ using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.Te
 namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 {
 	[TestFixture]
-	public class VideoRecorderTests : BaseTestByClass<VideoRecorderObserver>
+	public class VideoRecorderTests : BaseTestByInterface<VideoRecorderObserver, ITestObserver>
 	{
 		private Mock<IVideoRecorder> _mockVideoRecorder;
 		private Mock<IAppConfiguration> _mockAppConfiguration;
