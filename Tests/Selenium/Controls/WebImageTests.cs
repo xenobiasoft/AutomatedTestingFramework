@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Controls;
+﻿using AutomatedTestingFramework.Core.Controls;
+using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class WebImageTests : BaseTestByClass<WebImage>
+	public class WebImageTests : BaseTestByInterface<WebImage, IWebImage>
 	{
 		[Test]
 		public void AltTextReturnsWebElementAltAttributeValue()

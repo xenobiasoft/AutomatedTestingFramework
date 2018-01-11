@@ -12,7 +12,7 @@ using SeleniumBy = OpenQA.Selenium.By;
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
 	[TestFixture]
-	public class ElementFinderServiceTests : BaseTestByClass<ElementFinderService>
+	public class ElementFinderServiceTests : BaseTestByInterface<ElementFinderService, IElementFinderService>
 	{
 		[TestFixture]
 		public class FindTests : ElementFinderServiceTests

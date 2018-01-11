@@ -5,5 +5,6 @@
 		string BaseUrl { get; }
 		string MediaFolderPath { get; }
 		bool AllowVideoRecording { get; }
+		bool IsTestMode { get; }
 	}
 }

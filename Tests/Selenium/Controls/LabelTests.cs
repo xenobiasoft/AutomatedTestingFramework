@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Controls;
+﻿using AutomatedTestingFramework.Core.Controls;
+using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class LabelTests : BaseTestByClass<Label>
+	public class LabelTests : BaseTestByInterface<Label, ILabel>
 	{
 		[Test]
 		public void TextReturnsWebElementText()

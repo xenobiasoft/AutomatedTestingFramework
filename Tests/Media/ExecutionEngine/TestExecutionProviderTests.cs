@@ -7,7 +7,7 @@ using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.Te
 namespace AutomatedTestingFramework.Tests.Media.ExecutionEngine
 {
 	[TestFixture]
-	public class TestExecutionProviderTests : BaseTestByClass<TestExecutionProvider>
+	public class TestExecutionProviderTests : BaseTestByInterface<TestExecutionProvider, ITestExecutionProvider>
 	{
 		protected Mock<ITestObserver> MockObserver;
 

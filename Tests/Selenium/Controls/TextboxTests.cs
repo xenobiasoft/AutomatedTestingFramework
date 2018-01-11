@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Controls;
+﻿using AutomatedTestingFramework.Core.Controls;
+using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class TextboxTests : BaseTestByClass<TextBox>
+	public class TextboxTests : BaseTestByInterface<TextBox, ITextBox>
 	{
 		[Test]
 		public void TextReturnsWebElementValueAttribute()
