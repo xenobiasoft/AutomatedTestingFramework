@@ -1,15 +1,15 @@
 ﻿using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AutomatedTestingFramework.Tests.Core.Config
 {
-	[TestClass]
-	public class BrowserSettingsConfigurationProviderTests : BaseTest<BrowserSettingsConfigurationProvider>
+	[TestFixture()]
+	public class BrowserSettingsConfigurationProviderTests : AutoMockingFixtureByClass<BrowserSettingsConfigurationProvider>
 	{
-		[TestMethod]
-		[TestCategory(TestCategories.Core)]
+		[Test]
+		[Category(TestCategories.Core)]
 		public void MyTestMethod()
 		{
 			// Assemble

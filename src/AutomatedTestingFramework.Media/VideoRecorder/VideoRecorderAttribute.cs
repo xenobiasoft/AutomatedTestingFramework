@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutomatedTestingFramework.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Media.VideoRecorder
 {
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 	public class VideoRecorderAttribute : Attribute

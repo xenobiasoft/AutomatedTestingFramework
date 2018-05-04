@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Reflection;
+using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
-using AutomatedTestingFramework.Media.VideoRecorder;
 
-namespace AutomatedTestingFramework.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Media.VideoRecorder
 {
 	public class VideoRecorderObserver : BaseTestObserver
 	{
 		private readonly IVideoRecorder _videoRecorder;
-		private VideoRecorderMode _videoRecorderMode;
 		private readonly IAppConfiguration _appConfiguration;
 
 		public VideoRecorderObserver(IVideoRecorder videoRecorder, IAppConfiguration appConfiguration)
@@ -21,11 +20,27 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 
 		public override void PostTestInit(object sender, TestExecutionEventArgs e)
 		{
-			_videoRecorderMode = GetConfiguredVideoRecorderMode(e.MemberInfo);
+			var videoRecorderMode = GetConfiguredVideoRecorderMode(e.MemberInfo);
 
-			if (_videoRecorderMode != VideoRecorderMode.DoNotRecord)
+			if (videoRecorderMode != VideoRecorderMode.DoNotRecord)
 			{
 				_videoRecorder.StartCapture();
+			}
+		}
+
+		public override void PostTestCleanup(object sender, TestExecutionEventArgs e)
+		{
+			try
+			{
+				var videoRecorderMode = GetConfiguredVideoRecorderMode(e.MemberInfo);
+				var testName = e.TestName;
+				var hasTestPassed = e.TestOutcome.Equals(TestOutcome.Passed);
+
+				SaveVideoDependingOnTestOutcome(testName, hasTestPassed, videoRecorderMode);
+			}
+			finally
+			{
+				_videoRecorder.Dispose();
 			}
 		}
 
@@ -82,28 +97,13 @@ namespace AutomatedTestingFramework.Behaviors.VideoRecorder
 			return VideoRecorderMode.NotDefined;
 		}
 
-		public override void PostTestCleanup(object sender, TestExecutionEventArgs e)
+		private void SaveVideoDependingOnTestOutcome(string testName, bool hasTestPassed, VideoRecorderMode videoRecorderMode)
 		{
-			try
+			if (videoRecorderMode != VideoRecorderMode.DoNotRecord && _videoRecorder.Status == VideoRecordingStatus.Running)
 			{
-				var testName = e.TestName;
-				var hasTestPassed = e.TestOutcome.Equals(TestOutcome.Passed);
-
-				SaveVideoDependingOnTestOutcome(testName, hasTestPassed);
-			}
-			finally
-			{
-				_videoRecorder.Dispose();
-			}
-		}
-
-		private void SaveVideoDependingOnTestOutcome(string testName, bool hasTestPassed)
-		{
-			if (_videoRecorderMode != VideoRecorderMode.DoNotRecord && _videoRecorder.Status == VideoRecordingStatus.Running)
-			{
-				var shouldRecordAlways = _videoRecorderMode == VideoRecorderMode.Always;
-				var shouldRecordForPassedTest = hasTestPassed && _videoRecorder.Status.Equals(VideoRecorderMode.OnlyPass);
-				var shouldRecordForFailedTest = !hasTestPassed && _videoRecorder.Status.Equals(VideoRecorderMode.OnlyFail);
+				var shouldRecordAlways = videoRecorderMode == VideoRecorderMode.Always;
+				var shouldRecordForPassedTest = hasTestPassed && videoRecorderMode == VideoRecorderMode.OnlyPass;
+				var shouldRecordForFailedTest = !hasTestPassed && videoRecorderMode == VideoRecorderMode.OnlyFail;
 
 				if (shouldRecordAlways || shouldRecordForPassedTest || shouldRecordForFailedTest)
 				{

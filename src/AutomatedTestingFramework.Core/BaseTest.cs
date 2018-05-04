@@ -1,37 +1,52 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
+using Autofac;
 using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AutomatedTestingFramework.Core
 {
-	[TestClass]
+	[TestFixture]
 	public abstract class BaseTest
 	{
 		private ITestExecutionProvider _testExecutionProvider;
-		private IPageFactory _pageFactory;
 		private IDriver _driver;
 
-		[TestInitialize]
+		protected IContainer Container;
+
+		[SetUp]
 		public void TestInit()
 		{
-			InitializeContainer();
+			Container = InitializeContainer();
 
-			var memberInfo = GetCurrentExecutionMemberInfo();
-			
+			var memberInfo = GetType().GetMethod(TestName);
+
 			SubscribeTestExecutionObservers();
 			Driver.MaximizeBrowserWindow();
-			TestExecutionProvider.PreTestInit((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
-			TestInitialize();
-			TestExecutionProvider.PostTestInit((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
+			TestExecutionProvider.PreTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
+			Setup();
+			TestExecutionProvider.PostTestInit((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 		}
 
+		[TearDown]
+		public void TestCleanup()
+		{
+			var memberInfo = GetType().GetMethod(TestName);
 
-		protected abstract void InitializeContainer();
+			TestExecutionProvider.PreTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
+			Teardown();
+			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
+			UnsubscribeTestExecutionObservers();
+			Driver.Dispose();
+			_driver = null;
+		}
 
-		private MemberInfo GetCurrentExecutionMemberInfo() => GetType().GetMethod(TestName);
+		[OneTimeTearDown]
+		public void ClassCleanup()
+		{
+			Container.Dispose();
+		}
 
 		private void SubscribeTestExecutionObservers()
 		{
@@ -41,21 +56,6 @@ namespace AutomatedTestingFramework.Core
 			{
 				TestExecutionProvider.Subscribe(observer);
 			}
-		}
-
-		protected virtual void TestInitialize()
-		{ }
-
-		[TestCleanup]
-		public void TestCleanup()
-		{
-			var memberInfo = GetCurrentExecutionMemberInfo();
-
-			TestExecutionProvider.PreTestCleanup((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
-			TeardownTest();
-			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.CurrentTestOutcome, TestName, memberInfo);
-			UnsubscribeTestExecutionObservers();
-			Driver.Dispose();
 		}
 
 		private void UnsubscribeTestExecutionObservers()
@@ -68,26 +68,20 @@ namespace AutomatedTestingFramework.Core
 			}
 		}
 
-		protected virtual void TeardownTest()
+		protected abstract IContainer InitializeContainer();
+
+		protected virtual void Setup()
 		{ }
 
-		[ClassCleanup]
-		public void ClassCleanup()
-		{
-			Container.Dispose();
-		}
+		protected virtual void Teardown()
+		{ }
 
+		public TestContext TestContext => TestContext.CurrentContext;
 
-		public TestContext TestContext { get; set; }
-
-		public string TestName => TestContext.TestName;
+		public string TestName => TestContext.Test.Name;
 
 		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
-
-		protected IPageFactory PageFactory => _pageFactory ?? (_pageFactory = Container.Resolve<IPageFactory>());
-
+		
 		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionProvider>());
-
-		protected IResolver Container { get; set; }
 	}
 }

@@ -1,56 +1,56 @@
 ﻿using System;
 using System.Reflection;
-using AutomatedTestingFramework.Behaviors.VideoRecorder;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Core.ExecutionEngine;
 using AutomatedTestingFramework.Media.VideoRecorder;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.TestExecutionEventArgs;
 
-namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
+namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 {
-	[TestClass]
-	public class VideoRecorderTests : BaseTest<VideoRecorderObserver>
+	[TestFixture]
+	public class VideoRecorderTests : AutoMockingFixtureByInterface<VideoRecorderObserver, ITestObserver>
 	{
 		private Mock<IVideoRecorder> _mockVideoRecorder;
 		private Mock<IAppConfiguration> _mockAppConfiguration;
 		private Mock<TestExecutionEventArgs> _mockTestExecutionEventArgs;
 
-		[TestClass]
+		[TestFixture]
 		public class PostTestInitTests : VideoRecorderTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void VideoDoesNotRecordWhenConfigurationIsSetToDisableRecording()
 			{
 				// Assemble
 				_mockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(false);
 
 				// Act
-				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			[VideoRecorder(VideoRecorderMode.Always)]
 			public void VideoRecordsIfMethodLevelAttributeIsSetToRecordAlways()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			[VideoRecorder(VideoRecorderMode.Always)]
 			public void WhenTestExecutionEventArgsMemberInfoIsNullThrowsArgumentNullException()
 			{
@@ -58,19 +58,19 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns((MemberInfo)null);
 
 				// Act
-				Action postTestInit = () => Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
+				Action postTestInit = () => Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("*The test method MemberInfo info cannot be null.");
+				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("Value cannot be null.\r\nParameter name: memberInfo");
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class PostTestCleanupTests : VideoRecorderTests
 		{
-			[TestMethod]
+			[Test]
 			[VideoRecorder(VideoRecorderMode.OnlyFail)]
-			[TestCategory(TestCategories.Behaviors)]
+			[Category(TestCategories.Core)]
 			public void VideoRecordsIfTestFailsAndAttributeSetToOnlyFail()
 			{
 				// Assemble
@@ -78,15 +78,15 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				_mockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
 
 				// Act
-				Uut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			[VideoRecorder(VideoRecorderMode.OnlyPass)]
-			[TestCategory(TestCategories.Behaviors)]
+			[Category(TestCategories.Core)]
 			public void VideoRecordsIfTestPassesAndAttributeSetToOnlyPass()
 			{
 				// Assemble
@@ -94,55 +94,54 @@ namespace AutomatedTestingFramework.Tests.Behaviors.VideoRecorder
 				_mockVideoRecorder.Setup(x => x.Status).Returns(VideoRecordingStatus.Running);
 
 				// Act
-				Uut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestCleanup(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.SaveVideo(It.IsAny<string>()), Times.Once);
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		[VideoRecorder(VideoRecorderMode.Always)]
 		public class ClassLevelAlwaysRecordTests : VideoRecorderTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Behaviors)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void VideoRecordsIfClassLevelVideoRecordAttributeIsSetToRecordAlways()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			[VideoRecorder(VideoRecorderMode.DoNotRecord)]
-			[TestCategory(TestCategories.Behaviors)]
+			[Category(TestCategories.Core)]
 			public void MethodLevelAttributeOverridesClassLevelAttribute()
 			{
 				// Assemble
 
 				// Act
-				Uut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
+				Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
 				_mockVideoRecorder.Verify(x => x.StartCapture(), Times.Never);
 			}
 		}
 
-		[TestInitialize]
-		public void TestInit()
+		public override void SetUp()
 		{
 			_mockVideoRecorder = ResolveMock<IVideoRecorder>();
 			_mockAppConfiguration = ResolveMock<IAppConfiguration>();
 			_mockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(true);
 			
 			_mockTestExecutionEventArgs = ResolveMock<TestExecutionEventArgs>();
-			_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns(GetType().GetMethod(TestContext.TestName));
-			_mockTestExecutionEventArgs.Setup(x => x.TestName).Returns(TestContext.TestName);
+			_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns(GetType().GetMethod(TestContext.CurrentContext.Test.Name));
+			_mockTestExecutionEventArgs.Setup(x => x.TestName).Returns(TestContext.CurrentContext.Test.Name);
 		}
 	}
 }

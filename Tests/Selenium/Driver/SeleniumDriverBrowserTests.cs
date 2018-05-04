@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
+	[TestFixture]
 	public class SeleniumDriverBrowserTests : SeleniumDriverTests
 	{
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void PageSourceReturnsWebDriverSourceProperty()
 		{
 			// Assemble
@@ -17,127 +17,125 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			ResolveMock<IWebDriver>().Setup(x => x.PageSource).Returns(expectedPageSource);
 
 			// Act
-			var actualPageSource = Uut.Source;
+			var actualPageSource = Sut.Source;
 
 			// Assert
 			actualPageSource.Should().Be(expectedPageSource);
 		}
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetFrameByNameReturnsFrameObjectWithMatchingName()
 		{
 			// Assemble
 			var expectedFrameName = Create<string>();
 
 			// Act
-			var actualFrame = Uut.GetFrame(expectedFrameName);
+			var actualFrame = Sut.GetFrame(expectedFrameName);
 
 			// Assert
 			actualFrame.Name.Should().Be(expectedFrameName);
 		}
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void QuitDelegatesCallToWebDriver()
 		{
 			// Assemble
 
 			// Act
-			Uut.Quit();
+			Sut.Quit();
 
 			// Assert
 			ResolveMock<IWebDriver>().Verify(x => x.Quit(), Times.Once);
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class NavigateTests : SeleniumDriverBrowserTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Selenium)]
+			[Test]
+			[Category(TestCategories.Selenium)]
 			public void ClickBackButtonCallsNavigateBack()
 			{
 				// Assemble
 				var mockNavigation = ResolveMock<INavigation>();
 
 				// Act
-				Uut.ClickBackButton();
+				Sut.ClickBackButton();
 
 				// Assert
 				mockNavigation.Verify(x => x.Back(), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Selenium)]
+			[Test]
+			[Category(TestCategories.Selenium)]
 			public void ClickForwardButtonCallsNavigateForward()
 			{
 				// Assemble
 				var mockNavigation = ResolveMock<INavigation>();
 
 				// Act
-				Uut.ClickForwardButton();
+				Sut.ClickForwardButton();
 
 				// Assert
 				mockNavigation.Verify(x => x.Forward(), Times.Once);
 			}
 
-			[TestMethod]
-			[TestCategory(TestCategories.Selenium)]
+			[Test]
+			[Category(TestCategories.Selenium)]
 			public void ClickRefreshCallsNavigateRefresh()
 			{
 				// Assemble
 				var mockNavigation = ResolveMock<INavigation>();
 
 				// Act
-				Uut.ClickRefresh();
+				Sut.ClickRefresh();
 
 				// Assert
 				mockNavigation.Verify(x => x.Refresh(), Times.Once);
 			}
 
-			[TestInitialize]
-			public override void TestInit()
+			public override void SetUp()
 			{
-				base.TestInit();
+				base.SetUp();
 
 				ResolveMock<IWebDriver>().Setup(x => x.Navigate()).Returns(ResolveMock<INavigation>().Object);
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class TargetLocatorTests : SeleniumDriverTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Selenium)]
+			[Test]
+			[Category(TestCategories.Selenium)]
 			public void SwitchToFrameSwitchesContextToThatFrame()
 			{
 				// Assemble
-				var targetFrame = Uut.GetFrame(Create<string>());
+				var targetFrame = Sut.GetFrame(Create<string>());
 
 				// Act
-				Uut.SwitchToFrame(targetFrame);
+				Sut.SwitchToFrame(targetFrame);
 
 				// Assert
 				ResolveMock<ITargetLocator>().Verify(x => x.Frame(targetFrame.Name), Times.Once);
 			}
 
-			[TestMethod]
+			[Test]
 			public void SwitchToDefaultCallsDefaultContent()
 			{
 				// Assemble
 				var mockTargetLocator = ResolveMock<ITargetLocator>();
 
 				// Act
-				Uut.SwitchToDefault();
+				Sut.SwitchToDefault();
 
 				// Assert
 				mockTargetLocator.Verify(x => x.DefaultContent(), Times.Once);
 			}
 
-			[TestInitialize]
-			public override void TestInit()
+			public override void SetUp()
 			{
-				base.TestInit();
+				base.SetUp();
 
 				ResolveMock<IWebDriver>().Setup(x => x.SwitchTo()).Returns(ResolveMock<ITargetLocator>().Object);
 			}

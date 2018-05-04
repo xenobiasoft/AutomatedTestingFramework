@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using AutomatedTestingFramework.Core.Enums;
-using AutomatedTestingFramework.Core.ExecutionEngine;
 
-namespace AutomatedTestingFramework.Behaviors.ExecutionEngine
+namespace AutomatedTestingFramework.Core.ExecutionEngine
 {
 	public class TestExecutionProvider : ITestExecutionProvider
 	{

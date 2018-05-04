@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
+	[TestFixture]
 	public class SeleniumDriverCookieTests : SeleniumDriverTests.WebDriverOptionsTests
 	{
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetCookieCallsGetCookieNameOnCookieJar()
 		{
 			// Assemble
@@ -20,53 +20,52 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			ResolveMock<ICookieJar>().Setup(x => x.GetCookieNamed(It.IsAny<string>())).Returns(cookie);
 
 			// Act
-			var actualCookieValue = Uut.GetCookie(Create<string>(), cookieName);
+			var actualCookieValue = Sut.GetCookie(Create<string>(), cookieName);
 
 			// Assert
 			actualCookieValue.Should().Be(expectedCookieValue);
 		}
 
-		[TestMethod]
+		[Test]
 		public void AddCookieAddsCookieToCookieJar()
 		{
 			// Assemble
 
 			// Act
-			Uut.AddCookie(Create<string>(), Create<string>(), Create<string>());
+			Sut.AddCookie(Create<string>(), Create<string>(), Create<string>());
 
 			// Assert
 			ResolveMock<ICookieJar>().Verify(x => x.AddCookie(It.IsAny<Cookie>()), Times.Once);
 		}
 
-		[TestMethod]
+		[Test]
 		public void DeleteCookieDelegatesCallToCookieJar()
 		{
 			// Assemble
 			var cookieName = Create<string>();
 
 			// Act
-			Uut.DeleteCookie(cookieName);
+			Sut.DeleteCookie(cookieName);
 
 			// Assert
 			ResolveMock<ICookieJar>().Verify(x => x.DeleteCookieNamed(cookieName), Times.Once);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ClearAllCookiesDelegatesCallToCookieJar()
 		{
 			// Assemble
 
 			// Act
-			Uut.ClearAllCookies();
+			Sut.ClearAllCookies();
 
 			// Assert
 			ResolveMock<ICookieJar>().Verify(x => x.DeleteAllCookies(), Times.Once);
 		}
 
-		[TestInitialize]
-		public override void TestInit()
+		public override void SetUp()
 		{
-			base.TestInit();
+			base.SetUp();
 
 			ResolveMock<IOptions>().Setup(x => x.Cookies).Returns(ResolveMock<ICookieJar>().Object);
 		}

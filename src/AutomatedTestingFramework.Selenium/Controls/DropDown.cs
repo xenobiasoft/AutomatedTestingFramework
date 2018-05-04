@@ -27,5 +27,12 @@ namespace AutomatedTestingFramework.Selenium.Controls
 
 			select.SelectByValue(value);
 		}
+
+		public void SelectText(string text)
+		{
+			var select = new SelectElement(WebElement);
+
+			select.SelectByText(text);
+		}
 	}
 }

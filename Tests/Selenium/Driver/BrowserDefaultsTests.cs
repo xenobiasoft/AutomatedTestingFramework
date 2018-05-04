@@ -1,80 +1,76 @@
-﻿using AutomatedTestingFramework.Core.Config;
+﻿using System.IO;
+using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium.PhantomJS;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
-	[TestClass]
-	public class BrowserDefaultsTests : BaseTest<BrowserDefaults>
+	[TestFixture]
+	public class BrowserDefaultsTests : AutoMockingFixtureByInterface<BrowserDefaults, IBrowserDefaults>
 	{
 		private IBrowserSettingsConfiguration _browserSettingsConfiguration;
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
-		[TestCategory(TestCategories.Manual)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetBrowserReturnsCorrectlyConfiguredBrowser()
 		{
 			// Assemble
 
 			// Act
-			var browser = Uut.DefaultBrowser;
+			var browser = Sut.DefaultBrowser;
 
 			// Assert
 			browser.Should().BeOfType<PhantomJSDriver>();
 		}
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
-		[TestCategory(TestCategories.Manual)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetImplicitTimeoutValueReturnsCallToBrowserSettingsConfiguration()
 		{
 			// Assemble
 
 			// Act
-			var actualValue = Uut.ImplicitTimeoutValue;
+			var actualValue = Sut.ImplicitTimeoutValue;
 
 			// Assert
 			actualValue.Should().Be(_browserSettingsConfiguration.ImplicitWaitTimeout);
 		}
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
-		[TestCategory(TestCategories.Manual)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetScriptTimeoutValueReturnsCallToBrowserSettingsConfiguration()
 		{
 			// Assemble
 
 			// Act
-			var actualValue = Uut.ScriptTimeoutValue;
+			var actualValue = Sut.ScriptTimeoutValue;
 
 			// Assert
 			actualValue.Should().Be(_browserSettingsConfiguration.ScriptTimeout);
 		}
 
-		[TestMethod]
-		[TestCategory(TestCategories.Selenium)]
-		[TestCategory(TestCategories.Manual)]
+		[Test]
+		[Category(TestCategories.Selenium)]
 		public void GetPageLoadTimeoutValueReturnsCallToBrowserSettingsConfiguration()
 		{
 			// Assemble
 
 			// Act
-			var actualValue = Uut.PageLoadTimeoutValue;
+			var actualValue = Sut.PageLoadTimeoutValue;
 
 			// Assert
 			actualValue.Should().Be(_browserSettingsConfiguration.PageLoadTimeout);
 		}
 
-		[TestInitialize]
-		public void TestInit()
+		public override void SetUp()
 		{
 			var mockBrowserSettingsConfig = ResolveMock<IBrowserSettingsConfiguration>();
 			
 			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(BrowserType.PhantomJs);
-			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(@"Drivers\");
+			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(Path.Combine(TestContext.TestDirectory, "Drivers"));
 			mockBrowserSettingsConfig.Setup(x => x.ImplicitWaitTimeout).Returns(5);
 			mockBrowserSettingsConfig.Setup(x => x.ScriptTimeout).Returns(8);
 			mockBrowserSettingsConfig.Setup(x => x.PageLoadTimeout).Returns(13);
@@ -82,10 +78,10 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			_browserSettingsConfiguration = mockBrowserSettingsConfig.Object;
 		}
 
-		[TestCleanup]
+		[TearDown]
 		public void TestCleanup()
 		{
-			Uut.DefaultBrowser.Dispose();
+			Sut.DefaultBrowser.Dispose();
 		}
 	}
 }

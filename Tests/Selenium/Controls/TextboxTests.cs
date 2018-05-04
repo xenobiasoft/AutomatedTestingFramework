@@ -1,15 +1,16 @@
-﻿using AutomatedTestingFramework.Selenium.Controls;
+﻿using AutomatedTestingFramework.Core.Controls;
+using AutomatedTestingFramework.Selenium.Controls;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
-	[TestClass]
-	public class TextboxTests : BaseTest<TextBox>
+	[TestFixture]
+	public class TextboxTests : AutoMockingFixtureByInterface<TextBox, ITextBox>
 	{
-		[TestMethod]
+		[Test]
 		public void TextReturnsWebElementValueAttribute()
 		{
 			// Assemble
@@ -17,26 +18,26 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.Is<string>(y => y == "value"))).Returns(expectedText);
 
 			// Act
-			var actualText = Uut.Text;
+			var actualText = Sut.Text;
 
 			// Assert
 			actualText.Should().Be(expectedText);
 		}
 
-		[TestMethod]
+		[Test]
 		public void SettingTextCallsWebElementClearMethod()
 		{
 			// Assemble
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Uut.Text = Create<string>();
+			Sut.Text = Create<string>();
 
 			// Assert
 			mockWebElement.Verify(x => x.Clear(), Times.AtLeast(1));
 		}
 
-		[TestMethod]
+		[Test]
 		public void SettingTextCallsWebElementSendKeysWithValueOfText()
 		{
 			// Assemble
@@ -44,7 +45,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Uut.Text = expectedValue;
+			Sut.Text = expectedValue;
 
 			// Assert
 			mockWebElement.Verify(x => x.SendKeys(It.Is<string>(y => y == expectedValue)), Times.Once());

@@ -2,60 +2,60 @@
 using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.ExceptionAnalysis;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 {
-	[TestClass]
-	public class ExceptionAnalysisTests : BaseTest<ExceptionAnalyzer>
+	[TestFixture]
+	public class ExceptionAnalysisTests : AutoMockingFixtureByInterface<ExceptionAnalyzer, IExceptionAnalyzer>
 	{
-		[TestClass]
+		[TestFixture]
 		public class FileNotFoundExceptionHandlerTests : ExceptionAnalysisTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Core)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void FileNotFoundExceptionHandlerAppliesTo404Errors()
 			{
 				// Assemble
 				var expectedExceptionMessage = "*It is not a test problem. The page does not exist.*";
 				var mockBrowser = ResolveMock<IBrowser>();
 				mockBrowser.Setup(x => x.Source).Returns("404 - File or directory not found.");
-				Uut.AddExceptionAnalyzationHandler(new FileNotFoundExceptionHandler());
+				Sut.AddExceptionAnalyzationHandler(new FileNotFoundExceptionHandler());
 
 				// Act
-				Action analyze = () => Uut.Analyze(new Exception(), mockBrowser.Object);
+				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
 				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class ServiceUnavailableExceptionHandlerTests : ExceptionAnalysisTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Core)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void ServiceUnavailableExceptionHandlerAppliesTo500Errors()
 			{
 				// Assemble
 				var expectedExceptionMessage = "*It is not a test problem. The service is unavailable.*";
 				var mockBrowser = ResolveMock<IBrowser>();
 				mockBrowser.Setup(x => x.Source).Returns("HTTP Error 503. The service is unavailable.");
-				Uut.AddExceptionAnalyzationHandler(new ServiceUnavailableExceptionHandler());
+				Sut.AddExceptionAnalyzationHandler(new ServiceUnavailableExceptionHandler());
 
 				// Act
-				Action analyze = () => Uut.Analyze(new Exception(), mockBrowser.Object);
+				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
 				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
 			}
 		}
 
-		[TestClass]
+		[TestFixture]
 		public class CustomHtmlExceptionHandlerTests : ExceptionAnalysisTests
 		{
-			[TestMethod]
-			[TestCategory(TestCategories.Core)]
+			[Test]
+			[Category(TestCategories.Core)]
 			public void CanAddCustomExceptionHandlers()
 			{
 				// Assemble
@@ -63,10 +63,10 @@ namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 				var textToSearch = "O|||||O";
 				var mockBrowser = ResolveMock<IBrowser>();
 				mockBrowser.Setup(x => x.Source).Returns(textToSearch);
-				Uut.AddExceptionAnalyzationHandler(textToSearch, expectedExceptionMessage);
+				Sut.AddExceptionAnalyzationHandler(textToSearch, expectedExceptionMessage);
 
 				// Act
-				Action analyze = () => Uut.Analyze(new Exception(), mockBrowser.Object);
+				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
 				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);

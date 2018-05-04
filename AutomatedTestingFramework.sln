@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{60F9AF7B-9600-4270-BF2D-F9283B4F0C08}"
 EndProject
@@ -9,19 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E59463A2-9650-4F06-9820-671269B5A4F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Behaviors", "src\AutomatedTestingFramework.Behaviors\AutomatedTestingFramework.Behaviors.csproj", "{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Core", "src\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj", "{5055C769-BB9A-4484-855D-C57D473F71D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Media", "src\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj", "{B181ADFD-B726-438D-B836-34644CF30F0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Selenium", "src\AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj", "{F480BF47-3999-44AD-9A82-60B9FEF74CB4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installers", "Installers", "{EC1D8518-4CC0-42F7-A5E6-A2F85810903A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.AutofacInstaller", "Installers\AutomatedTestingFramework.AutofacInstaller\AutomatedTestingFramework.AutofacInstaller.csproj", "{571F095E-16EE-4DE0-A18A-E3037012E50C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.WindsorInstaller", "Installers\AutomatedTestingFramework.WindsorInstaller\AutomatedTestingFramework.WindsorInstaller.csproj", "{A86B3D7E-6B16-4E19-935C-04668D6FD79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +25,6 @@ Global
 		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE92BEC-A873-46D6-B651-BAA87EED63DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5055C769-BB9A-4484-855D-C57D473F71D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5055C769-BB9A-4484-855D-C57D473F71D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5055C769-BB9A-4484-855D-C57D473F71D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,26 +37,15 @@ Global
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{571F095E-16EE-4DE0-A18A-E3037012E50C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A86B3D7E-6B16-4E19-935C-04668D6FD79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7AE92BEC-A873-46D6-B651-BAA87EED63DE} = {60F9AF7B-9600-4270-BF2D-F9283B4F0C08}
-		{DDAB9AC1-5860-40A8-AF33-9CB87B7D6551} = {E59463A2-9650-4F06-9820-671269B5A4F3}
 		{5055C769-BB9A-4484-855D-C57D473F71D0} = {E59463A2-9650-4F06-9820-671269B5A4F3}
 		{B181ADFD-B726-438D-B836-34644CF30F0A} = {E59463A2-9650-4F06-9820-671269B5A4F3}
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4} = {E59463A2-9650-4F06-9820-671269B5A4F3}
-		{571F095E-16EE-4DE0-A18A-E3037012E50C} = {EC1D8518-4CC0-42F7-A5E6-A2F85810903A}
-		{A86B3D7E-6B16-4E19-935C-04668D6FD79C} = {EC1D8518-4CC0-42F7-A5E6-A2F85810903A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDDB3020-FC7C-4904-BE05-C6C206F482C4}
