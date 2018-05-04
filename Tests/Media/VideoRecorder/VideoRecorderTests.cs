@@ -12,7 +12,7 @@ using TestExecutionEventArgs = AutomatedTestingFramework.Core.ExecutionEngine.Te
 namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 {
 	[TestFixture]
-	public class VideoRecorderTests : BaseTestByInterface<VideoRecorderObserver, ITestObserver>
+	public class VideoRecorderTests : AutoMockingFixtureByInterface<VideoRecorderObserver, ITestObserver>
 	{
 		private Mock<IVideoRecorder> _mockVideoRecorder;
 		private Mock<IAppConfiguration> _mockAppConfiguration;

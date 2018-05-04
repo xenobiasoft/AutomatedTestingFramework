@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class AnchorTests : BaseTestByInterface<Anchor, IAnchor>
+	public class AnchorTests : AutoMockingFixtureByInterface<Anchor, IAnchor>
 	{
 		[Test]
 		public void UrlReturnsWebElementsHref()

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace AutomatedTestingFramework.Tests.Core.Config
 {
 	[TestFixture()]
-	public class BrowserSettingsConfigurationProviderTests : BaseTestByClass<BrowserSettingsConfigurationProvider>
+	public class BrowserSettingsConfigurationProviderTests : AutoMockingFixtureByClass<BrowserSettingsConfigurationProvider>
 	{
 		[Test]
 		[Category(TestCategories.Core)]

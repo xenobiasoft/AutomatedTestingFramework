@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
 	[TestFixture]
-	public class SeleniumDriverTests : BaseTestByInterface<SeleniumDriver, IDriver>
+	public class SeleniumDriverTests : AutoMockingFixtureByInterface<SeleniumDriver, IDriver>
 	{
 		private Mock<IWebDriver> _mockWebDriver;
 

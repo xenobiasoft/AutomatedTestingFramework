@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 {
 	[TestFixture]
-	public class ExceptionAnalysisTests : BaseTestByInterface<ExceptionAnalyzer, IExceptionAnalyzer>
+	public class ExceptionAnalysisTests : AutoMockingFixtureByInterface<ExceptionAnalyzer, IExceptionAnalyzer>
 	{
 		[TestFixture]
 		public class FileNotFoundExceptionHandlerTests : ExceptionAnalysisTests
