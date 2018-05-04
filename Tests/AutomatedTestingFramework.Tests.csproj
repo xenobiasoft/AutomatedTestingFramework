@@ -82,8 +82,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseTestByClass.cs" />
-    <Compile Include="BaseTestByInterface.cs" />
+    <Compile Include="AutoMockingFixtureByClass.cs" />
+    <Compile Include="AutoMockingFixtureByInterface.cs" />
     <Compile Include="Media\ExecutionEngine\TestExecutionProviderTests.cs" />
     <Compile Include="Media\VideoRecorder\VideoRecorderTests.cs" />
     <Compile Include="Core\Config\AppConfigurationTests.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Selenium\Driver\SeleniumDriverNavigationServiceTests.cs" />
     <Compile Include="Selenium\Driver\SeleniumDriverTests.cs" />
     <Compile Include="TestCategories.cs" />
-    <Compile Include="BaseTest.cs" />
+    <Compile Include="AutoMockingTestFixture.cs" />
     <Compile Include="TestContainerTests.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>

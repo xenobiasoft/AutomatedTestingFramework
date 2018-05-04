@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace AutomatedTestingFramework.Tests.Core
 {
 	[TestFixture]
-	public class BasePageTests : BaseTestByClass<TestPage>
+	public class BasePageTests : AutoMockingFixtureByClass<TestPage>
 	{
 		[Test]
 		[Category(TestCategories.Core)]

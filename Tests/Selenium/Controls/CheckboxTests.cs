@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class CheckboxTests : BaseTestByInterface<Checkbox, ICheckbox>
+	public class CheckboxTests : AutoMockingFixtureByInterface<Checkbox, ICheckbox>
 	{
 		[Test]
 		public void IsCheckedReturnsWebElementSelected()

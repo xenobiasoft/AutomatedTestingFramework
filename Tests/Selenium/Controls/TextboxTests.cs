@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class TextboxTests : BaseTestByInterface<TextBox, ITextBox>
+	public class TextboxTests : AutoMockingFixtureByInterface<TextBox, ITextBox>
 	{
 		[Test]
 		public void TextReturnsWebElementValueAttribute()

@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class LabelTests : BaseTestByInterface<Label, ILabel>
+	public class LabelTests : AutoMockingFixtureByInterface<Label, ILabel>
 	{
 		[Test]
 		public void TextReturnsWebElementText()

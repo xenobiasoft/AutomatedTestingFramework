@@ -2,7 +2,7 @@
 
 namespace AutomatedTestingFramework.Tests
 {
-	public abstract class BaseTestByClass<TTestType> : BaseTest where TTestType : class
+	public abstract class AutoMockingFixtureByClass<TTestType> : AutoMockingTestFixture where TTestType : class
 	{
 		protected TTestType Sut => Fixture.Freeze<TTestType>();
 	}

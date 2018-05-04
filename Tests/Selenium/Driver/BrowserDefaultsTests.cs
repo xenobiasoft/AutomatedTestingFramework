@@ -9,7 +9,7 @@ using OpenQA.Selenium.PhantomJS;
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
 	[TestFixture]
-	public class BrowserDefaultsTests : BaseTestByInterface<BrowserDefaults, IBrowserDefaults>
+	public class BrowserDefaultsTests : AutoMockingFixtureByInterface<BrowserDefaults, IBrowserDefaults>
 	{
 		private IBrowserSettingsConfiguration _browserSettingsConfiguration;
 

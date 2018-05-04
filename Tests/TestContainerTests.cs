@@ -3,7 +3,7 @@
 namespace AutomatedTestingFramework.Tests
 {
 	[TestFixture]
-	public class TestContainerTests : BaseTestByClass<RootObject>
+	public class TestContainerTests : AutoMockingFixtureByClass<RootObject>
 	{
 		[Test]
 		public void TestContainerCanCreateInstanceWithClassDependencies()

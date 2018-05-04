@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class ContentElementTests : BaseTestByInterface<ContentElement, IContentElement>
+	public class ContentElementTests : AutoMockingFixtureByInterface<ContentElement, IContentElement>
 	{
 		[Test]
 		public void IsEnabledReturnsWebElementEnabledProperty()

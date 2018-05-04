@@ -6,7 +6,7 @@ using Ploeh.AutoFixture.AutoMoq;
 
 namespace AutomatedTestingFramework.Tests
 {
-	public abstract class BaseTest
+	public abstract class AutoMockingTestFixture
 	{
 		private IFixture _fixture;
 

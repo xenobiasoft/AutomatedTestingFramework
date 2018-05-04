@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class WebImageTests : BaseTestByInterface<WebImage, IWebImage>
+	public class WebImageTests : AutoMockingFixtureByInterface<WebImage, IWebImage>
 	{
 		[Test]
 		public void AltTextReturnsWebElementAltAttributeValue()
