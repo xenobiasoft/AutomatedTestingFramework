@@ -2,18 +2,23 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using AutomatedTestingFramework.Core.Config;
 using Microsoft.Expression.Encoder.ScreenCapture;
 
 namespace AutomatedTestingFramework.Media.VideoRecorder
 {
 	public class ExpressionEncoderVideoRecorder : IVideoRecorder
 	{
-		private const int FrameRate = 5;
-		private const int Quality = 20;
 		private readonly int _height = Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.Bounds.Height % 16;
 		private readonly int _width = Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Width % 16;
 		private ScreenCaptureJob _screenCaptureJob;
 		private bool _isDisposed;
+		private readonly IAppConfiguration _appConfiguration;
+
+		public ExpressionEncoderVideoRecorder(IAppConfiguration appConfiguration)
+		{
+			_appConfiguration = appConfiguration;
+		}
 
 		public void StartCapture()
 		{
@@ -70,8 +75,8 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 				{
 					AutoFit = true,
 					Force16Pixels = true,
-					FrameRate = FrameRate,
-					Quality = Quality,
+					FrameRate = _appConfiguration.VideoRecordingFrameRate,
+					Quality = _appConfiguration.VideoRecordingQuality,
 					Size = new Size(_width, _height)
 				},
 				ShowFlashingBoundary = true

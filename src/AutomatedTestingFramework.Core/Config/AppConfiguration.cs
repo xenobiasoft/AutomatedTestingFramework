@@ -11,6 +11,10 @@ namespace AutomatedTestingFramework.Core.Config
 
 		public bool AllowVideoRecording => TryGetValue("AllowVideoRecording", false);
 
+		public int VideoRecordingFrameRate => TryGetValue("VideoRecordingFrameRate", 5);
+		
+		public int VideoRecordingQuality => TryGetValue("VideoRecordingQuality", 10);
+
 		public bool IsTestMode => TryGetValue("IsTestMode", true);
 
 		private T TryGetValue<T>(string key, T defaultValue)
