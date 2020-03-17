@@ -1,4 +1,4 @@
-﻿using Ploeh.AutoFixture;
+﻿using AutoFixture;
 
 namespace AutomatedTestingFramework.Tests
 {

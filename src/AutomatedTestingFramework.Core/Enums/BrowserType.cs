@@ -5,8 +5,9 @@
 		Chrome,
 		Edge,
 		Firefox,
+		HeadlessChrome,
+		HeadlessFirefox,
 		InternetExplorer,
-		PhantomJs,
 		Safari,
 		NotSet
 	}

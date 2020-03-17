@@ -1,15 +1,14 @@
-﻿using System;
-using System.ComponentModel;
-using AutomatedTestingFramework.Core.Config;
+﻿using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.ComponentModel;
 
 namespace AutomatedTestingFramework.Selenium.Driver
 {
@@ -39,12 +38,11 @@ namespace AutomatedTestingFramework.Selenium.Driver
 					DefaultBrowser = new FirefoxDriver();
 					break;
 
-				case BrowserType.InternetExplorer:
-					DefaultBrowser = new InternetExplorerDriver(_browserSettingsConfiguration.DriverLocation);
+				case BrowserType.HeadlessFirefox:
 					break;
 
-				case BrowserType.PhantomJs:
-					DefaultBrowser = new PhantomJSDriver(_browserSettingsConfiguration.DriverLocation);
+				case BrowserType.InternetExplorer:
+					DefaultBrowser = new InternetExplorerDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
 				case BrowserType.Safari:

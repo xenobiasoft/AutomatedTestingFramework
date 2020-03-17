@@ -4,7 +4,7 @@ using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Chrome;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
@@ -23,7 +23,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			var browser = Sut.DefaultBrowser;
 
 			// Assert
-			browser.Should().BeOfType<PhantomJSDriver>();
+			browser.Should().BeOfType<ChromeDriver>();
 		}
 
 		[Test]
@@ -68,8 +68,8 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 		public override void SetUp()
 		{
 			var mockBrowserSettingsConfig = ResolveMock<IBrowserSettingsConfiguration>();
-			
-			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(BrowserType.PhantomJs);
+
+			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(BrowserType.Chrome);
 			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(Path.Combine(TestContext.TestDirectory, "Drivers"));
 			mockBrowserSettingsConfig.Setup(x => x.ImplicitWaitTimeout).Returns(5);
 			mockBrowserSettingsConfig.Setup(x => x.ScriptTimeout).Returns(8);

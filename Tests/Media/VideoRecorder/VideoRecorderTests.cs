@@ -61,7 +61,7 @@ namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 				Action postTestInit = () => Sut.PostTestInit(this, _mockTestExecutionEventArgs.Object);
 
 				// Assert
-				postTestInit.ShouldThrow<ArgumentNullException>().WithMessage("Value cannot be null.\r\nParameter name: memberInfo");
+				postTestInit.Should().Throw<ArgumentNullException>().WithMessage("Value cannot be null.\r\nParameter name: memberInfo");
 			}
 		}
 
@@ -138,7 +138,7 @@ namespace AutomatedTestingFramework.Tests.Media.VideoRecorder
 			_mockVideoRecorder = ResolveMock<IVideoRecorder>();
 			_mockAppConfiguration = ResolveMock<IAppConfiguration>();
 			_mockAppConfiguration.Setup(x => x.AllowVideoRecording).Returns(true);
-			
+
 			_mockTestExecutionEventArgs = ResolveMock<TestExecutionEventArgs>();
 			_mockTestExecutionEventArgs.Setup(x => x.MemberInfo).Returns(GetType().GetMethod(TestContext.CurrentContext.Test.Name));
 			_mockTestExecutionEventArgs.Setup(x => x.TestName).Returns(TestContext.CurrentContext.Test.Name);

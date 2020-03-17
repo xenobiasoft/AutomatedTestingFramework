@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{60F9AF7B-9600-4270-BF2D-F9283B4F0C08}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Media", "src\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj", "{B181ADFD-B726-438D-B836-34644CF30F0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.Selenium", "src\AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj", "{F480BF47-3999-44AD-9A82-60B9FEF74CB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.AutomatedTests", "AutomatedTestingFramework.AutomatedTests\AutomatedTestingFramework.AutomatedTests.csproj", "{C29B0332-E506-493A-A89D-C95758E655B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C29B0332-E506-493A-A89D-C95758E655B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C29B0332-E506-493A-A89D-C95758E655B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C29B0332-E506-493A-A89D-C95758E655B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C29B0332-E506-493A-A89D-C95758E655B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{5055C769-BB9A-4484-855D-C57D473F71D0} = {E59463A2-9650-4F06-9820-671269B5A4F3}
 		{B181ADFD-B726-438D-B836-34644CF30F0A} = {E59463A2-9650-4F06-9820-671269B5A4F3}
 		{F480BF47-3999-44AD-9A82-60B9FEF74CB4} = {E59463A2-9650-4F06-9820-671269B5A4F3}
+		{C29B0332-E506-493A-A89D-C95758E655B8} = {60F9AF7B-9600-4270-BF2D-F9283B4F0C08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDDB3020-FC7C-4904-BE05-C6C206F482C4}

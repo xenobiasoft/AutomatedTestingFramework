@@ -13,7 +13,7 @@ namespace AutomatedTestingFramework.Tests.Core.Config
 		public void MyTestMethod()
 		{
 			// Assemble
-			var expectedBrowserType = BrowserType.PhantomJs;
+			var expectedBrowserType = BrowserType.Chrome;
 			var expectedDriverLocation = @"Drivers\";
 			var expectedImplicitWaitTimeout = 8;
 			var expectedPageLoadTimeout = 10;

@@ -26,7 +26,7 @@ namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
 			}
 		}
 
@@ -69,7 +69,7 @@ namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.ShouldThrow<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
 			}
 		}
 	}

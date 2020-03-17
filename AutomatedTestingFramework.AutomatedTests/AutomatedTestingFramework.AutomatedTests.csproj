@@ -1,27 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AE92BEC-A873-46D6-B651-BAA87EED63DE}</ProjectGuid>
+    <ProjectGuid>{C29B0332-E506-493A-A89D-C95758E655B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutomatedTestingFramework.Tests</RootNamespace>
-    <AssemblyName>AutomatedTestingFramework.Tests</AssemblyName>
+    <RootNamespace>AutomatedTestingFramework.AutomatedTests</RootNamespace>
+    <AssemblyName>AutomatedTestingFramework.AutomatedTests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -67,6 +63,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -80,91 +77,13 @@
       <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise />
-  </Choose>
   <ItemGroup>
-    <Compile Include="AutoMockingFixtureByClass.cs" />
-    <Compile Include="AutoMockingFixtureByInterface.cs" />
-    <Compile Include="Media\ExecutionEngine\TestExecutionProviderTests.cs" />
-    <Compile Include="Media\VideoRecorder\VideoRecorderTests.cs" />
-    <Compile Include="Core\Config\AppConfigurationTests.cs" />
-    <Compile Include="Core\Config\BrowserSettingsConfigurationProviderTests.cs" />
-    <Compile Include="Core\ExceptionAnalysis\ExceptionAnalysisTests.cs" />
-    <Compile Include="Core\BasePageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selenium\Controls\AnchorTests.cs" />
-    <Compile Include="Selenium\Controls\CheckboxTests.cs" />
-    <Compile Include="Selenium\Controls\ContentElementTests.cs" />
-    <Compile Include="Selenium\Controls\ElementTests.cs" />
-    <Compile Include="Selenium\Controls\LabelTests.cs" />
-    <Compile Include="Selenium\Controls\TextboxTests.cs" />
-    <Compile Include="Selenium\Controls\WebImageTests.cs" />
-    <Compile Include="Selenium\Driver\BrowserDefaultsTests.cs" />
-    <Compile Include="Selenium\Driver\ElementFinderServiceTests.cs" />
-    <Compile Include="Selenium\Driver\SeleniumDriverBrowserTests.cs" />
-    <Compile Include="Selenium\Driver\SeleniumDriverCookieTests.cs" />
-    <Compile Include="Selenium\Driver\SeleniumDriverElementFinderTests.cs" />
-    <Compile Include="Selenium\Driver\SeleniumDriverNavigationServiceTests.cs" />
-    <Compile Include="Selenium\Driver\SeleniumDriverTests.cs" />
-    <Compile Include="TestCategories.cs" />
-    <Compile Include="AutoMockingTestFixture.cs" />
-    <Compile Include="TestContainerTests.cs" />
-    <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Drivers\chromedriver.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\IEDriverServer.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\phantomjs.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\src\AutomatedTestingFramework.Core\AutomatedTestingFramework.Core.csproj">
-      <Project>{5055c769-bb9a-4484-855d-c57d473f71d0}</Project>
-      <Name>AutomatedTestingFramework.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\src\AutomatedTestingFramework.Media\AutomatedTestingFramework.Media.csproj">
-      <Project>{b181adfd-b726-438d-b836-34644cf30f0a}</Project>
-      <Name>AutomatedTestingFramework.Media</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\src\AutomatedTestingFramework.Selenium\AutomatedTestingFramework.Selenium.csproj">
-      <Project>{f480bf47-3999-44ad-9a82-60b9fef74cb4}</Project>
-      <Name>AutomatedTestingFramework.Selenium</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -173,11 +92,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
