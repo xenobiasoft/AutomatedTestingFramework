@@ -34,7 +34,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			var element = Find<IElement>(searchContext, by);
 
-			return element.IsVisible;
+			return element.Displayed.GetValueOrDefault();
 		}
 
 		private TElement ResolveElement<TElement>(ISearchContext searchContext, IWebElement element) where TElement : class, IElement
@@ -55,7 +55,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 				_controlMap.Add(interfaceType, controlType);
 			}
 
-			return (TElement) Activator.CreateInstance(controlType, searchContext as IWebDriver, element, this);
+			return (TElement)Activator.CreateInstance(controlType, searchContext as IWebDriver, element, this);
 		}
 	}
 }

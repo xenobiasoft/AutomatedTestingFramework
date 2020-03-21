@@ -1,15 +1,15 @@
 ﻿using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
 {
 	public class DropDown : ContentElement, IDropDown
 	{
-		public DropDown(IWebDriver driver, IWebElement webElement, IElementFinderService elementFinderService) 
-			: base(driver, webElement, elementFinderService)
-		{}
+		public DropDown(IWebDriver driver, IWebElement webElement, By by)
+			: base(driver, webElement, by)
+		{ }
 
 		public string SelectedValue
 		{

@@ -69,7 +69,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 		{
 			var mockBrowserSettingsConfig = ResolveMock<IBrowserSettingsConfiguration>();
 
-			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(BrowserType.Chrome);
+			mockBrowserSettingsConfig.Setup(x => x.DefaultBrowser).Returns(Browser.Chrome);
 			mockBrowserSettingsConfig.Setup(x => x.DriverLocation).Returns(Path.Combine(TestContext.TestDirectory, "Drivers"));
 			mockBrowserSettingsConfig.Setup(x => x.ImplicitWaitTimeout).Returns(5);
 			mockBrowserSettingsConfig.Setup(x => x.ScriptTimeout).Returns(8);

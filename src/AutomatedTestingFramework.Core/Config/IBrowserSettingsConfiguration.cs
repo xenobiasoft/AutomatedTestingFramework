@@ -4,7 +4,7 @@ namespace AutomatedTestingFramework.Core.Config
 {
 	public interface IBrowserSettingsConfiguration
 	{
-		BrowserType DefaultBrowser { get; }
+		Browser DefaultBrowser { get; }
 		string DriverLocation { get; }
 		int ImplicitWaitTimeout { get; }
 		int PageLoadTimeout { get; }

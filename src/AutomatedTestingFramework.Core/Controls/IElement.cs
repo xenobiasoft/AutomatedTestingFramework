@@ -1,14 +1,16 @@
 ﻿namespace AutomatedTestingFramework.Core.Controls
 {
-	public interface IElement : IElementFinder
+	public interface IElement
 	{
+		By By { get; }
 		void Click();
-		string Content { get; }
 		string CssClass { get; }
-		string GetAttribute(string name);
-		bool IsVisible { get; }
-		void MouseClick();
-		int Width { get; }
-		int Height { get; }
+		bool? Displayed { get; }
+		bool? Enabled { get; }
+		string GetAttribute(string attributeName);
+		int? Height { get; }
+		string Text { get; }
+		void TypeText(string text);
+		int? Width { get; }
 	}
 }

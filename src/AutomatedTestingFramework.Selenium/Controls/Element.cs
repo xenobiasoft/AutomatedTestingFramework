@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
@@ -11,54 +10,41 @@ namespace AutomatedTestingFramework.Selenium.Controls
 	{
 		protected readonly IWebElement WebElement;
 		protected readonly IWebDriver Driver;
-		protected readonly IElementFinderService ElementFinderService;
 
-		public Element(IWebDriver driver, IWebElement webElement, IElementFinderService elementFinderService)
+		public Element(IWebDriver driver, IWebElement webElement, By by)
 		{
+			By = by;
 			Driver = driver;
 			WebElement = webElement;
-			ElementFinderService = elementFinderService;
 		}
+
+		public By By { get; }
+		public string CssClass => WebElement?.GetAttribute("className");
+		public bool? Displayed => WebElement?.Displayed;
+		public bool? Enabled => WebElement?.Enabled;
+		public int? Height => WebElement?.Size.Height;
+		public virtual string Text => WebElement?.Text;
+		public int? Width => WebElement?.Size.Width;
 
 		public void Click()
 		{
-			WebElement.Click();
+			WaitToByClickable();
+			WebElement?.Click();
 		}
 
-		public TElement Find<TElement>(By by) where TElement : class, IElement
+		public string GetAttribute(string attributeName) => WebElement?.GetAttribute(attributeName);
+
+		public void TypeText(string text)
 		{
-			return ElementFinderService.Find<TElement>(WebElement, by);
+			WebElement?.Clear();
+			WebElement?.SendKeys(text);
 		}
 
-		public IEnumerable<TElement> FindAll<TElement>(By by) where TElement : class, IElement
+		private void WaitToByClickable()
 		{
-			return ElementFinderService.FindAll<TElement>(WebElement, by);
+			var webDriverWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+
+			webDriverWait.Until(ExpectedConditions.ElementToBeClickable(By.ToSeleniumBy()));
 		}
-
-		public string GetAttribute(string attributeName)
-		{
-			return WebElement.GetAttribute(attributeName);
-		}
-
-		public bool IsElementPresent(By by)
-		{
-			return ElementFinderService.IsElementPresent(WebElement, by);
-		}
-
-		public void MouseClick()
-		{
-			var builder = new Actions(Driver);
-
-			builder.MoveToElement(WebElement)
-				.Click()
-				.Build()
-				.Perform();
-		}
-
-		public string CssClass => WebElement.GetAttribute("className");
-		public virtual string Content => WebElement.Text;
-		public bool IsVisible => WebElement.Displayed;
-		public int Width => WebElement.Size.Width;
-		public int Height => WebElement.Size.Height;
 	}
 }

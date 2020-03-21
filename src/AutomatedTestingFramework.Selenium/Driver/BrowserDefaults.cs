@@ -26,26 +26,26 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			switch (_browserSettingsConfiguration.DefaultBrowser)
 			{
-				case BrowserType.Chrome:
+				case Browser.Chrome:
 					DefaultBrowser = new ChromeDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
-				case BrowserType.Edge:
+				case Browser.Edge:
 					DefaultBrowser = new EdgeDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
-				case BrowserType.Firefox:
+				case Browser.Firefox:
 					DefaultBrowser = new FirefoxDriver();
 					break;
 
-				case BrowserType.HeadlessFirefox:
+				case Browser.HeadlessFirefox:
 					break;
 
-				case BrowserType.InternetExplorer:
+				case Browser.InternetExplorer:
 					DefaultBrowser = new InternetExplorerDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 
-				case BrowserType.Safari:
+				case Browser.Safari:
 					DefaultBrowser = new SafariDriver(_browserSettingsConfiguration.DriverLocation);
 					break;
 

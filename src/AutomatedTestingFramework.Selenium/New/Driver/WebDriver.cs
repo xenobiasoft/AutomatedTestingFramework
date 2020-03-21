@@ -1,4 +1,8 @@
-﻿using AutomatedTestingFramework.Core.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Selenium.New.Element;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -6,34 +10,31 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace AutomatedTestingFramework.Selenium.New
+namespace AutomatedTestingFramework.Selenium.New.Driver
 {
 	public class WebDriver : Driver
 	{
 		private readonly IWebDriver _webDriver;
 		private readonly WebDriverWait _webDriverWait;
 
-		public WebDriver(BrowserType browser)
+		public WebDriver(Browser browser)
 		{
 			switch (browser)
 			{
-				case BrowserType.Chrome:
+				case Browser.Chrome:
 					_webDriver = new ChromeDriver(Environment.CurrentDirectory);
 					break;
-				case BrowserType.Edge:
+				case Browser.Edge:
 					_webDriver = new EdgeDriver(Environment.CurrentDirectory);
 					break;
-				case BrowserType.Firefox:
+				case Browser.Firefox:
 					_webDriver = new FirefoxDriver(Environment.CurrentDirectory);
 					break;
-				case BrowserType.InternetExplorer:
+				case Browser.InternetExplorer:
 					_webDriver = new InternetExplorerDriver(Environment.CurrentDirectory);
 					break;
-				case BrowserType.Safari:
+				case Browser.Safari:
 					_webDriver = new SafariDriver(Environment.CurrentDirectory);
 					break;
 				default:
@@ -43,7 +44,7 @@ namespace AutomatedTestingFramework.Selenium.New
 			_webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30));
 		}
 
-		public override void Start(BrowserType browser)
+		public override void Start(Browser browser)
 		{
 			throw new NotImplementedException();
 		}
@@ -58,7 +59,7 @@ namespace AutomatedTestingFramework.Selenium.New
 			_webDriver.Navigate().GoToUrl(url);
 		}
 
-		public override Element FindElement(By locator)
+		public override Element.Element FindElement(By locator)
 		{
 			var nativeWebElement = _webDriverWait.Until(ExpectedConditions.ElementExists(locator));
 			var element = new WebElement(_webDriver, nativeWebElement, locator);
@@ -67,16 +68,35 @@ namespace AutomatedTestingFramework.Selenium.New
 			return logElement;
 		}
 
-		public override List<Element> FindElements(By locator)
+		public override List<Element.Element> FindElements(By locator)
 		{
 			IReadOnlyCollection<IWebElement> nativeWebElements =
 				_webDriverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
 			var elements = nativeWebElements
 				.ToList()
-				.Select(nativeWebElement => new WebElement(_webDriver, nativeWebElement, locator) as Element)
+				.Select(nativeWebElement => new WebElement(_webDriver, nativeWebElement, locator) as Element.Element)
 				.ToList();
 
 			return elements;
+		}
+
+		public override void WaitForAjax()
+		{
+			var js = (IJavaScriptExecutor)_webDriver;
+
+			_webDriverWait.Until(x => js.ExecuteScript("return jQuery.active").ToString() == "0");
+		}
+
+		public override void WaitForPageToLoad()
+		{
+			var js = (IJavaScriptExecutor)_webDriver;
+
+			_webDriverWait.Until(x => js.ExecuteScript("return document.readyState").ToString() == "complete");
+		}
+
+		public override void DeleteAllCookies()
+		{
+			_webDriver.Manage().Cookies.DeleteAllCookies();
 		}
 	}
 }

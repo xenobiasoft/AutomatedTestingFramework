@@ -1,6 +1,6 @@
 ﻿namespace AutomatedTestingFramework.Core.Enums
 {
-	public enum BrowserType
+	public enum Browser
 	{
 		Chrome,
 		Edge,

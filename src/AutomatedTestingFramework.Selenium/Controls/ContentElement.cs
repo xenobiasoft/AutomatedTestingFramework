@@ -4,19 +4,19 @@ using System.Drawing.Imaging;
 using System.IO;
 using AutomatedTestingFramework.Core.Controls;
 using AutomatedTestingFramework.Media;
-using AutomatedTestingFramework.Selenium.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
+using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
 {
 	public class ContentElement : Element, IContentElement
 	{
-		public ContentElement(IWebDriver driver, IWebElement webElement, IElementFinderService elementFinderService) 
-			: base(driver, webElement, elementFinderService)
-		{}
-		
+		public ContentElement(IWebDriver driver, IWebElement webElement, By by)
+			: base(driver, webElement, by)
+		{ }
+
 		public bool IsEnabled => WebElement.Enabled;
 
 		public void Focus()

@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace AutomatedTestingFramework.Selenium.New
+namespace AutomatedTestingFramework.Selenium.New.Element
 {
 	public class WebElement : Element
 	{

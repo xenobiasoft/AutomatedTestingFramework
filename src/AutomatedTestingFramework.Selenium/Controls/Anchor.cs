@@ -1,14 +1,14 @@
 ﻿using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
 using OpenQA.Selenium;
+using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
 {
 	public class Anchor : ContentElement, IAnchor
 	{
-		public Anchor(IWebDriver driver, IWebElement webElement, IElementFinderService elementFinderService) 
-			: base(driver, webElement, elementFinderService)
-		{}
+		public Anchor(IWebDriver driver, IWebElement webElement, By by)
+			: base(driver, webElement, by)
+		{ }
 
 		public string Url => WebElement.GetAttribute("href");
 	}

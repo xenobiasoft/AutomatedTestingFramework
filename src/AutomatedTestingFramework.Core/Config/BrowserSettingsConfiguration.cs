@@ -9,7 +9,7 @@ namespace AutomatedTestingFramework.Core.Config
 		public string DriverLocation => (string) this["driverLocation"];
 
 		[ConfigurationProperty("defaultBrowser", IsRequired = true)]
-		public BrowserType DefaultBrowser => (BrowserType) this["defaultBrowser"];
+		public Browser DefaultBrowser => (Browser) this["defaultBrowser"];
 
 		[ConfigurationProperty("scriptTimeout", DefaultValue = 30, IsRequired = true)]
 		public int ScriptTimeout => (int) this["scriptTimeout"];

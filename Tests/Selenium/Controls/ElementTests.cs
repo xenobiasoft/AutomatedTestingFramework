@@ -1,12 +1,10 @@
 ﻿using System.Drawing;
 using AutomatedTestingFramework.Core.Controls;
 using AutomatedTestingFramework.Selenium.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
@@ -24,36 +22,6 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 
 			// Assert
 			mockWebElement.Verify(x => x.Click(), Times.Once);
-		}
-
-		[Test]
-		public void FindDelegatesCallToElementFinderService()
-		{
-			// Assemble
-			var expectedId = Create<string>();
-			var mockElementFinderService = ResolveMock<IElementFinderService>();
-
-			// Act
-			Sut.Find<IButton>(By.Id(expectedId));
-
-			// Assert
-			mockElementFinderService
-				.Verify(x => x.Find<IButton>(It.IsAny<ISearchContext>(), It.Is<By>(by => by.Value.Equals(expectedId))), Times.Once());
-		}
-
-		[Test]
-		public void FindAllDelegatesCallToElementFinderService()
-		{
-			// Assemble
-			var expectedId = Create<string>();
-			var mockElementFinderService = ResolveMock<IElementFinderService>();
-
-			// Act
-			Sut.FindAll<IButton>(By.Id(expectedId));
-
-			// Assert
-			mockElementFinderService
-				.Verify(x => x.FindAll<IButton>(It.IsAny<ISearchContext>(), It.Is<By>(by => by.Value.Equals(expectedId))), Times.Once());
 		}
 
 		[Test]
@@ -84,19 +52,6 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 		}
 
 		[Test]
-		public void IsElementPresentDelegatesCallToElementFinderService()
-		{
-			// Assemble
-			var mockElementFinderService = ResolveMock<IElementFinderService>();
-
-			// Act
-			Sut.IsElementPresent(By.Id(Create<string>()));
-
-			// Assert
-			mockElementFinderService.Verify(x => x.IsElementPresent(It.IsAny<ISearchContext>(), It.IsAny<By>()), Times.Once);
-		}
-
-		[Test]
 		public void CssClassReturnsClassNameAttribute()
 		{
 			// Assemble
@@ -118,7 +73,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Text).Returns(expectedText);
 
 			// Act
-			var actual = Sut.Content;
+			var actual = Sut.Text;
 
 			// Assert
 			actual.Should().Be(expectedText);
@@ -131,7 +86,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.Displayed).Returns(true);
 
 			// Act
-			var isVisible = Sut.IsVisible;
+			var isVisible = Sut.Displayed;
 
 			// Assert
 			isVisible.Should().BeTrue();

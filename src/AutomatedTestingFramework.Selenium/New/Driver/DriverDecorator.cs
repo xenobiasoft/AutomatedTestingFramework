@@ -1,8 +1,8 @@
-﻿using AutomatedTestingFramework.Core.Enums;
+﻿using System.Collections.Generic;
+using AutomatedTestingFramework.Core.Enums;
 using OpenQA.Selenium;
-using System.Collections.Generic;
 
-namespace AutomatedTestingFramework.Selenium.New
+namespace AutomatedTestingFramework.Selenium.New.Driver
 {
 	public abstract class DriverDecorator : Driver
 	{
@@ -13,7 +13,7 @@ namespace AutomatedTestingFramework.Selenium.New
 			Driver = driver;
 		}
 
-		public override void Start(BrowserType browser)
+		public override void Start(Browser browser)
 		{
 			Driver?.Start(browser);
 		}
@@ -28,12 +28,12 @@ namespace AutomatedTestingFramework.Selenium.New
 			Driver?.GoToUrl(url);
 		}
 
-		public override Element FindElement(By locator)
+		public override Element.Element FindElement(By locator)
 		{
 			return Driver?.FindElement(locator);
 		}
 
-		public override List<Element> FindElements(By locator)
+		public override List<Element.Element> FindElements(By locator)
 		{
 			return Driver?.FindElements(locator);
 		}

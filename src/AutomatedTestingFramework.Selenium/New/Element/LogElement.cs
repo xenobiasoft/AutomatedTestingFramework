@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutomatedTestingFramework.Selenium.New
+namespace AutomatedTestingFramework.Selenium.New.Element
 {
 	public class LogElement : ElementDecorator
 	{

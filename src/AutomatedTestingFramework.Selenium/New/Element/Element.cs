@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace AutomatedTestingFramework.Selenium.New
+namespace AutomatedTestingFramework.Selenium.New.Element
 {
 	public abstract class Element
 	{

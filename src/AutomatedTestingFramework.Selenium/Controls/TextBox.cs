@@ -1,14 +1,14 @@
 ﻿using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
 using OpenQA.Selenium;
+using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
 {
 	public class TextBox : ContentElement, ITextBox
 	{
-		public TextBox(IWebDriver driver, IWebElement webElement, IElementFinderService elementFinderService) 
-			: base(driver, webElement, elementFinderService)
-		{}
+		public TextBox(IWebDriver driver, IWebElement webElement, By by)
+			: base(driver, webElement, by)
+		{ }
 
 		public string Text
 		{

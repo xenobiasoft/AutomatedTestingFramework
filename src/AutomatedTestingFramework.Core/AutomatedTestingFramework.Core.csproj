@@ -79,6 +79,7 @@
     <Compile Include="Config\IBrowserSettingsConfiguration.cs" />
     <Compile Include="Controls\IWebImage.cs" />
     <Compile Include="ElementTimeoutException.cs" />
+    <Compile Include="Enums\BrowserBehavior.cs" />
     <Compile Include="Enums\DialogButton.cs" />
     <Compile Include="Enums\ExecutionEngineType.cs" />
     <Compile Include="Enums\SearchType.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Controls\IButton.cs" />
     <Compile Include="Controls\ICheckbox.cs" />
     <Compile Include="Controls\IContentElement.cs" />
-    <Compile Include="Controls\IDiv.cs" />
     <Compile Include="Controls\IDropDown.cs" />
     <Compile Include="Controls\IElement.cs" />
     <Compile Include="Controls\IFrame.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
     <Compile Include="CoreInstaller.cs" />
     <Compile Include="PageEventArgs.cs" />
-    <Compile Include="Enums\BrowserType.cs" />
+    <Compile Include="Enums\Browser.cs" />
     <Compile Include="BasePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionEngine\TestExecutionEventArgs.cs" />

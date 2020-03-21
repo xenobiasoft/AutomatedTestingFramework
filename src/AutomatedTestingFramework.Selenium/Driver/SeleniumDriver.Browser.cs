@@ -68,7 +68,7 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public void WaitForElement(IElement element)
 		{
-			WaitUntil(_browserDefaults.DocumentWait, x => element.IsVisible);
+			WaitUntil(_browserDefaults.DocumentWait, x => element.Displayed.GetValueOrDefault());
 		}
 
 		public void WaitUntilReady()
