@@ -5,7 +5,7 @@ using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
 using NUnit.Framework;
 
-namespace AutomatedTestingFramework.Core
+namespace AutomatedTestingFramework.Selenium
 {
 	[TestFixture]
 	public abstract class BaseTest

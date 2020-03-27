@@ -112,8 +112,6 @@
     <Compile Include="Selenium\Driver\SeleniumDriverTests.cs" />
     <Compile Include="TestCategories.cs" />
     <Compile Include="AutoMockingTestFixture.cs" />
-    <Compile Include="TestContainerTests.cs" />
-    <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
