@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Selenium.Controls
 			: base(driver, webElement, by)
 		{ }
 
-		public string AltText => WebElement.GetAttribute("alt");
-		public string Src => WebElement.GetAttribute("src");
+		public string AltText => Element.GetAttribute("alt");
+		public string Src => Element.GetAttribute("src");
 	}
 }

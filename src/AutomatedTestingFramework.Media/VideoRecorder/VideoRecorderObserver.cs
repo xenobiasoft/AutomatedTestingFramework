@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExecutionEngine;
@@ -12,7 +11,11 @@ namespace AutomatedTestingFramework.Media.VideoRecorder
 		private readonly IVideoRecorder _videoRecorder;
 		private readonly IAppConfiguration _appConfiguration;
 
-		public VideoRecorderObserver(IVideoRecorder videoRecorder, IAppConfiguration appConfiguration)
+		public VideoRecorderObserver(
+			ITestExecutionSubject testExecutionSubject,
+			IVideoRecorder videoRecorder,
+			IAppConfiguration appConfiguration)
+			: base(testExecutionSubject)
 		{
 			_appConfiguration = appConfiguration;
 			_videoRecorder = videoRecorder;

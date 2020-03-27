@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
+using AutomatedTestingFramework.Selenium.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -55,7 +55,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				// Assemble
 				var mockSearchContext = ResolveMock<ISearchContext>();
 				mockSearchContext.Setup(x => x.FindElements(It.IsAny<SeleniumBy>())).Returns(ResolveMock<List<IWebElement>>().Object.AsReadOnly);
-				
+
 				// Act
 				Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
 

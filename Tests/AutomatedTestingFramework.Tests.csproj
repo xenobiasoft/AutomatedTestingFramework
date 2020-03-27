@@ -91,7 +91,6 @@
   <ItemGroup>
     <Compile Include="AutoMockingFixtureByClass.cs" />
     <Compile Include="AutoMockingFixtureByInterface.cs" />
-    <Compile Include="Media\ExecutionEngine\TestExecutionProviderTests.cs" />
     <Compile Include="Media\VideoRecorder\VideoRecorderTests.cs" />
     <Compile Include="Core\Config\AppConfigurationTests.cs" />
     <Compile Include="Core\Config\BrowserSettingsConfigurationProviderTests.cs" />
@@ -105,7 +104,6 @@
     <Compile Include="Selenium\Controls\LabelTests.cs" />
     <Compile Include="Selenium\Controls\TextboxTests.cs" />
     <Compile Include="Selenium\Controls\WebImageTests.cs" />
-    <Compile Include="Selenium\Driver\BrowserDefaultsTests.cs" />
     <Compile Include="Selenium\Driver\ElementFinderServiceTests.cs" />
     <Compile Include="Selenium\Driver\SeleniumDriverBrowserTests.cs" />
     <Compile Include="Selenium\Driver\SeleniumDriverCookieTests.cs" />

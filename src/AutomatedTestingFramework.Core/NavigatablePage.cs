@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Core
 
 		public TPage Go<TPage>() where TPage : NavigatablePage
 		{
-			Driver.Navigate(RelativeUrl);
+			Driver.GoToUrl(RelativeUrl);
 
 			return (TPage) this;
 		}

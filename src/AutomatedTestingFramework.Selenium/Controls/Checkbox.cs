@@ -10,21 +10,21 @@ namespace AutomatedTestingFramework.Selenium.Controls
 			: base(driver, webElement, by)
 		{ }
 
-		public bool IsChecked => WebElement.Selected;
+		public bool IsChecked => Element.Selected;
 
 		public void Check()
 		{
-			if (!WebElement.Selected)
+			if (!Element.Selected)
 			{
-				WebElement.Click();
+				Element.Click();
 			}
 		}
 
 		public void Uncheck()
 		{
-			if (WebElement.Selected)
+			if (Element.Selected)
 			{
-				WebElement.Click();
+				Element.Click();
 			}
 		}
 	}

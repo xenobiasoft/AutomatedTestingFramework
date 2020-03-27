@@ -22,7 +22,7 @@ namespace AutomatedTestingFramework.Tests.Core
 			Sut.Go<TestPage>();
 
 			// Assert
-			mockDriver.Verify(x => x.Navigate(url, true), Times.Once);
+			mockDriver.Verify(x => x.GoToUrl(url), Times.Once);
 		}
 
 		[Test]
@@ -62,6 +62,6 @@ namespace AutomatedTestingFramework.Tests.Core
 	public class TestPage : NavigatablePage
 	{
 		public TestPage(IDriver driver) : base(driver)
-		{}
+		{ }
 	}
 }

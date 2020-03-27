@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutomatedTestingFramework.Core.Controls;
-using AutomatedTestingFramework.Selenium.Driver;
+using AutomatedTestingFramework.Selenium.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

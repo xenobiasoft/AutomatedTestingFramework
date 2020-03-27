@@ -17,7 +17,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				var relativeUrl = "/main/subpage";
 
 				// Act
-				Sut.Navigate(relativeUrl);
+				Sut.GoToUrl(relativeUrl);
 
 				// Assert
 				ResolveMock<INavigation>().Verify(x => x.GoToUrl(It.Is<string>(url => url.EndsWith(relativeUrl))), Times.Once);
@@ -31,7 +31,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				var expectedUrl = "http://www.microsoft.com";
 
 				// Act
-				Sut.Navigate(actualUrl);
+				Sut.GoToUrl(actualUrl);
 
 				// Assert
 				ResolveMock<INavigation>().Verify(x => x.GoToUrl(It.Is<string>(url => url == expectedUrl)), Times.Once);

@@ -11,6 +11,6 @@ namespace AutomatedTestingFramework.Selenium.Controls
 		{
 		}
 
-		public string Text => WebElement.Text;
+		public string Text => Element.Text;
 	}
 }

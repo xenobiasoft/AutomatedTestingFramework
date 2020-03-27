@@ -15,7 +15,7 @@ namespace AutomatedTestingFramework.Selenium.Controls
 		{
 			get
 			{
-				var select = new SelectElement(WebElement);
+				var select = new SelectElement(Element);
 
 				return select.SelectedOption.Text;
 			}
@@ -23,14 +23,14 @@ namespace AutomatedTestingFramework.Selenium.Controls
 
 		public void SelectValue(string value)
 		{
-			var select = new SelectElement(WebElement);
+			var select = new SelectElement(Element);
 
 			select.SelectByValue(value);
 		}
 
 		public void SelectText(string text)
 		{
-			var select = new SelectElement(WebElement);
+			var select = new SelectElement(Element);
 
 			select.SelectByText(text);
 		}

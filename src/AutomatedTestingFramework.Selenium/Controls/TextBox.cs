@@ -12,11 +12,11 @@ namespace AutomatedTestingFramework.Selenium.Controls
 
 		public string Text
 		{
-			get => WebElement.GetAttribute("value");
+			get => Element.GetAttribute("value");
 			set
 			{
-				WebElement.Clear();
-				WebElement.SendKeys(value);
+				Element.Clear();
+				Element.SendKeys(value);
 			}
 		}
 	}

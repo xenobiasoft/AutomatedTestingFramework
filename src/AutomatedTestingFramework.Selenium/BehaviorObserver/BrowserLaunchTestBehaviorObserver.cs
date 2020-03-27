@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Reflection;
+using AutomatedTestingFramework.Core.Attributes;
+using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Core.ExecutionEngine;
 
-namespace AutomatedTestingFramework.Selenium.New.BehaviorObserver
+namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
-	public class BrowserLaunchTestBehaviorObserver : BaseTestBehaviorObserver
+	public class BrowserLaunchTestBehaviorObserver : BaseTestObserver
 	{
-		private readonly Driver.Driver _driver;
+		private readonly BaseDriver _driver;
 		private BrowserConfiguration _currentBrowserConfiguration;
 		private BrowserConfiguration _previousBrowserConfiguration;
 
-		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, Driver.Driver driver) : base(testExecutionSubject)
+		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, BaseDriver driver) : base(testExecutionSubject)
 		{
 			_driver = driver;
 		}
 
-		public override void PreTestInit(TestContext context, MemberInfo memberInfo)
+		public override void PreTestInit(object sender, TestExecutionEventArgs e)
 		{
-			_currentBrowserConfiguration = GetBrowserConfiguration(memberInfo);
+			_currentBrowserConfiguration = GetBrowserConfiguration(e.MemberInfo);
 
 			var shouldRestartBrowser = ShouldRestartBrowser(_currentBrowserConfiguration);
 
@@ -27,15 +30,15 @@ namespace AutomatedTestingFramework.Selenium.New.BehaviorObserver
 			}
 			else
 			{
-				_driver.DeleteAllCookies();
+				_driver.ClearAllCookies();
 			}
 
 			_previousBrowserConfiguration = _currentBrowserConfiguration;
 		}
 
-		public override void PostTestInit(TestContext context, MemberInfo memberInfo)
+		public override void PostTestInit(object sender, TestExecutionEventArgs e)
 		{
-			if (_currentBrowserConfiguration.BrowserBehavior == BrowserBehavior.RestartOnFail && context.TestOutcome.Equals(TestOutcome.Failed))
+			if (_currentBrowserConfiguration.BrowserBehavior == BrowserBehavior.RestartOnFail && e.TestOutcome.Equals(TestOutcome.Failed))
 			{
 				RestartBrowser();
 			}

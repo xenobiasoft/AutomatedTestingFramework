@@ -3,10 +3,10 @@ using AutomatedTestingFramework.Core.Enums;
 
 namespace AutomatedTestingFramework.Core.ExecutionEngine
 {
-	public interface ITestExecutionProvider
+	public interface ITestExecutionSubject
 	{
-		void Subscribe(ITestObserver observer);
-		void Unsubscribe(ITestObserver observer);
+		void Attach(ITestObserver observer);
+		void Detach(ITestObserver observer);
 		void PreTestInit(TestOutcome testOutcome, string testName, MemberInfo memberInfo);
 		void PostTestInit(TestOutcome testOutcome, string testName, MemberInfo memberInfo);
 		void PreTestCleanup(TestOutcome testOutcome, string testName, MemberInfo memberInfo);

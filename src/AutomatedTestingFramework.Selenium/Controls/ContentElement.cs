@@ -11,26 +11,26 @@ using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Controls
 {
-	public class ContentElement : Element, IContentElement
+	public class ContentElement : WebElement, IContentElement
 	{
 		public ContentElement(IWebDriver driver, IWebElement webElement, By by)
 			: base(driver, webElement, by)
 		{ }
 
-		public bool IsEnabled => WebElement.Enabled;
+		public bool IsEnabled => Element.Enabled;
 
 		public void Focus()
 		{
 			var action = new Actions(Driver);
 
-			action.MoveToElement(WebElement).Perform();
+			action.MoveToElement(Element).Perform();
 		}
 
 		public void Hover()
 		{
 			var action = new Actions(Driver);
 
-			action.MoveToElement(WebElement).Perform();
+			action.MoveToElement(Element).Perform();
 		}
 
 		public void TakeScreenshot()
@@ -43,7 +43,7 @@ namespace AutomatedTestingFramework.Selenium.Controls
 				using (var bmp = new Bitmap(memStream))
 				{
 					var newSize = GetScreenshotSize(bmp.Size);
-					var cropArea = new Rectangle(WebElement.Location, newSize);
+					var cropArea = new Rectangle(Element.Location, newSize);
 
 					using (var croppedBmp = bmp.Clone(cropArea, bmp.PixelFormat))
 					{
@@ -55,10 +55,10 @@ namespace AutomatedTestingFramework.Selenium.Controls
 
 		public Size GetScreenshotSize(Size originalSize)
 		{
-			var newSize = new Size(Math.Min(originalSize.Width, WebElement.Size.Width), Math.Min(originalSize.Height, WebElement.Size.Height));
+			var newSize = new Size(Math.Min(originalSize.Width, Element.Size.Width), Math.Min(originalSize.Height, Element.Size.Height));
 
-			newSize.Width = newSize.Width - WebElement.Location.X;
-			newSize.Height = newSize.Height - WebElement.Location.Y;
+			newSize.Width = newSize.Width - Element.Location.X;
+			newSize.Height = newSize.Height - Element.Location.Y;
 
 			return newSize;
 		}

@@ -69,8 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
-    <Compile Include="BaseTestObserver.cs" />
+    <Compile Include="Attributes\BrowserConfiguration.cs" />
+    <Compile Include="Attributes\ExecutionBrowserAttribute.cs" />
     <Compile Include="Config\IAppConfiguration.cs" />
+    <Compile Include="Driver\BaseDriver.cs" />
+    <Compile Include="Driver\DriverDecorator.cs" />
     <Compile Include="ElementFinderExtensions.cs" />
     <Compile Include="By.cs" />
     <Compile Include="Config\AppConfiguration.cs" />
@@ -81,7 +84,6 @@
     <Compile Include="ElementTimeoutException.cs" />
     <Compile Include="Enums\BrowserBehavior.cs" />
     <Compile Include="Enums\DialogButton.cs" />
-    <Compile Include="Enums\ExecutionEngineType.cs" />
     <Compile Include="Enums\SearchType.cs" />
     <Compile Include="Controls\IAnchor.cs" />
     <Compile Include="Controls\IButton.cs" />
@@ -105,13 +107,13 @@
     <Compile Include="ExceptionAnalysis\IExceptionAnalyzationHandler.cs" />
     <Compile Include="ExceptionAnalysis\IExceptionAnalyzer.cs" />
     <Compile Include="ExceptionAnalysis\ServiceUnavailableExceptionHandler.cs" />
-    <Compile Include="ExecutionEngine\TestExecutionProvider.cs" />
+    <Compile Include="ExecutionEngine\BaseTestObserver.cs" />
     <Compile Include="IElementFinder.cs" />
     <Compile Include="Driver\IJavascriptInvoker.cs" />
     <Compile Include="Driver\INavigationService.cs" />
     <Compile Include="Driver\IDialogService.cs" />
     <Compile Include="NavigatablePage.cs" />
-    <Compile Include="ExecutionEngine\ITestExecutionProvider.cs" />
+    <Compile Include="ExecutionEngine\ITestExecutionSubject.cs" />
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
     <Compile Include="CoreInstaller.cs" />
     <Compile Include="PageEventArgs.cs" />

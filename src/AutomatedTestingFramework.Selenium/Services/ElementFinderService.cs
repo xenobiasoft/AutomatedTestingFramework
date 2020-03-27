@@ -5,7 +5,7 @@ using AutomatedTestingFramework.Core.Controls;
 using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Core.By;
 
-namespace AutomatedTestingFramework.Selenium.Driver
+namespace AutomatedTestingFramework.Selenium.Services
 {
 	public class ElementFinderService : IElementFinderService
 	{

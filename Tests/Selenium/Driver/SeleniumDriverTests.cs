@@ -7,28 +7,26 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Driver
 {
 	[TestFixture]
-	public class SeleniumDriverTests : AutoMockingFixtureByInterface<SeleniumDriver, IDriver>
+	public class SeleniumDriverTests : AutoMockingFixtureByInterface<WebDriver, IDriver>
 	{
 		private Mock<IWebDriver> _mockWebDriver;
 
 		[Test]
 		[Category(TestCategories.Selenium)]
-		public void DisposeCallsCloseAndDisposeOnWebDriver()
+		public void QuitCallsCloseOnWebDriver()
 		{
 			// Assemble
 
 			// Act
-			Sut.Dispose();
+			Sut.Quit();
 
 			// Assert
 			_mockWebDriver.Verify(x => x.Quit(), Times.Once);
-			_mockWebDriver.Verify(x => x.Dispose(), Times.Once);
 		}
 
 		public override void SetUp()
 		{
 			_mockWebDriver = ResolveMock<IWebDriver>();
-			ResolveMock<IBrowserDefaults>().Setup(x => x.DefaultBrowser).Returns(_mockWebDriver.Object);
 		}
 
 		[TestFixture]

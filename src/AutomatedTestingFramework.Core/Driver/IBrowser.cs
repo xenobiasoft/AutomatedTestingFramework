@@ -12,11 +12,10 @@ namespace AutomatedTestingFramework.Core.Driver
 		void Quit();
 		void SwitchToDefault();
 		void SwitchToFrame(IFrame frame);
-		void TakeScreenshot();
-		void WaitForElement(IElement element);
+		void TakeScreenShot();
 		void WaitForAjax();
-		void WaitUntilReady();
-		
+		void WaitForPageToLoad();
+
 		string Source { get; }
 	}
 }

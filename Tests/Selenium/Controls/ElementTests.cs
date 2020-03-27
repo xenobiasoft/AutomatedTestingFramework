@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 namespace AutomatedTestingFramework.Tests.Selenium.Controls
 {
 	[TestFixture]
-	public class ElementTests : AutoMockingFixtureByInterface<Element, IElement>
+	public class ElementTests : AutoMockingFixtureByInterface<WebElement, IElement>
 	{
 		[Test]
 		public void ClickDelegatesCallToWebElement()

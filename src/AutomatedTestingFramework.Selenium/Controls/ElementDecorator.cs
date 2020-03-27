@@ -1,10 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿using AutomatedTestingFramework.Core;
+using AutomatedTestingFramework.Core.Controls;
 
-namespace AutomatedTestingFramework.Selenium.New.Element
+namespace AutomatedTestingFramework.Selenium.Controls
 {
 	public abstract class ElementDecorator : Element
 	{
-		protected readonly Element Element;
+		protected readonly IElement Element;
 
 		protected ElementDecorator(Element element)
 		{
@@ -21,8 +22,14 @@ namespace AutomatedTestingFramework.Selenium.New.Element
 
 		public override void Click() => Element?.Click();
 
+		public override string CssClass => Element?.CssClass;
+
 		public override string GetAttribute(string attributeName) => Element?.GetAttribute(attributeName);
 
+		public override int? Height => Element?.Height;
+
 		public override void TypeText(string text) => Element?.TypeText(text);
+
+		public override int? Width => Element?.Width;
 	}
 }

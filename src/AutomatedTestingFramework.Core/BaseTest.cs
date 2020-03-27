@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Core
 	[TestFixture]
 	public abstract class BaseTest
 	{
-		private ITestExecutionProvider _testExecutionProvider;
+		private ITestExecutionSubject _testExecutionProvider;
 		private IDriver _driver;
 
 		protected IContainer Container;
@@ -38,7 +38,7 @@ namespace AutomatedTestingFramework.Core
 			Teardown();
 			TestExecutionProvider.PostTestCleanup((TestOutcome)TestContext.Result.Outcome.Status, TestName, memberInfo);
 			UnsubscribeTestExecutionObservers();
-			Driver.Dispose();
+			Driver.Quit();
 			_driver = null;
 		}
 
@@ -54,7 +54,7 @@ namespace AutomatedTestingFramework.Core
 
 			foreach (var observer in observers)
 			{
-				TestExecutionProvider.Subscribe(observer);
+				TestExecutionProvider.Attach(observer);
 			}
 		}
 
@@ -64,7 +64,7 @@ namespace AutomatedTestingFramework.Core
 
 			foreach (var observer in observers)
 			{
-				TestExecutionProvider.Unsubscribe(observer);
+				TestExecutionProvider.Detach(observer);
 			}
 		}
 
@@ -80,8 +80,8 @@ namespace AutomatedTestingFramework.Core
 
 		public string TestName => TestContext.Test.Name;
 
-		public IDriver Driver => _driver ?? ( _driver = Container.Resolve<IDriver>());
-		
-		private ITestExecutionProvider TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionProvider>());
+		public IDriver Driver => _driver ?? (_driver = Container.Resolve<IDriver>());
+
+		private ITestExecutionSubject TestExecutionProvider => _testExecutionProvider ?? (_testExecutionProvider = Container.Resolve<ITestExecutionSubject>());
 	}
 }

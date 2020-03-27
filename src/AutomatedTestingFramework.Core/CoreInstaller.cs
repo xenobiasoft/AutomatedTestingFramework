@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using AutomatedTestingFramework.Core.Config;
 using AutomatedTestingFramework.Core.ExceptionAnalysis;
-using AutomatedTestingFramework.Core.ExecutionEngine;
 
 namespace AutomatedTestingFramework.Core
 {
@@ -13,7 +12,6 @@ namespace AutomatedTestingFramework.Core
 
 			builder.RegisterType<ServiceUnavailableExceptionHandler>().As<IExceptionAnalyzationHandler>();
 			builder.RegisterType<FileNotFoundExceptionHandler>().As<IExceptionAnalyzationHandler>();
-			builder.RegisterType<TestExecutionProvider>().As<ITestExecutionProvider>();
 			builder.RegisterInstance(browserSettingsConfig).As<IBrowserSettingsConfiguration>();
 			builder.RegisterType<AppConfiguration>().As<IAppConfiguration>();
 			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>();

@@ -1,7 +1,7 @@
 ﻿using System;
 using AutomatedTestingFramework.Core.Enums;
 
-namespace AutomatedTestingFramework.Selenium.New.BehaviorObserver
+namespace AutomatedTestingFramework.Core.Attributes
 {
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 	public class ExecutionBrowserAttribute : Attribute

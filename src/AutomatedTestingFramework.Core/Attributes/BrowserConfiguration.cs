@@ -1,6 +1,6 @@
 ﻿using AutomatedTestingFramework.Core.Enums;
 
-namespace AutomatedTestingFramework.Selenium.New.BehaviorObserver
+namespace AutomatedTestingFramework.Core.Attributes
 {
 	public class BrowserConfiguration
 	{
