@@ -25,35 +25,17 @@ namespace AutomatedTestingFramework.Selenium
 				case SearchType.IdContaining:
 					return OpenQA.Selenium.By.CssSelector($"id^={by.Value}");
 
-				case SearchType.IdEndingWith:
-					throw new NotImplementedException();
-
-				case SearchType.InnerTextContaining:
-					throw new NotImplementedException();
-
 				case SearchType.LinkText:
 					return OpenQA.Selenium.By.LinkText(by.Value);
 
-				case SearchType.LinkTextContaining:
-					throw new NotImplementedException();
-
 				case SearchType.Name:
 					return OpenQA.Selenium.By.Name(by.Value);
-
-				case SearchType.NameEndingWith:
-					throw new NotImplementedException();
 
 				case SearchType.Tag:
 					return OpenQA.Selenium.By.TagName(by.Value);
 
 				case SearchType.XPath:
 					return OpenQA.Selenium.By.XPath(by.Value);
-
-				case SearchType.XPathContaining:
-					throw new NotImplementedException();
-
-				case SearchType.ValueEndingWith:
-					throw new NotImplementedException();
 
 				default:
 					throw new ArgumentOutOfRangeException($"Unknown search type : {by.Type}.");

@@ -7,7 +7,7 @@ namespace AutomatedTestingFramework.Core
 	{
 		public By(SearchType type, string value)
 			: this(type, value, null)
-		{}
+		{ }
 
 		public By(SearchType type, string value, IElement parent)
 		{
@@ -21,8 +21,6 @@ namespace AutomatedTestingFramework.Core
 		public IElement Parent { get; }
 
 		public string Value { get; }
-
-		#region Static By Selectors
 
 		public static By CssClass(string cssClass)
 		{
@@ -74,26 +72,6 @@ namespace AutomatedTestingFramework.Core
 			return new By(SearchType.IdContaining, id, parentElement);
 		}
 
-		public static By IdEndingWith(string id)
-		{
-			return new By(SearchType.IdEndingWith, id);
-		}
-
-		public static By IdEndingWith(string id, IElement parentElement)
-		{
-			return new By(SearchType.IdEndingWith, id, parentElement);
-		}
-
-		public static By InnerTextContaining(string text)
-		{
-			return new By(SearchType.InnerTextContaining, text);
-		}
-
-		public static By InnerTextContaining(string text, IElement parentElement)
-		{
-			return new By(SearchType.InnerTextContaining, text, parentElement);
-		}
-
 		public static By LinkText(string linkText)
 		{
 			return new By(SearchType.LinkText, linkText);
@@ -102,16 +80,6 @@ namespace AutomatedTestingFramework.Core
 		public static By LinkText(string linkText, IElement parentElement)
 		{
 			return new By(SearchType.LinkText, linkText, parentElement);
-		}
-
-		public static By LinkTextContaining(string text)
-		{
-			return new By(SearchType.LinkTextContaining, text);
-		}
-
-		public static By LinkTextContaining(string text, IElement parentElement)
-		{
-			return new By(SearchType.LinkTextContaining, text, parentElement);
 		}
 
 		public static By Name(string name)
@@ -124,16 +92,6 @@ namespace AutomatedTestingFramework.Core
 			return new By(SearchType.Name, name, parentElement);
 		}
 
-		public static By NameEndingWith(string name)
-		{
-			return new By(SearchType.NameEndingWith, name);
-		}
-
-		public static By NameEndingWith(string name, IElement parentElement)
-		{
-			return new By(SearchType.NameEndingWith, name, parentElement);
-		}
-
 		public static By Tag(string tagName)
 		{
 			return new By(SearchType.Tag, tagName);
@@ -142,16 +100,6 @@ namespace AutomatedTestingFramework.Core
 		public static By Tag(string tagName, IElement parentElement)
 		{
 			return new By(SearchType.Tag, tagName, parentElement);
-		}
-
-		public static By ValueEndingWith(string value)
-		{
-			return new By(SearchType.ValueEndingWith, value);
-		}
-
-		public static By ValueEndingWith(string value, IElement parentElement)
-		{
-			return new By(SearchType.ValueEndingWith, value, parentElement);
 		}
 
 		public static By XPath(string xpath)
@@ -163,17 +111,5 @@ namespace AutomatedTestingFramework.Core
 		{
 			return new By(SearchType.XPath, xpath, parentElement);
 		}
-
-		public static By XPathContaining(string xpath)
-		{
-			return new By(SearchType.XPathContaining, xpath);
-		}
-
-		public static By XPathContaining(string xpath, IElement parentElement)
-		{
-			return new By(SearchType.XPathContaining, xpath, parentElement);
-		}
-
-		#endregion
 	}
 }
