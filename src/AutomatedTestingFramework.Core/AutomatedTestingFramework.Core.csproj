@@ -104,13 +104,11 @@
     <Compile Include="Driver\IJavascriptInvoker.cs" />
     <Compile Include="Driver\INavigationService.cs" />
     <Compile Include="Driver\IDialogService.cs" />
-    <Compile Include="NavigatablePage.cs" />
     <Compile Include="ExecutionEngine\ITestExecutionSubject.cs" />
     <Compile Include="ExecutionEngine\ITestObserver.cs" />
     <Compile Include="CoreInstaller.cs" />
     <Compile Include="PageEventArgs.cs" />
     <Compile Include="Enums\Browser.cs" />
-    <Compile Include="BasePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionEngine\TestExecutionEventArgs.cs" />
   </ItemGroup>

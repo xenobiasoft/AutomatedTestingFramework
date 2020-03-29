@@ -94,7 +94,6 @@
     <Compile Include="Media\VideoRecorder\VideoRecorderTests.cs" />
     <Compile Include="Core\Config\AppConfigurationTests.cs" />
     <Compile Include="Core\ExceptionAnalysis\ExceptionAnalysisTests.cs" />
-    <Compile Include="Core\BasePageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\Controls\AnchorTests.cs" />
     <Compile Include="Selenium\Controls\CheckboxTests.cs" />
