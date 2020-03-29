@@ -68,12 +68,8 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			{
 				// Assemble
 				var mockSearchContext = ResolveMock<ISearchContext>();
-				var controlList = new List<IWebElement>
-				{
-					ResolveMock<IWebElement>().Object,
-					ResolveMock<IWebElement>().Object
-				};
-				mockSearchContext.Setup(x => x.FindElements(It.IsAny<SeleniumBy>())).Returns(controlList.AsReadOnly());
+				var controlList = Resolve<IWebElement[]>();
+				mockSearchContext.Setup(x => x.FindElements(It.IsAny<SeleniumBy>())).Returns(controlList.ToList().AsReadOnly);
 
 				// Act
 				var buttons = Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));

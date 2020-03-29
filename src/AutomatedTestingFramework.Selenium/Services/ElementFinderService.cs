@@ -20,14 +20,14 @@ namespace AutomatedTestingFramework.Selenium.Services
 		{
 			var element = searchContext.FindElement(by.ToSeleniumBy());
 
-			return ResolveElement<TElement>(searchContext, element);
+			return ResolveElement<TElement>(searchContext, element, by);
 		}
 
 		public IEnumerable<TElement> FindAll<TElement>(ISearchContext searchContext, By by) where TElement : class, IElement
 		{
 			var elements = searchContext.FindElements(by.ToSeleniumBy());
 
-			return elements.Select(x => ResolveElement<TElement>(searchContext, x));
+			return elements.Select(x => ResolveElement<TElement>(searchContext, x, by));
 		}
 
 		public bool IsElementPresent(ISearchContext searchContext, By by)
@@ -37,7 +37,7 @@ namespace AutomatedTestingFramework.Selenium.Services
 			return element.Displayed.GetValueOrDefault();
 		}
 
-		private TElement ResolveElement<TElement>(ISearchContext searchContext, IWebElement element) where TElement : class, IElement
+		private TElement ResolveElement<TElement>(ISearchContext searchContext, IWebElement element, By by) where TElement : class, IElement
 		{
 			var interfaceType = typeof(TElement);
 			Type controlType;
@@ -55,7 +55,7 @@ namespace AutomatedTestingFramework.Selenium.Services
 				_controlMap.Add(interfaceType, controlType);
 			}
 
-			return (TElement)Activator.CreateInstance(controlType, searchContext as IWebDriver, element, this);
+			return (TElement)Activator.CreateInstance(controlType, searchContext as IWebDriver, element, by);
 		}
 	}
 }

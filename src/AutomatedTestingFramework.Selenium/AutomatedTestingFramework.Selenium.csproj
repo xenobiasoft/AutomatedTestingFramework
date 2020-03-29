@@ -85,6 +85,8 @@
     <Compile Include="Controls\WebImage.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\TextBox.cs" />
+    <Compile Include="Driver\DriverFactory.cs" />
+    <Compile Include="Driver\IDriverFactory.cs" />
     <Compile Include="Driver\LoggingDriver.cs" />
     <Compile Include="Driver\WebDriver.Browser.cs" />
     <Compile Include="Driver\WebDriver.CookieService.cs" />

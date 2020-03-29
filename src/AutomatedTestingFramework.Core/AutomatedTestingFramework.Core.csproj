@@ -72,9 +72,6 @@
     <Compile Include="ElementFinderExtensions.cs" />
     <Compile Include="By.cs" />
     <Compile Include="Config\AppConfiguration.cs" />
-    <Compile Include="Config\BrowserSettingsConfiguration.cs" />
-    <Compile Include="Config\BrowserSettingsConfigurationProvider.cs" />
-    <Compile Include="Config\IBrowserSettingsConfiguration.cs" />
     <Compile Include="Controls\IWebImage.cs" />
     <Compile Include="ElementTimeoutException.cs" />
     <Compile Include="Enums\BrowserBehavior.cs" />

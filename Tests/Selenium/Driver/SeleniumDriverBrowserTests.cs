@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using AutomatedTestingFramework.Core.Config;
+using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -13,7 +14,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 		public void PageSourceReturnsWebDriverSourceProperty()
 		{
 			// Assemble
-			var expectedPageSource = "<html><head></head><body><p>This is the page content!</p></body></html>";
+			var expectedPageSource = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head><body><p>This is the page content!</p></body></html>";
 			ResolveMock<IWebDriver>().Setup(x => x.PageSource).Returns(expectedPageSource);
 
 			// Act

@@ -3,6 +3,7 @@
 	public interface IAppConfiguration
 	{
 		string BaseUrl { get; }
+		string DriverLocation { get; }
 		string MediaFolderPath { get; }
 		bool AllowVideoRecording { get; }
 		int VideoRecordingFrameRate { get; }

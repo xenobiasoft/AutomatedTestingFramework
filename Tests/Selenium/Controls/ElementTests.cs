@@ -12,19 +12,6 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 	public class ElementTests : AutoMockingFixtureByInterface<WebElement, IElement>
 	{
 		[Test]
-		public void ClickDelegatesCallToWebElement()
-		{
-			// Assemble
-			var mockWebElement = ResolveMock<IWebElement>();
-
-			// Act
-			Sut.Click();
-
-			// Assert
-			mockWebElement.Verify(x => x.Click(), Times.Once);
-		}
-
-		[Test]
 		public void GetAttributeDelegatesCallToWebElement()
 		{
 			// Assemble

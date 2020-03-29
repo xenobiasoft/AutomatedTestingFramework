@@ -59,10 +59,10 @@ namespace AutomatedTestingFramework.Selenium.Driver
 
 		public override void TakeScreenShot()
 		{
-			var screenshot = _driver.TakeScreenshot();
-			var screenshotFilename = MediaFileUtil.GetDateFormattedFilenameWithPath("Screenshot", MediaFileType.Png);
+			var screenShot = _driver.TakeScreenshot();
+			var screenShotFilename = MediaFileUtil.GetDateFormattedFilenameWithPath("Screenshot", MediaFileType.Png);
 
-			screenshot.SaveAsFile(screenshotFilename, ScreenshotImageFormat.Png);
+			screenShot.SaveAsFile(screenShotFilename, ScreenshotImageFormat.Png);
 		}
 
 		public override void WaitForAjax()

@@ -13,20 +13,13 @@ namespace AutomatedTestingFramework.Selenium.Driver
 		{
 			try
 			{
-				var urlToNavigateTo = url.StartsWith("http") ? url : GetAbsoluteUrlFromRelativeUrl(url);
-
-				_driver.Navigate().GoToUrl(urlToNavigateTo);
+				_driver.Navigate().GoToUrl(url);
 			}
 			catch (Exception ex)
 			{
 				ExceptionAnalyzer.Analyze(ex, this);
 				throw;
 			}
-		}
-
-		private string GetAbsoluteUrlFromRelativeUrl(string relativeUrl)
-		{
-			return _appConfiguration.BaseUrl + relativeUrl;
 		}
 
 		private void RaiseNavigated(string url)

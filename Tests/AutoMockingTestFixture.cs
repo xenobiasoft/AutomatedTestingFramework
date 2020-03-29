@@ -50,7 +50,7 @@ namespace AutomatedTestingFramework.Tests
 			return Fixture.Freeze<Mock<TType>>();
 		}
 
-		protected IFixture Fixture => _fixture ?? (_fixture = new Fixture().Customize(new AutoConfiguredMoqCustomization()));
+		protected IFixture Fixture => _fixture ?? (_fixture = new Fixture().Customize(new AutoMoqCustomization { ConfigureMembers = true }));
 
 		public TestContext TestContext => TestContext.CurrentContext;
 	}

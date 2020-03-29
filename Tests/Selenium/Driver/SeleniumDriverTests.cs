@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Core.Driver;
+﻿using AutomatedTestingFramework.Core.Config;
+using AutomatedTestingFramework.Core.Driver;
 using AutomatedTestingFramework.Selenium.Driver;
 using Moq;
 using NUnit.Framework;
@@ -27,6 +28,12 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 		public override void SetUp()
 		{
 			_mockWebDriver = ResolveMock<IWebDriver>();
+			ResolveMock<IAppConfiguration>().SetupGet(x => x.DriverLocation).Returns($"{TestContext.TestDirectory}\\Drivers");
+		}
+
+		public override void TearDown()
+		{
+			_mockWebDriver.Object.Quit();
 		}
 
 		[TestFixture]
