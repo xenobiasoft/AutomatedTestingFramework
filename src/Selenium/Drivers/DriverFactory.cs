@@ -1,5 +1,5 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Config;
+using AutomatedTestingFramework.Core.Configuration;
 using AutomatedTestingFramework.Core.Enums;
 using Microsoft.Extensions.Options;
 using OpenQA.Selenium;
@@ -8,6 +8,8 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Safari;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
@@ -25,7 +27,8 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			switch (browser)
 			{
 				case Browser.Chrome:
-					return new ChromeDriver(_appSettings.Value.DriverLocation);
+					new DriverManager().SetUpDriver(new ChromeConfig());
+					return new ChromeDriver();
 				case Browser.Edge:
 					return new EdgeDriver(_appSettings.Value.DriverLocation);
 				case Browser.Firefox:

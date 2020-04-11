@@ -1,5 +1,4 @@
-﻿using AutomatedTestingFramework.Core.Config;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;

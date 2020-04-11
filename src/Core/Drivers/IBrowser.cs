@@ -15,6 +15,7 @@ namespace AutomatedTestingFramework.Core.Drivers
 		void WaitForAjax();
 		void WaitForPageToLoad();
 
+
 		string Source { get; }
 	}
 }

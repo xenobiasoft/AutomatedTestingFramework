@@ -37,7 +37,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 
 		public override void Start(Browser browser)
 		{
-
+			_driver = _driverFactory.CreateDriver(browser);
 		}
 
 		public override void Quit()
