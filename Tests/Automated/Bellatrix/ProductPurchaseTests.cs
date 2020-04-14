@@ -1,3 +1,4 @@
+using System.Threading;
 using AutomatedTestingFramework.CompositionRoot;
 using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Core.Elements;
@@ -39,52 +40,49 @@ namespace Bellatrix
 			ApplyCoupon();
 			IncreaseProductQuantity();
 
-			var proceedToCheckout = _driver.WaitAndFindElement<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
+			var proceedToCheckout = _driver.WaitAndFindElement(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 			proceedToCheckout.Click();
 
-			_driver.WaitForPageToLoad();
-
-			var billingFirstName = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_first_name"));
+			var billingFirstName = _driver.WaitAndFindElement(By.Id("billing_first_name"));
 			billingFirstName.TypeText("Anton");
 
-			var billingLastName = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_last_name"));
+			var billingLastName = _driver.WaitAndFindElement(By.Id("billing_last_name"));
 			billingLastName.TypeText("Angelov");
 
-			var billingCompany = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_company"));
+			var billingCompany = _driver.WaitAndFindElement(By.Id("billing_company"));
 			billingCompany.TypeText("Space Flowers");
 
-			var billingCountryWrapper = _driver.WaitAndFindElement<IElement>(By.Id("select2-billing_country-container"));
+			var billingCountryWrapper = _driver.WaitAndFindElement(By.Id("select2-billing_country-container"));
 			billingCountryWrapper.Click();
 
-			var billingCountryFilter = _driver.WaitAndFindElement<ITextBox>(By.CssClass("select2-search__field"));
+			var billingCountryFilter = _driver.WaitAndFindElement(By.CssClass("select2-search__field"));
 			billingCountryFilter.TypeText("Germany");
 
-			var germanyOption = _driver.WaitAndFindElement<IElement>(By.XPath("//*[contains(text(),'Germany')]"));
+			var germanyOption = _driver.WaitAndFindElement(By.XPath("//*[contains(text(),'Germany')]"));
 			germanyOption.Click();
 
-			var billingAddress1 = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_address_1"));
+			var billingAddress1 = _driver.WaitAndFindElement(By.Id("billing_address_1"));
 			billingAddress1.TypeText("1 Willi Brandt Avenue Tiergarten");
 
-			var billingAddress2 = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_address_2"));
+			var billingAddress2 = _driver.WaitAndFindElement(By.Id("billing_address_2"));
 			billingAddress2.TypeText("Lützowplatz 17");
 
-			var billingCity = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_city"));
+			var billingCity = _driver.WaitAndFindElement(By.Id("billing_city"));
 			billingCity.TypeText("Berlin");
 
-			var billingZip = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_postcode"));
+			var billingZip = _driver.WaitAndFindElement(By.Id("billing_postcode"));
 			billingZip.TypeText("10115");
 
-			var billingPhone = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_phone"));
+			var billingPhone = _driver.WaitAndFindElement(By.Id("billing_phone"));
 			billingPhone.TypeText("+00498888999281");
 
-			var billingEmail = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_email"));
+			var billingEmail = _driver.WaitAndFindElement(By.Id("billing_email"));
 			billingEmail.TypeText("info@berlinspaceflowers.com");
 
-			var placeOrderButton = _driver.WaitAndFindElement<IButton>(By.Id("place_order"));
+			var placeOrderButton = _driver.WaitAndFindElement(By.Id("place_order"));
 			placeOrderButton.Click();
 
-			var receivedMessage = _driver.WaitAndFindElement<IElement>(By.XPath("/html/body/div[1]/div/div/div/main/div/header/h1"));
-
+			var receivedMessage = _driver.WaitAndFindElement(By.XPath("//h1[text() = 'Order received']"));
 			Assert.AreEqual("Order received", receivedMessage.Text);
 		}
 
@@ -98,12 +96,17 @@ namespace Bellatrix
 			var proceedToCheckout = _driver.WaitAndFindElement<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 			proceedToCheckout.Click();
 
+			Thread.Sleep(5000);
+
 			var loginHereLink = _driver.WaitAndFindElement<IButton>(By.LinkText("Click here to login"));
 			loginHereLink.Click();
+
 			Login(_purchaserEmail);
 
 			var placeOrderButton = _driver.WaitAndFindElement<IButton>(By.Id("place_order"));
 			placeOrderButton.Click();
+
+			Thread.Sleep(6000);
 
 			var receivedMessage = _driver.WaitAndFindElement<IElement>(By.XPath("//h1[text() = 'Order received']"));
 			Assert.AreEqual("Order received", receivedMessage.Text);
@@ -136,6 +139,7 @@ namespace Bellatrix
 
 		private void Login(string username)
 		{
+			Thread.Sleep(4000);
 			var usernameTextField = _driver.WaitAndFindElement<ITextBox>(By.Id("username"));
 			usernameTextField.TypeText(username);
 
@@ -154,6 +158,8 @@ namespace Bellatrix
 			var updateCart = _driver.WaitAndFindElement<IButton>(By.CssSelector("[value*='Update cart']"));
 			updateCart.Click();
 
+			Thread.Sleep(4000);
+
 			var totalSpan = _driver.WaitAndFindElement(By.XPath("//*[@class='order-total']//span"));
 
 			Assert.AreEqual("114.00€", totalSpan.Text);
@@ -166,6 +172,8 @@ namespace Bellatrix
 
 			var applyCouponButton = _driver.WaitAndFindElement(By.CssSelector("[value*='Apply coupon']"));
 			applyCouponButton.Click();
+
+			Thread.Sleep(5000);
 
 			var messageAlert = _driver.WaitAndFindElement(By.CssSelector("[class*='woocommerce-message']"));
 
