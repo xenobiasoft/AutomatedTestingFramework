@@ -37,7 +37,7 @@ namespace AutomatedTestingFramework.Selenium.Services
 			return element.Displayed.GetValueOrDefault();
 		}
 
-		private TElement ResolveElement<TElement>(ISearchContext searchContext, IWebElement element, By by) where TElement : class, IElement
+		public TElement ResolveElement<TElement>(ISearchContext searchContext, IWebElement element, By by) where TElement : class, IElement
 		{
 			var interfaceType = typeof(TElement);
 			Type controlType;

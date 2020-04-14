@@ -64,13 +64,13 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 
 		public override TElement Find<TElement>(By by)
 		{
-			Console.WriteLine($"Find element by: {by}");
+			Console.WriteLine($"Find element by: {by.Value}");
 			return Driver?.Find<TElement>(by);
 		}
 
 		public override IEnumerable<TElement> FindAll<TElement>(By by)
 		{
-			Console.WriteLine($"Find all elements by: {by}");
+			Console.WriteLine($"Find all elements by: {by.Value}");
 			return Driver?.FindAll<TElement>(by);
 		}
 
@@ -100,7 +100,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 
 		public override bool IsElementPresent(By by)
 		{
-			Console.WriteLine($"Is element present by: {by}");
+			Console.WriteLine($"Is element present by: {by.Value}");
 			return Driver.IsElementPresent(by);
 		}
 
@@ -144,6 +144,24 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 		{
 			Console.WriteLine("Waiting for page to load");
 			Driver?.WaitForPageToLoad();
+		}
+
+		public override TElement WaitAndFindElement<TElement>(By by)
+		{
+			Console.WriteLine($"Waiting for element {typeof(TElement).Name} by {by.Value}");
+			return Driver?.WaitAndFindElement<TElement>(by);
+		}
+
+		public override IElement WaitAndFindElement(By by)
+		{
+			Console.WriteLine($"Waiting for element by {by.Value}");
+			return Driver?.WaitAndFindElement(by);
+		}
+
+		public override void WaitToBeClickable(By by)
+		{
+			Console.WriteLine($"Waiting for element by {by.Value} to be clickable");
+			Driver?.WaitToBeClickable(by);
 		}
 
 		public override string Source

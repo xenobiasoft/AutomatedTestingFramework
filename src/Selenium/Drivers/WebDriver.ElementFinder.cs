@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutomatedTestingFramework.Core;
 using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Selenium.Services;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
@@ -47,6 +48,18 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 				ExceptionAnalyzer.Analyze(ex, this);
 				throw;
 			}
+		}
+
+		public override TElement WaitAndFindElement<TElement>(By by)
+		{
+			var element = DriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(by.ToSeleniumBy()));
+
+			return ElementFinderService.ResolveElement<TElement>(_driver, element, by);
+		}
+
+		public override IElement WaitAndFindElement(By by)
+		{
+			return WaitAndFindElement<IElement>(by);
 		}
 	}
 }

@@ -35,5 +35,8 @@ namespace AutomatedTestingFramework.Core.Drivers
 		public abstract void WaitForPageToLoad();
 		public abstract string Source { get; }
 		public abstract void Start(Browser browser);
+		public abstract TElement WaitAndFindElement<TElement>(By cssSelector) where TElement : class, IElement;
+		public abstract IElement WaitAndFindElement(By cssSelector);
+		public abstract void WaitToBeClickable(By cssSelector);
 	}
 }

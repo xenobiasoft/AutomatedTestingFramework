@@ -1,15 +1,13 @@
 ﻿using System;
 using AutomatedTestingFramework.Core;
-using AutomatedTestingFramework.Core.Configuration;
 using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace AutomatedTestingFramework.CompositionRoot
 {
-	public class CompositeRoot
+	public class CompositeRoot : IDisposable
 	{
 		private readonly ServiceProvider _container;
 
@@ -18,20 +16,18 @@ namespace AutomatedTestingFramework.CompositionRoot
 			var services = new ServiceCollection();
 
 			services.AddOptions();
-			services.Configure<AppSettings>(c => ConfigurationHelper.GetAppSettings(Environment.CurrentDirectory));
-
-			services.AddSingleton(c => c.GetRequiredService<IOptions<AppSettings>>());
 
 			services.AddSingleton<IDriverFactory, DriverFactory>();
 			services.AddScoped<IElementFinderService, ElementFinderService>();
-			services.AddTransient<WebDriver>();
-			services.AddTransient<IDriver>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<IElementFinder>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<INavigationService>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<ICookieService>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<IDialogService>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<IJavascriptInvoker>(c => c.GetRequiredService<WebDriver>());
-			services.AddTransient<IBrowser>(c => c.GetRequiredService<WebDriver>());
+			services.AddTransient<IDriver>(
+				c => ActivatorUtilities.CreateInstance<LoggingDriver>(
+					c, ActivatorUtilities.CreateInstance<WebDriver>(c)));
+			services.AddTransient<IElementFinder>(c => c.GetRequiredService<IDriver>());
+			services.AddTransient<INavigationService>(c => c.GetRequiredService<IDriver>());
+			services.AddTransient<ICookieService>(c => c.GetRequiredService<IDriver>());
+			services.AddTransient<IDialogService>(c => c.GetRequiredService<IDriver>());
+			services.AddTransient<IJavascriptInvoker>(c => c.GetRequiredService<IDriver>());
+			services.AddTransient<IBrowser>(c => c.GetRequiredService<IDriver>());
 
 			_container = services.BuildServiceProvider(true);
 		}
@@ -39,6 +35,11 @@ namespace AutomatedTestingFramework.CompositionRoot
 		public IServiceScope CreateScope()
 		{
 			return _container.CreateScope();
+		}
+
+		public void Dispose()
+		{
+			_container?.Dispose();
 		}
 	}
 }
