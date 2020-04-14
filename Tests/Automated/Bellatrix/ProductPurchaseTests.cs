@@ -1,4 +1,3 @@
-using System;
 using AutomatedTestingFramework.CompositionRoot;
 using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Core.Elements;
@@ -15,6 +14,7 @@ namespace Bellatrix
 		private static IDriver _driver;
 		private static string _purchaseOrderNumber;
 		private static CompositeRoot _container;
+		private static readonly string _purchaserEmail = "info@berlinspaceflowers.com";
 
 		[SetUp]
 		public static void Setup()
@@ -41,6 +41,8 @@ namespace Bellatrix
 
 			var proceedToCheckout = _driver.WaitAndFindElement<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 			proceedToCheckout.Click();
+
+			_driver.WaitForPageToLoad();
 
 			var billingFirstName = _driver.WaitAndFindElement<ITextBox>(By.Id("billing_first_name"));
 			billingFirstName.TypeText("Anton");
@@ -98,7 +100,7 @@ namespace Bellatrix
 
 			var loginHereLink = _driver.WaitAndFindElement<IButton>(By.LinkText("Click here to login"));
 			loginHereLink.Click();
-			Login(GenerateUniqueEmail());
+			Login(_purchaserEmail);
 
 			var placeOrderButton = _driver.WaitAndFindElement<IButton>(By.Id("place_order"));
 			placeOrderButton.Click();
@@ -118,7 +120,7 @@ namespace Bellatrix
 			var myAccountLink = _driver.WaitAndFindElement<IAnchor>(By.LinkText("My account"));
 			myAccountLink.Click();
 
-			Login(GenerateUniqueEmail());
+			Login(_purchaserEmail);
 
 			var orders = _driver.WaitAndFindElement<IAnchor>(By.LinkText("Orders"));
 			orders.Click();
@@ -149,12 +151,8 @@ namespace Bellatrix
 			var quantityBox = _driver.WaitAndFindElement<ITextBox>(By.CssSelector("[class*='input-text qty text']"));
 			quantityBox.TypeText("2");
 
-			_driver.WaitToBeClickable(By.CssSelector("[value*='Update cart']"));
-
 			var updateCart = _driver.WaitAndFindElement<IButton>(By.CssSelector("[value*='Update cart']"));
 			updateCart.Click();
-
-			_driver.WaitForAjax();
 
 			var totalSpan = _driver.WaitAndFindElement(By.XPath("//*[@class='order-total']//span"));
 
@@ -168,8 +166,6 @@ namespace Bellatrix
 
 			var applyCouponButton = _driver.WaitAndFindElement(By.CssSelector("[value*='Apply coupon']"));
 			applyCouponButton.Click();
-
-			_driver.WaitForAjax();
 
 			var messageAlert = _driver.WaitAndFindElement(By.CssSelector("[class*='woocommerce-message']"));
 
@@ -190,11 +186,6 @@ namespace Bellatrix
 		private string GetUserPasswordFromDb(string userName)
 		{
 			return "@purISQzt%%DYBnLCIhaoG6$";
-		}
-
-		private string GenerateUniqueEmail()
-		{
-			return $"{Guid.NewGuid()}@berlinspaceflower.com";
 		}
 	}
 }
