@@ -1,37 +1,18 @@
-using System.Threading;
-using AutomatedTestingFramework.CompositionRoot;
-using AutomatedTestingFramework.Core.Drivers;
+using System;
+using AutomatedTestingFramework.Core.Attributes;
 using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Core.Enums;
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using By = AutomatedTestingFramework.Core.By;
 
 namespace Bellatrix
 {
 	[TestFixture]
-	public class ProductPurchaseTests
+	[ExecutionBrowser(Browser.Chrome, BrowserBehavior.ReuseIfStarted)]
+	public class ProductPurchaseTests : BaseTest
 	{
-		private static IDriver _driver;
+		private static string _purchaseEmail;
 		private static string _purchaseOrderNumber;
-		private static CompositeRoot _container;
-		private static readonly string _purchaserEmail = "info@berlinspaceflowers.com";
-
-		[SetUp]
-		public static void Setup()
-		{
-			_container = new CompositeRoot();
-			_driver = _container.CreateScope().ServiceProvider.GetRequiredService<IDriver>();
-
-			_driver.Start(Browser.Chrome);
-		}
-
-		[TearDown]
-		public static void ClassCleanup()
-		{
-			_driver.Quit();
-			_container.Dispose();
-		}
 
 		[Test]
 		public void CompletePurchaseSuccessfully_WhenNewClient()
@@ -40,160 +21,158 @@ namespace Bellatrix
 			ApplyCoupon();
 			IncreaseProductQuantity();
 
-			var proceedToCheckout = _driver.WaitAndFindElement(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
+			var proceedToCheckout = Driver.Find<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 			proceedToCheckout.Click();
 
-			var billingFirstName = _driver.WaitAndFindElement(By.Id("billing_first_name"));
+			Driver.WaitForPageToLoad();
+
+			var billingFirstName = Driver.Find<IElement>(By.Id("billing_first_name"));
 			billingFirstName.TypeText("Anton");
 
-			var billingLastName = _driver.WaitAndFindElement(By.Id("billing_last_name"));
+			var billingLastName = Driver.Find<IElement>(By.Id("billing_last_name"));
 			billingLastName.TypeText("Angelov");
 
-			var billingCompany = _driver.WaitAndFindElement(By.Id("billing_company"));
+			var billingCompany = Driver.Find<IElement>(By.Id("billing_company"));
 			billingCompany.TypeText("Space Flowers");
 
-			var billingCountryWrapper = _driver.WaitAndFindElement(By.Id("select2-billing_country-container"));
+			var billingCountryWrapper = Driver.Find<IElement>(By.Id("select2-billing_country-container"));
 			billingCountryWrapper.Click();
 
-			var billingCountryFilter = _driver.WaitAndFindElement(By.CssClass("select2-search__field"));
+			var billingCountryFilter = Driver.Find<IElement>(By.CssClass("select2-search__field"));
 			billingCountryFilter.TypeText("Germany");
 
-			var germanyOption = _driver.WaitAndFindElement(By.XPath("//*[contains(text(),'Germany')]"));
+			var germanyOption = Driver.Find<IElement>(By.XPath("//*[contains(text(),'Germany')]"));
 			germanyOption.Click();
 
-			var billingAddress1 = _driver.WaitAndFindElement(By.Id("billing_address_1"));
+			var billingAddress1 = Driver.Find<IElement>(By.Id("billing_address_1"));
 			billingAddress1.TypeText("1 Willi Brandt Avenue Tiergarten");
 
-			var billingAddress2 = _driver.WaitAndFindElement(By.Id("billing_address_2"));
+			var billingAddress2 = Driver.Find<IElement>(By.Id("billing_address_2"));
 			billingAddress2.TypeText("Lützowplatz 17");
 
-			var billingCity = _driver.WaitAndFindElement(By.Id("billing_city"));
+			var billingCity = Driver.Find<IElement>(By.Id("billing_city"));
 			billingCity.TypeText("Berlin");
 
-			var billingZip = _driver.WaitAndFindElement(By.Id("billing_postcode"));
+			var billingZip = Driver.Find<IElement>(By.Id("billing_postcode"));
 			billingZip.TypeText("10115");
 
-			var billingPhone = _driver.WaitAndFindElement(By.Id("billing_phone"));
+			var billingPhone = Driver.Find<IElement>(By.Id("billing_phone"));
 			billingPhone.TypeText("+00498888999281");
 
-			var billingEmail = _driver.WaitAndFindElement(By.Id("billing_email"));
-			billingEmail.TypeText("info@berlinspaceflowers.com");
+			var billingEmail = Driver.Find<IElement>(By.Id("billing_email"));
+			billingEmail.TypeText(GenerateUniqueEmail());
 
-			var placeOrderButton = _driver.WaitAndFindElement(By.Id("place_order"));
+			_purchaseEmail = GenerateUniqueEmail();
+
+			Driver.WaitForAjax();
+			var placeOrderButton = Driver.Find<IElement>(By.Id("place_order"));
 			placeOrderButton.Click();
 
-			var receivedMessage = _driver.WaitAndFindElement(By.XPath("//h1[text() = 'Order received']"));
+			Driver.WaitForAjax();
+
+			var receivedMessage = Driver.Find<IElement>(By.XPath("//h1"));
+
 			Assert.AreEqual("Order received", receivedMessage.Text);
 		}
 
 		[Test]
+		[ExecutionBrowser(Browser.Firefox, BrowserBehavior.ReuseIfStarted)]
 		public void CompletePurchaseSuccessfully_WhenExistingClient()
 		{
 			AddRocketToShoppingCart();
 			ApplyCoupon();
 			IncreaseProductQuantity();
 
-			var proceedToCheckout = _driver.WaitAndFindElement<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
+			var proceedToCheckout = Driver.Find<IElement>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 			proceedToCheckout.Click();
 
-			Thread.Sleep(5000);
+			Driver.WaitForPageToLoad();
 
-			var loginHereLink = _driver.WaitAndFindElement<IButton>(By.LinkText("Click here to login"));
+			var loginHereLink = Driver.Find<IElement>(By.LinkText("Click here to login"));
 			loginHereLink.Click();
 
-			Login(_purchaserEmail);
+			Login("info@berlinspaceflowers.com");
 
-			var placeOrderButton = _driver.WaitAndFindElement<IButton>(By.Id("place_order"));
+			Driver.WaitForAjax();
+
+			var placeOrderButton = Driver.Find<IElement>(By.Id("place_order"));
 			placeOrderButton.Click();
 
-			Thread.Sleep(6000);
+			Driver.WaitForAjax();
 
-			var receivedMessage = _driver.WaitAndFindElement<IElement>(By.XPath("//h1[text() = 'Order received']"));
+			var receivedMessage = Driver.Find<IElement>(By.XPath("//h1[text() = 'Order received']"));
 			Assert.AreEqual("Order received", receivedMessage.Text);
 
-			var orderNumber = _driver.WaitAndFindElement<IElement>(By.XPath("//*[@id='post-7']/div/div/div/ul/li[1]/strong"));
+			var orderNumber = Driver.Find<IElement>(By.XPath("//*[@id='post-7']/div/div/div/ul/li[1]/strong"));
 			_purchaseOrderNumber = orderNumber.Text;
+
 		}
 
-		[Test]
-		public void CorrectOrderDataDisplayed_WhenNavigateToMyAccountOrderSection()
+		private void Login(string userName)
 		{
-			_driver.GoToUrl("http://demos.bellatrix.solutions/");
+			Driver.WaitForAjax();
 
-			var myAccountLink = _driver.WaitAndFindElement<IAnchor>(By.LinkText("My account"));
-			myAccountLink.Click();
+			var userNameTextField = Driver.Find<IElement>(By.Id("username"));
+			userNameTextField.TypeText(userName);
 
-			Login(_purchaserEmail);
+			var passwordField = Driver.Find<IElement>(By.Id("password"));
+			passwordField.TypeText(GetUserPasswordFromDb(userName));
 
-			var orders = _driver.WaitAndFindElement<IAnchor>(By.LinkText("Orders"));
-			orders.Click();
-
-			var viewButton = _driver.Find<IAnchor>(By.LinkText("View"));
-			viewButton.Click();
-
-			var orderName = _driver.WaitAndFindElement<IElement>(By.XPath("//h1"));
-			var expectedMessage = $"Order #{_purchaseOrderNumber}";
-
-			Assert.AreEqual(expectedMessage, orderName.Text);
-		}
-
-		private void Login(string username)
-		{
-			Thread.Sleep(4000);
-			var usernameTextField = _driver.WaitAndFindElement<ITextBox>(By.Id("username"));
-			usernameTextField.TypeText(username);
-
-			var password = _driver.WaitAndFindElement<ITextBox>(By.Id("password"));
-			password.TypeText(GetUserPasswordFromDb(username));
-
-			var loginButton = _driver.WaitAndFindElement<IButton>(By.XPath("//button[@name='login']"));
+			var loginButton = Driver.Find<IElement>(By.XPath("//button[@name='login']"));
 			loginButton.Click();
 		}
 
 		private void IncreaseProductQuantity()
 		{
-			var quantityBox = _driver.WaitAndFindElement<ITextBox>(By.CssSelector("[class*='input-text qty text']"));
+			var quantityBox = Driver.Find<IElement>(By.CssSelector("[class*='input-text qty text']"));
 			quantityBox.TypeText("2");
 
-			var updateCart = _driver.WaitAndFindElement<IButton>(By.CssSelector("[value*='Update cart']"));
+			Driver.WaitForAjax();
+
+			var updateCart = Driver.Find<IElement>(By.CssSelector("[value*='Update cart']"));
 			updateCart.Click();
 
-			Thread.Sleep(4000);
+			Driver.WaitForAjax();
 
-			var totalSpan = _driver.WaitAndFindElement(By.XPath("//*[@class='order-total']//span"));
-
+			var totalSpan = Driver.Find<IElement>(By.XPath("//*[@class='order-total']//span"));
 			Assert.AreEqual("114.00€", totalSpan.Text);
 		}
 
 		private void ApplyCoupon()
 		{
-			var couponCodeTextField = _driver.WaitAndFindElement(By.Id("coupon_code"));
+			var couponCodeTextField = Driver.Find<IElement>(By.Id("coupon_code"));
 			couponCodeTextField.TypeText("happybirthday");
 
-			var applyCouponButton = _driver.WaitAndFindElement(By.CssSelector("[value*='Apply coupon']"));
+			var applyCouponButton = Driver.Find<IElement>(By.CssSelector("[value*='Apply coupon']"));
 			applyCouponButton.Click();
 
-			Thread.Sleep(5000);
+			Driver.WaitForAjax();
 
-			var messageAlert = _driver.WaitAndFindElement(By.CssSelector("[class*='woocommerce-message']"));
-
+			var messageAlert = Driver.Find<IElement>(By.CssSelector("[class*='woocommerce-message']"));
 			Assert.AreEqual("Coupon code applied successfully.", messageAlert.Text);
 		}
 
 		private void AddRocketToShoppingCart()
 		{
-			_driver.GoToUrl("http://demos.bellatrix.solutions/");
+			Driver.GoToUrl("http://demos.bellatrix.solutions/");
 
-			var addToCartFalcon9 = _driver.WaitAndFindElement(By.CssSelector("[data-product_id*='28']"));
+			var addToCartFalcon9 = Driver.Find<IElement>(By.CssSelector("[data-product_id*='28']"));
 			addToCartFalcon9.Click();
 
-			var viewCartButton = _driver.WaitAndFindElement(By.CssSelector("[class*='added_to_cart wc-forward']"));
+			Driver.WaitForAjax();
+
+			var viewCartButton = Driver.Find<IElement>(By.CssSelector("[class*='added_to_cart wc-forward']"));
 			viewCartButton.Click();
 		}
 
 		private string GetUserPasswordFromDb(string userName)
 		{
 			return "@purISQzt%%DYBnLCIhaoG6$";
+		}
+
+		private string GenerateUniqueEmail()
+		{
+			return $"{Guid.NewGuid()}@berlinspaceflowers.com";
 		}
 	}
 }

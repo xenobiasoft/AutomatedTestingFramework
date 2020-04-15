@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Core.ExceptionAnalysis
 		{
 			var browser = context.OfType<IBrowser>().FirstOrDefault();
 
-			return browser != null && browser.Source.Contains(TextToSearchInSource);
+			return browser?.Source != null && browser.Source.Contains(TextToSearchInSource);
 		}
 
 		public abstract string TextToSearchInSource { get; }

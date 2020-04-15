@@ -5,11 +5,11 @@ using AutomatedTestingFramework.Core.ExecutionEngine;
 
 namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
-	public class NUnitTestExecutionSubject : ITestExecutionSubject
+	public class UnitTestExecutionSubject : ITestExecutionSubject
 	{
 		private readonly List<ITestObserver> _testBehaviourObservers;
 
-		public NUnitTestExecutionSubject()
+		public UnitTestExecutionSubject()
 		{
 			_testBehaviourObservers = new List<ITestObserver>();
 		}
