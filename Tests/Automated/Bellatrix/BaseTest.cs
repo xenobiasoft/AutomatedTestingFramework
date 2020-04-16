@@ -29,6 +29,8 @@ namespace Bellatrix
 			{
 				ExceptionAnalyzer = new ExceptionAnalyzer(exceptionAnalyzers)
 			};
+			Driver.Start(Browser.Chrome);
+			Driver.MaximizeBrowserWindow();
 		}
 
 		public TestContext TestContext => TestContext.CurrentContext;
