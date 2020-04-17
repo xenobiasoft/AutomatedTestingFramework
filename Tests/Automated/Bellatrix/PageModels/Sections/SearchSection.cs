@@ -6,14 +6,14 @@ namespace Bellatrix.PageModels.Sections
 {
 	public class SearchSection
 	{
-		private readonly IDriver _driver;
+		private readonly IElementFinder _elementFinder;
 
-		public SearchSection(IDriver driver)
+		public SearchSection(IElementFinder elementFinder)
 		{
-			_driver = driver;
+			_elementFinder = elementFinder;
 		}
 
-		private ITextBox SearchField => _driver.Find<ITextBox>(By.Id("woocommerce-product-search-field-0"));
+		private ITextBox SearchField => _elementFinder.Find<ITextBox>(By.Id("woocommerce-product-search-field-0"));
 
 		public void SearchForItem(string searchText)
 		{

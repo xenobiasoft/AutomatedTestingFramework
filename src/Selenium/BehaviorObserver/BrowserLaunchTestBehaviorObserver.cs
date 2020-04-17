@@ -9,11 +9,11 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
 	public class BrowserLaunchTestBehaviorObserver : BaseTestObserver
 	{
-		private readonly BaseDriver _driver;
+		private readonly Driver _driver;
 		private BrowserConfiguration _currentBrowserConfiguration;
 		private BrowserConfiguration _previousBrowserConfiguration;
 
-		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, BaseDriver driver) : base(testExecutionSubject)
+		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, Driver driver) : base(testExecutionSubject)
 		{
 			_driver = driver;
 		}
@@ -30,7 +30,7 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 			}
 			else
 			{
-				_driver.ClearAllCookies();
+				_driver.DeleteAllCookies();
 			}
 
 			_previousBrowserConfiguration = _currentBrowserConfiguration;

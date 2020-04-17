@@ -5,14 +5,14 @@ namespace Bellatrix.PageModels
 {
 	public abstract class EShopPage
 	{
-		protected readonly IDriver Driver;
+		protected readonly IElementFinder ElementFinder;
 
-		protected EShopPage(IDriver driver)
+		protected EShopPage(IElementFinder elementFinder)
 		{
-			Driver = driver;
-			SearchSection = new SearchSection(Driver);
-			MainMenuSection = new MainMenuSection(Driver);
-			CartInfoSection = new CartInfoSection(Driver);
+			ElementFinder = elementFinder;
+			SearchSection = new SearchSection(elementFinder);
+			MainMenuSection = new MainMenuSection(elementFinder);
+			CartInfoSection = new CartInfoSection(elementFinder);
 		}
 
 		public SearchSection SearchSection { get; }

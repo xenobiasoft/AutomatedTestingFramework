@@ -1,6 +1,4 @@
-﻿using AutomatedTestingFramework.Core.Enums;
-
-namespace AutomatedTestingFramework.Core.Drivers
+﻿namespace AutomatedTestingFramework.Core.Drivers
 {
 	public interface IDriver :
 		IElementFinder,
@@ -10,6 +8,5 @@ namespace AutomatedTestingFramework.Core.Drivers
 		IJavascriptInvoker,
 		IBrowser
 	{
-		void Start(Browser browser);
 	}
 }

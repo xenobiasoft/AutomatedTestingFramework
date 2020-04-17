@@ -4,7 +4,7 @@ using AutomatedTestingFramework.Core.Enums;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, IDialogService
+	public partial class WebDriver : Driver, IDialogService
 	{
 		public override void Handle(Action action = null, DialogButton dialogButton = DialogButton.Ok)
 		{

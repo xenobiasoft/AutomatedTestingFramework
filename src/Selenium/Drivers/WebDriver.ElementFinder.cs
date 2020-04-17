@@ -7,7 +7,7 @@ using AutomatedTestingFramework.Selenium.Services;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, IElementFinder
+	public partial class WebDriver : Driver, IElementFinder
 	{
 		protected IElementFinderService ElementFinderService { get; }
 

@@ -6,19 +6,19 @@ namespace Bellatrix.PageModels.Sections
 {
 	public class MainMenuSection
 	{
-		private readonly IDriver _driver;
+		private readonly IElementFinder _elementFinder;
 
-		public MainMenuSection(IDriver driver)
+		public MainMenuSection(IElementFinder elementFinder)
 		{
-			_driver = driver;
+			_elementFinder = elementFinder;
 		}
 
-		private IAnchor HomeLink => _driver.Find<IAnchor>(By.LinkText("Home"));
-		private IAnchor BlogLink => _driver.Find<IAnchor>(By.LinkText("Blog"));
-		private IAnchor CartLink => _driver.Find<IAnchor>(By.LinkText("Cart"));
-		private IAnchor CheckoutLink => _driver.Find<IAnchor>(By.LinkText("Checkout"));
-		private IAnchor MyAccountLink => _driver.Find<IAnchor>(By.LinkText("My Account"));
-		private IAnchor PromotionsLink => _driver.Find<IAnchor>(By.LinkText("Promotions"));
+		private IAnchor HomeLink => _elementFinder.Find<IAnchor>(By.LinkText("Home"));
+		private IAnchor BlogLink => _elementFinder.Find<IAnchor>(By.LinkText("Blog"));
+		private IAnchor CartLink => _elementFinder.Find<IAnchor>(By.LinkText("Cart"));
+		private IAnchor CheckoutLink => _elementFinder.Find<IAnchor>(By.LinkText("Checkout"));
+		private IAnchor MyAccountLink => _elementFinder.Find<IAnchor>(By.LinkText("My Account"));
+		private IAnchor PromotionsLink => _elementFinder.Find<IAnchor>(By.LinkText("Promotions"));
 
 		public void OpenHomePage()
 		{

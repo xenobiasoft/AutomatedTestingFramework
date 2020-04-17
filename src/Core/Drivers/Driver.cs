@@ -6,7 +6,7 @@ using AutomatedTestingFramework.Core.ExceptionAnalysis;
 
 namespace AutomatedTestingFramework.Core.Drivers
 {
-	public abstract class BaseDriver : IDriver
+	public abstract class Driver : IDriver
 	{
 		public abstract TElement Find<TElement>(By by) where TElement : class, IElement;
 		public abstract IEnumerable<TElement> FindAll<TElement>(By by) where TElement : class, IElement;
@@ -19,7 +19,7 @@ namespace AutomatedTestingFramework.Core.Drivers
 		public abstract string GetCookie(string host, string cookieName);
 		public abstract void AddCookie(string cookieName, string cookieValue, string host);
 		public abstract void DeleteCookie(string cookieName);
-		public abstract void ClearAllCookies();
+		public abstract void DeleteAllCookies();
 		public abstract void Handle(Action action = null, DialogButton dialogButton = DialogButton.Ok);
 		public abstract void Upload(string filePath);
 		public abstract TType InvokeScript<TType>(string script);

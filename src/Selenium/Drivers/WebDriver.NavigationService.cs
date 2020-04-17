@@ -5,7 +5,7 @@ using AutomatedTestingFramework.Core.ExceptionAnalysis;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, INavigationService
+	public partial class WebDriver : Driver, INavigationService
 	{
 		public override event EventHandler<PageEventArgs> Navigated;
 

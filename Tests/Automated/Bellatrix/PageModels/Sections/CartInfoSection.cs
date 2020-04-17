@@ -6,15 +6,15 @@ namespace Bellatrix.PageModels.Sections
 {
 	public class CartInfoSection
 	{
-		private readonly IDriver _driver;
+		private readonly IElementFinder _elementFinder;
 
-		public CartInfoSection(IDriver driver)
+		public CartInfoSection(IElementFinder elementFinder)
 		{
-			_driver = driver;
+			_elementFinder = elementFinder;
 		}
 
-		private IButton CartIcon => _driver.Find<IButton>(By.CssClass("cart-contents"));
-		private IElement CartAmount => _driver.Find<IElement>(By.CssClass("amount"));
+		private IButton CartIcon => _elementFinder.Find<IButton>(By.CssClass("cart-contents"));
+		private IElement CartAmount => _elementFinder.Find<IElement>(By.CssClass("amount"));
 
 		public string GetCurrentAmount()
 		{

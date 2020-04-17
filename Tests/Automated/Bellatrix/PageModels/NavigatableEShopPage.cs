@@ -4,8 +4,11 @@ namespace Bellatrix.PageModels
 {
 	public abstract class NavigatableEShopPage : EShopPage
 	{
-		protected NavigatableEShopPage(IDriver driver) : base(driver)
+		protected readonly INavigationService NavigationService;
+
+		protected NavigatableEShopPage(IElementFinder elementFinder, INavigationService navigationService) : base(elementFinder)
 		{
+			NavigationService = navigationService;
 		}
 
 		protected abstract string Url { get; }
@@ -14,7 +17,7 @@ namespace Bellatrix.PageModels
 
 		public void Open()
 		{
-			Driver.GoToUrl(Url);
+			NavigationService.GoToUrl(Url);
 			WaitForPageLoad();
 		}
 	}

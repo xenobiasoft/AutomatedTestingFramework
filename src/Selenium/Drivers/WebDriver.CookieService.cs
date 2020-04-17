@@ -3,15 +3,8 @@ using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, ICookieService
+	public partial class WebDriver : Driver, ICookieService
 	{
-		public override string GetCookie(string host, string cookieName)
-		{
-			var cookie = _driver.Manage().Cookies.GetCookieNamed(cookieName);
-
-			return cookie.Value;
-		}
-
 		public override void AddCookie(string cookieName, string cookieValue, string host)
 		{
 			var cookie = new Cookie(cookieName, cookieValue);
@@ -24,9 +17,16 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			_driver.Manage().Cookies.DeleteCookieNamed(cookieName);
 		}
 
-		public override void ClearAllCookies()
+		public override void DeleteAllCookies()
 		{
 			_driver.Manage().Cookies.DeleteAllCookies();
+		}
+
+		public override string GetCookie(string host, string cookieName)
+		{
+			var cookie = _driver.Manage().Cookies.GetCookieNamed(cookieName);
+
+			return cookie.Value;
 		}
 	}
 }

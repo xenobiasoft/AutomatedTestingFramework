@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, IJavascriptInvoker
+	public partial class WebDriver : Driver, IJavascriptInvoker
 	{
 		public override TType InvokeScript<TType>(string script)
 		{

@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Core.Elements;
+﻿using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Core.Elements;
 
 namespace AutomatedTestingFramework.Core
 {

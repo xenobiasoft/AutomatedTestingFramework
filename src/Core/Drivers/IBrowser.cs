@@ -1,4 +1,5 @@
 ﻿using AutomatedTestingFramework.Core.Elements;
+using AutomatedTestingFramework.Core.Enums;
 
 namespace AutomatedTestingFramework.Core.Drivers
 {
@@ -10,6 +11,7 @@ namespace AutomatedTestingFramework.Core.Drivers
 		IFrame GetFrame(string frameName);
 		void MaximizeBrowserWindow();
 		void Quit();
+		void Start(Browser browser);
 		void SwitchToDefault();
 		void SwitchToFrame(IFrame frame);
 		void WaitForAjax();

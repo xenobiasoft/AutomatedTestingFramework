@@ -4,9 +4,12 @@ namespace Bellatrix.PageModels.Main
 {
 	public class MainPage : NavigatableEShopPage
 	{
-		public MainPage(IDriver driver) : base(driver)
+		private readonly IBrowser _browser;
+
+		public MainPage(IElementFinder elementFinder, INavigationService navigationService, IBrowser browser) : base(elementFinder, navigationService)
 		{
-			Elements = new MainPageElements(driver);
+			_browser = browser;
+			Elements = new MainPageElements(elementFinder);
 			Asserts = new MainPageAssertions(Elements);
 		}
 
@@ -18,13 +21,13 @@ namespace Bellatrix.PageModels.Main
 		{
 			Open();
 			Elements.GetAddToCartByName(rocketName).Click();
-			Driver.WaitForAjax();
+			_browser.WaitForAjax();
 			Elements.ViewCartButton.Click();
 		}
 
 		protected override void WaitForPageLoad()
 		{
-			Driver.WaitForElementToExist(Elements.AddToCartFalcon9Button.By);
+			ElementFinder.WaitForElementToExist(Elements.AddToCartFalcon9Button.By);
 		}
 	}
 }

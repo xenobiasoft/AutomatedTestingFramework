@@ -10,7 +10,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	public class LoggingDriver : DriverDecorator
 	{
-		public LoggingDriver(BaseDriver driver) : base(driver)
+		public LoggingDriver(Driver driver) : base(driver)
 		{
 		}
 
@@ -32,10 +32,10 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			Driver?.AddCookie(cookieName, cookieValue, host);
 		}
 
-		public override void ClearAllCookies()
+		public override void DeleteAllCookies()
 		{
 			Console.WriteLine("Clear all cookies");
-			Driver?.ClearAllCookies();
+			Driver?.DeleteAllCookies();
 		}
 
 		public override void ClickBackButton()

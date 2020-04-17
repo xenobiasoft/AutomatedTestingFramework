@@ -6,11 +6,11 @@ using AutomatedTestingFramework.Core.ExceptionAnalysis;
 
 namespace AutomatedTestingFramework.Core.Drivers
 {
-	public abstract class DriverDecorator : BaseDriver
+	public abstract class DriverDecorator : Driver
 	{
-		protected readonly BaseDriver Driver;
+		protected readonly Driver Driver;
 
-		protected DriverDecorator(BaseDriver driver)
+		protected DriverDecorator(Driver driver)
 		{
 			Driver = driver;
 		}
@@ -25,9 +25,9 @@ namespace AutomatedTestingFramework.Core.Drivers
 			Driver?.AddCookie(cookieName, cookieValue, host);
 		}
 
-		public override void ClearAllCookies()
+		public override void DeleteAllCookies()
 		{
-			Driver?.ClearAllCookies();
+			Driver?.DeleteAllCookies();
 		}
 
 		public override void ClickBackButton()

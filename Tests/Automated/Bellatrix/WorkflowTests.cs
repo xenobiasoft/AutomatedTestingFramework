@@ -17,9 +17,9 @@ namespace Bellatrix
 
 		public override void Setup()
 		{
-			_mainPage = new MainPage(Driver);
-			_cartPage = new CartPage(Driver);
-			_checkoutPage = new CheckoutPage(Driver);
+			_mainPage = new MainPage(Driver, Driver, Driver);
+			_cartPage = new CartPage(Driver, Driver, Driver);
+			_checkoutPage = new CheckoutPage(Driver, Driver);
 			_purchaseFacade = new NewPurchaseFacade(_mainPage, _cartPage, _checkoutPage);
 		}
 

@@ -12,8 +12,8 @@ namespace Bellatrix
 
 		public override void Setup()
 		{
-			_mainPage = new MainPage(Driver);
-			_cartPage = new CartPage(Driver);
+			_mainPage = new MainPage(Driver, Driver, Driver);
+			_cartPage = new CartPage(Driver, Driver, Driver);
 		}
 
 		[TestCase("Falcon 9", "falcon-9")]

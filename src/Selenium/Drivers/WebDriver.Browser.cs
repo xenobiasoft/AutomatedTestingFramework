@@ -8,7 +8,7 @@ using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver, IBrowser
+	public partial class WebDriver : Driver, IBrowser
 	{
 		public override string Source => _driver?.PageSource;
 

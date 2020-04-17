@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public partial class WebDriver : BaseDriver
+	public partial class WebDriver : Driver
 	{
 		private IWebDriver _driver;
 		private WebDriverWait _webDriverWait;

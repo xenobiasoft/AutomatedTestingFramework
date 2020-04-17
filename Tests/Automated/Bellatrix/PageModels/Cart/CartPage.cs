@@ -3,11 +3,15 @@ using Bellatrix.PageModels.Cart;
 
 namespace Bellatrix.PageModels
 {
-	public class CartPage : EShopPage
+	public class CartPage : NavigatableEShopPage
 	{
-		public CartPage(IDriver driver) : base(driver)
+		private readonly IBrowser _browser;
+
+		public CartPage(IElementFinder elementFinder, INavigationService navigationService, IBrowser browser)
+			: base(elementFinder, navigationService)
 		{
-			Elements = new CartPageElements(driver);
+			_browser = browser;
+			Elements = new CartPageElements(ElementFinder);
 			Asserts = new CartPageAssertions(Elements);
 		}
 
@@ -18,20 +22,20 @@ namespace Bellatrix.PageModels
 		{
 			Elements.CouponCodeTextBox.TypeText(coupon);
 			Elements.ApplyCouponButton.Click();
-			Driver.WaitForAjax();
+			_browser.WaitForAjax();
 		}
 
 		public void IncreaseProductQuantity(int quantity)
 		{
 			Elements.QuantityTextBox.TypeText(quantity.ToString());
 			Elements.UpdateCartButton.Click();
-			Driver.WaitForAjax();
+			_browser.WaitForAjax();
 		}
 
 		public void ProceedToCheckout()
 		{
 			Elements.CheckoutButton.Click();
-			Driver.WaitForPageToLoad();
+			_browser.WaitForPageToLoad();
 		}
 
 		public string GetTotal()
@@ -42,6 +46,13 @@ namespace Bellatrix.PageModels
 		public string GetMessageNotification()
 		{
 			return Elements.MessageAlert.Text;
+		}
+
+		protected override string Url => "http://demos.bellatrix.solutions/cart/";
+
+		protected override void WaitForPageLoad()
+		{
+			ElementFinder.WaitForElementToExist(Elements.CouponCodeTextBox.By);
 		}
 	}
 }

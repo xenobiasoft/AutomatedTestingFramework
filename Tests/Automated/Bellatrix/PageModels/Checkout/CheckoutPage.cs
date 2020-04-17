@@ -5,9 +5,12 @@ namespace Bellatrix.PageModels.Checkout
 {
 	public class CheckoutPage : EShopPage
 	{
-		public CheckoutPage(IDriver driver) : base(driver)
+		private readonly IBrowser _browser;
+
+		public CheckoutPage(IElementFinder elementFinder, IBrowser browser) : base(elementFinder)
 		{
-			Elements = new CheckoutPageElements(driver);
+			_browser = browser;
+			Elements = new CheckoutPageElements(elementFinder);
 			Asserts = new CheckoutPageAssertions(Elements);
 		}
 
@@ -39,7 +42,7 @@ namespace Bellatrix.PageModels.Checkout
 			}
 
 			Elements.PlaceOrderButton.Click();
-			Driver.WaitForAjax();
+			_browser.WaitForAjax();
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutomatedTestingFramework.Core.Elements;
 
-namespace AutomatedTestingFramework.Core
+namespace AutomatedTestingFramework.Core.Drivers
 {
 	public interface IElementFinder
 	{

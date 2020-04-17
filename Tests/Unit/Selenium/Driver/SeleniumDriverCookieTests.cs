@@ -57,7 +57,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			// Assemble
 
 			// Act
-			Sut.ClearAllCookies();
+			Sut.DeleteAllCookies();
 
 			// Assert
 			ResolveMock<ICookieJar>().Verify(x => x.DeleteAllCookies(), Times.Once);
