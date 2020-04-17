@@ -7,18 +7,18 @@ namespace Bellatrix.PageModels.Main
 		public MainPage(IDriver driver) : base(driver)
 		{
 			Elements = new MainPageElements(driver);
-			Asserts = new MainPageAsserts(Elements);
+			Asserts = new MainPageAssertions(Elements);
 		}
 
 		protected override string Url => "http://demos.bellatrix.solutions/";
 		public MainPageElements Elements { get; }
-		public MainPageAsserts Asserts { get; }
+		public MainPageAssertions Asserts { get; }
 
-		public void AddRocketToShoppingCart()
+		public void AddRocketToShoppingCart(string rocketName)
 		{
 			Open();
-
-			Elements.AddToCartFalcon9Button.Click();
+			Elements.GetAddToCartByName(rocketName).Click();
+			Driver.WaitForAjax();
 			Elements.ViewCartButton.Click();
 		}
 

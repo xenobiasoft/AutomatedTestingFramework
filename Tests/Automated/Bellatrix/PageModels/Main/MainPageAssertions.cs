@@ -2,11 +2,11 @@
 
 namespace Bellatrix.PageModels.Main
 {
-	public class MainPageAsserts
+	public class MainPageAssertions
 	{
 		private readonly MainPageElements _elements;
 
-		public MainPageAsserts(MainPageElements elements)
+		public MainPageAssertions(MainPageElements elements)
 		{
 			_elements = elements;
 		}

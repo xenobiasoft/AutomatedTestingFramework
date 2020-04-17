@@ -8,11 +8,11 @@ namespace Bellatrix.PageModels
 		public CartPage(IDriver driver) : base(driver)
 		{
 			Elements = new CartPageElements(driver);
-			Asserts = new CartPageAsserts(Elements);
+			Asserts = new CartPageAssertions(Elements);
 		}
 
 		public CartPageElements Elements { get; }
-		public CartPageAsserts Asserts { get; }
+		public CartPageAssertions Asserts { get; }
 
 		public void ApplyCoupon(string coupon)
 		{

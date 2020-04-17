@@ -17,6 +17,11 @@ namespace Bellatrix.PageModels.Main
 
 		public IButton ViewCartButton => _driver.Find<IButton>(By.CssSelector("[class*='added_to_cart wc-forward']"));
 
+		public IAnchor GetAddToCartByName(string name)
+		{
+			return _driver.Find<IAnchor>(By.XPath($"//h2[text()='{name}']/parent::a[1]"));
+		}
+
 		public IAnchor GetProductBoxByName(string name)
 		{
 			return _driver.Find<IAnchor>(By.XPath($"//h2[text()='{name}']/parent::a[1]"));
