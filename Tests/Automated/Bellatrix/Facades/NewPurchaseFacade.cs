@@ -1,5 +1,4 @@
 ﻿using Bellatrix.Models;
-using Bellatrix.PageModels;
 using Bellatrix.PageModels.Cart;
 using Bellatrix.PageModels.Checkout;
 using Bellatrix.PageModels.Main;
@@ -12,11 +11,11 @@ namespace Bellatrix.Facades
 		private readonly CartPage _cartPage;
 		private readonly CheckoutPage _checkoutPage;
 
-		public NewPurchaseFacade(MainPage mainPage, CartPage cartPage, CheckoutPage checkoutPage)
+		public NewPurchaseFacade()
 		{
-			_checkoutPage = checkoutPage;
-			_cartPage = cartPage;
-			_mainPage = mainPage;
+			_mainPage = MainPage.Instance;
+			_cartPage = CartPage.Instance;
+			_checkoutPage = CheckoutPage.Instance;
 		}
 
 		protected override void AddRocketToShoppingCart(string rocketName)

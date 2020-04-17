@@ -1,10 +1,15 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
+﻿using System;
+using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Selenium.Drivers;
 
 namespace Bellatrix.PageModels.Cart
 {
 	public class CartPage : NavigatableEShopPage<CartPage>
 	{
+		private static readonly Lazy<CartPage> lazy = new Lazy<CartPage>(() => new CartPage());
+
+		public static CartPage Instance => lazy.Value;
+
 		private readonly IBrowser _browser;
 
 		public CartPage()

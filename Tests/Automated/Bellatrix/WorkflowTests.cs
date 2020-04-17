@@ -1,8 +1,5 @@
 ﻿using Bellatrix.Facades;
 using Bellatrix.Models;
-using Bellatrix.PageModels.Cart;
-using Bellatrix.PageModels.Checkout;
-using Bellatrix.PageModels.Main;
 using NUnit.Framework;
 
 namespace Bellatrix
@@ -10,17 +7,11 @@ namespace Bellatrix
 	[TestFixture]
 	public class WorkflowTests : BaseTest
 	{
-		private static MainPage _mainPage;
-		private static CartPage _cartPage;
-		private static CheckoutPage _checkoutPage;
 		private static NewPurchaseFacade _purchaseFacade;
 
 		public override void Setup()
 		{
-			_mainPage = new MainPage();
-			_cartPage = new CartPage();
-			_checkoutPage = new CheckoutPage();
-			_purchaseFacade = new NewPurchaseFacade(_mainPage, _cartPage, _checkoutPage);
+			_purchaseFacade = new NewPurchaseFacade();
 		}
 
 		[Test]
