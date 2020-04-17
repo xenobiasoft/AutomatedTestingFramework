@@ -3,6 +3,7 @@ using AutomatedTestingFramework.Core.Attributes;
 using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Core.Enums;
 using Bellatrix.PageModels;
+using Bellatrix.PageModels.Main;
 using FluentAssertions;
 using NUnit.Framework;
 using By = AutomatedTestingFramework.Core.By;
