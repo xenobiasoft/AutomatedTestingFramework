@@ -10,6 +10,6 @@ namespace AutomatedTestingFramework.Selenium.Elements
 			: base(driver, webElement, by)
 		{ }
 
-		public string Url => Element.GetAttribute("href");
+		public string Href => Element.GetAttribute("href");
 	}
 }

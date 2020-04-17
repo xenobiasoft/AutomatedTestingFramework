@@ -158,10 +158,16 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			return Driver?.WaitAndFindElement(by);
 		}
 
-		public override void WaitToBeClickable(By by)
+		public override void WaitForElementToBeClickable(By by)
 		{
 			Console.WriteLine($"Waiting for element by {by.Type} with {by.Value} to be clickable");
-			Driver?.WaitToBeClickable(by);
+			Driver?.WaitForElementToBeClickable(by);
+		}
+
+		public override void WaitForElementToExist(By by)
+		{
+			Console.WriteLine($"Waiting for element by {by.Type} with {by.Value} to exist");
+			Driver?.WaitForElementToExist(by);
 		}
 
 		public override string Source

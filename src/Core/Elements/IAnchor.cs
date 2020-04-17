@@ -2,6 +2,6 @@
 {
 	public interface IAnchor : IContentElement
 	{
-		string Url { get; }
+		string Href { get; }
 	}
 }

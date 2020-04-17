@@ -18,7 +18,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Controls
 			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.IsAny<string>())).Returns(expectedUrl);
 
 			// Act
-			var url = Sut.Url;
+			var url = Sut.Href;
 
 			// Assert
 			url.Should().Be(expectedUrl);

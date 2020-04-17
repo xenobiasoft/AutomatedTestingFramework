@@ -18,6 +18,6 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			ElementFinderService = elementFinderService;
 		}
 
-		protected WebDriverWait DriverWait => _webDriverWait ??= new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+		public WebDriverWait Wait => _webDriverWait ??= new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
 	}
 }

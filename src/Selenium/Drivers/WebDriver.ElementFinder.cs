@@ -52,7 +52,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 
 		public override TElement WaitAndFindElement<TElement>(By by)
 		{
-			var element = DriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(by.ToSeleniumBy()));
+			var element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(by.ToSeleniumBy()));
 
 			return ElementFinderService.ResolveElement<TElement>(_driver, element, by);
 		}

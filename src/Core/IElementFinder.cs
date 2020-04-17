@@ -10,6 +10,7 @@ namespace AutomatedTestingFramework.Core
 		bool IsElementPresent(By by);
 		TElement WaitAndFindElement<TElement>(By by) where TElement : class, IElement;
 		IElement WaitAndFindElement(By by);
-		void WaitToBeClickable(By by);
+		void WaitForElementToExist(By by);
+		void WaitForElementToBeClickable(By by);
 	}
 }

@@ -4,7 +4,7 @@ using AutomatedTestingFramework.Core.Elements;
 
 namespace Bellatrix.PageModels
 {
-	public class CartPage : BasePageModel
+	public class CartPage : EShopPage
 	{
 		public CartPage(IDriver driver) : base(driver)
 		{ }

@@ -3,6 +3,7 @@ using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Selenium.Elements;
 using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
@@ -60,19 +61,24 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 		{
 			var js = (IJavaScriptExecutor)_driver;
 
-			DriverWait.Until(x => js.ExecuteScript("return jQuery.active").ToString() == "0");
+			Wait.Until(x => js.ExecuteScript("return jQuery.active").ToString() == "0");
 		}
 
 		public override void WaitForPageToLoad()
 		{
 			var js = (IJavaScriptExecutor)_driver;
 
-			DriverWait.Until(x => js.ExecuteScript("return document.readyState").ToString() == "complete");
+			Wait.Until(x => js.ExecuteScript("return document.readyState").ToString() == "complete");
 		}
 
-		public override void WaitToBeClickable(By by)
+		public override void WaitForElementToBeClickable(By by)
 		{
-			DriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(by.ToSeleniumBy()));
+			Wait.Until(ExpectedConditions.ElementToBeClickable(by.ToSeleniumBy()));
+		}
+
+		public override void WaitForElementToExist(By by)
+		{
+			Wait.Until(ExpectedConditions.ElementExists(by.ToSeleniumBy()));
 		}
 	}
 }
