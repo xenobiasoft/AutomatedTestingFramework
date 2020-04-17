@@ -1,16 +1,16 @@
 ﻿using AutomatedTestingFramework.Core.Drivers;
-using Bellatrix.PageModels.Cart;
+using AutomatedTestingFramework.Selenium.Drivers;
 
-namespace Bellatrix.PageModels
+namespace Bellatrix.PageModels.Cart
 {
-	public class CartPage : NavigatableEShopPage
+	public class CartPage : NavigatableEShopPage<CartPage>
 	{
 		private readonly IBrowser _browser;
 
-		public CartPage(IElementFinder elementFinder, INavigationService navigationService, IBrowser browser)
-			: base(elementFinder, navigationService)
+		public CartPage()
 		{
-			_browser = browser;
+			var driver = LoggingDriver.Instance;
+			_browser = driver;
 			Elements = new CartPageElements(ElementFinder);
 			Asserts = new CartPageAssertions(Elements);
 		}

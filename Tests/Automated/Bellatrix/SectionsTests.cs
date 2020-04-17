@@ -1,4 +1,4 @@
-﻿using Bellatrix.PageModels;
+﻿using Bellatrix.PageModels.Cart;
 using Bellatrix.PageModels.Main;
 using NUnit.Framework;
 
@@ -12,8 +12,8 @@ namespace Bellatrix
 
 		public override void Setup()
 		{
-			_mainPage = new MainPage(Driver, Driver, Driver);
-			_cartPage = new CartPage(Driver, Driver, Driver);
+			_mainPage = new MainPage();
+			_cartPage = new CartPage();
 		}
 
 		[TestCase("Falcon 9", "falcon-9")]

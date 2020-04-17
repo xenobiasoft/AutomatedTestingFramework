@@ -1,5 +1,6 @@
 ﻿using Bellatrix.Models;
 using Bellatrix.PageModels;
+using Bellatrix.PageModels.Cart;
 using Bellatrix.PageModels.Checkout;
 using Bellatrix.PageModels.Main;
 

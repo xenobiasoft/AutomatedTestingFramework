@@ -1,14 +1,15 @@
 ﻿using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Selenium.Drivers;
 
 namespace Bellatrix.PageModels
 {
-	public abstract class NavigatableEShopPage : EShopPage
+	public abstract class NavigatableEShopPage<TPage> : EShopPage<TPage> where TPage : NavigatableEShopPage<TPage>, new()
 	{
 		protected readonly INavigationService NavigationService;
 
-		protected NavigatableEShopPage(IElementFinder elementFinder, INavigationService navigationService) : base(elementFinder)
+		protected NavigatableEShopPage()
 		{
-			NavigationService = navigationService;
+			NavigationService = LoggingDriver.Instance;
 		}
 
 		protected abstract string Url { get; }

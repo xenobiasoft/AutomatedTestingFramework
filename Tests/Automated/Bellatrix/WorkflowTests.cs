@@ -1,6 +1,6 @@
 ﻿using Bellatrix.Facades;
 using Bellatrix.Models;
-using Bellatrix.PageModels;
+using Bellatrix.PageModels.Cart;
 using Bellatrix.PageModels.Checkout;
 using Bellatrix.PageModels.Main;
 using NUnit.Framework;
@@ -17,9 +17,9 @@ namespace Bellatrix
 
 		public override void Setup()
 		{
-			_mainPage = new MainPage(Driver, Driver, Driver);
-			_cartPage = new CartPage(Driver, Driver, Driver);
-			_checkoutPage = new CheckoutPage(Driver, Driver);
+			_mainPage = new MainPage();
+			_cartPage = new CartPage();
+			_checkoutPage = new CheckoutPage();
 			_purchaseFacade = new NewPurchaseFacade(_mainPage, _cartPage, _checkoutPage);
 		}
 

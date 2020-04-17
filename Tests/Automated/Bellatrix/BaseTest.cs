@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using AutomatedTestingFramework.Core.Drivers;
+﻿using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Core.Enums;
-using AutomatedTestingFramework.Core.ExceptionAnalysis;
 using AutomatedTestingFramework.Core.ExecutionEngine;
 using AutomatedTestingFramework.Selenium.BehaviorObserver;
 using AutomatedTestingFramework.Selenium.Drivers;
-using AutomatedTestingFramework.Selenium.Services;
 using NUnit.Framework;
 
 namespace Bellatrix
@@ -20,15 +17,8 @@ namespace Bellatrix
 		static BaseTest()
 		{
 			CurrentTestExecutionSubject = new UnitTestExecutionSubject();
-			var exceptionAnalyzers = new List<IExceptionAnalyzationHandler>
-			{
-				new ServiceUnavailableExceptionHandler(),
-				new FileNotFoundExceptionHandler()
-			};
-			Driver = new LoggingDriver(new WebDriver(new ElementFinderService(), new DriverFactory()))
-			{
-				ExceptionAnalyzer = new ExceptionAnalyzer(exceptionAnalyzers)
-			};
+
+			Driver = LoggingDriver.Instance;
 			Driver.Start(Browser.Chrome);
 			Driver.MaximizeBrowserWindow();
 		}

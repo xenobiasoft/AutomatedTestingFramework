@@ -11,7 +11,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
-	public class DriverFactory : IDriverFactory
+	internal class DriverFactory : IDriverFactory
 	{
 		private static readonly string DriverLocation = Environment.CurrentDirectory;
 

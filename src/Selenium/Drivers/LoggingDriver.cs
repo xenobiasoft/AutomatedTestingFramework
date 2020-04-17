@@ -5,12 +5,25 @@ using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Core.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Services;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	public class LoggingDriver : DriverDecorator
 	{
-		public LoggingDriver(Driver driver) : base(driver)
+		private static LoggingDriver _instance;
+
+		public static LoggingDriver Instance =>
+			_instance ??= new LoggingDriver(new WebDriver(new ElementFinderService(), new DriverFactory()))
+			{
+				ExceptionAnalyzer = new ExceptionAnalyzer(new List<IExceptionAnalyzationHandler>
+				{
+					new ServiceUnavailableExceptionHandler(),
+					new FileNotFoundExceptionHandler()
+				})
+			};
+
+		private LoggingDriver(Driver driver) : base(driver)
 		{
 		}
 

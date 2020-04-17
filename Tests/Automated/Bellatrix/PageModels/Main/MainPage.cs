@@ -1,15 +1,17 @@
 ﻿using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Selenium.Drivers;
 
 namespace Bellatrix.PageModels.Main
 {
-	public class MainPage : NavigatableEShopPage
+	public class MainPage : NavigatableEShopPage<MainPage>
 	{
 		private readonly IBrowser _browser;
 
-		public MainPage(IElementFinder elementFinder, INavigationService navigationService, IBrowser browser) : base(elementFinder, navigationService)
+		public MainPage()
 		{
-			_browser = browser;
-			Elements = new MainPageElements(elementFinder);
+			var driver = LoggingDriver.Instance;
+			_browser = driver;
+			Elements = new MainPageElements(driver);
 			Asserts = new MainPageAssertions(Elements);
 		}
 

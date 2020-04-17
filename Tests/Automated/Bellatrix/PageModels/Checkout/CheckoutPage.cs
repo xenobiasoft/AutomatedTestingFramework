@@ -1,16 +1,18 @@
 ﻿using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Selenium.Drivers;
 using Bellatrix.Models;
 
 namespace Bellatrix.PageModels.Checkout
 {
-	public class CheckoutPage : EShopPage
+	public class CheckoutPage : EShopPage<CheckoutPage>
 	{
 		private readonly IBrowser _browser;
 
-		public CheckoutPage(IElementFinder elementFinder, IBrowser browser) : base(elementFinder)
+		public CheckoutPage()
 		{
-			_browser = browser;
-			Elements = new CheckoutPageElements(elementFinder);
+			var driver = LoggingDriver.Instance;
+			_browser = driver;
+			Elements = new CheckoutPageElements(driver);
 			Asserts = new CheckoutPageAssertions(Elements);
 		}
 
