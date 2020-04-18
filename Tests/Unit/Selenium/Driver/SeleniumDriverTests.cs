@@ -1,4 +1,5 @@
 ﻿using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Core.Enums;
 using AutomatedTestingFramework.Selenium.Drivers;
 using Moq;
 using NUnit.Framework;
@@ -27,11 +28,17 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 		public override void SetUp()
 		{
 			_mockWebDriver = ResolveMock<IWebDriver>();
+			ResolveMock<IDriverFactory>()
+				.Setup(x => x.CreateDriver(It.IsAny<Browser>()))
+				.Returns(_mockWebDriver.Object);
+
+			Sut.Start(Browser.Chrome);
 		}
 
 		public override void TearDown()
 		{
 			_mockWebDriver.Object.Quit();
+			Sut.Quit();
 		}
 
 		[TestFixture]

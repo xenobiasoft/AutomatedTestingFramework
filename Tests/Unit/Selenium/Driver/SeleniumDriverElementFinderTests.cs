@@ -18,7 +18,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 			// Assemble
 			var cssSelector = By.CssSelector(Create<string>());
 			ResolveMock<IElementFinderService>()
-				.Setup(x => x.Find<IElement>(It.IsAny<ISearchContext>(), It.Is<By>(s => s == cssSelector)))
+				.Setup(x => x.Find<IElement>(It.IsAny<ISearchContext>(), It.IsAny<By>()))
 				.Returns(ResolveMock<IContentElement>().Object);
 
 			// Act
@@ -40,7 +40,7 @@ namespace AutomatedTestingFramework.Tests.Selenium.Driver
 				ResolveMock<IElement>().Object,
 			};
 			ResolveMock<IElementFinderService>()
-				.Setup(x => x.FindAll<IElement>(It.IsAny<ISearchContext>(), It.Is<By>(s => s == cssSelector)))
+				.Setup(x => x.FindAll<IElement>(It.IsAny<ISearchContext>(), It.IsAny<By>()))
 				.Returns(expectedElements);
 
 			// Act
