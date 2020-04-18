@@ -14,7 +14,7 @@ namespace AutomatedTestingFramework.Selenium
 					return OpenQA.Selenium.By.ClassName(by.Value);
 
 				case SearchType.CssClassContaining:
-					return OpenQA.Selenium.By.CssSelector($"class*={by.Value}");
+					return OpenQA.Selenium.By.CssSelector($"[class*='{by.Value}']");
 
 				case SearchType.CssSelector:
 					return OpenQA.Selenium.By.CssSelector(by.Value);
@@ -23,7 +23,10 @@ namespace AutomatedTestingFramework.Selenium
 					return OpenQA.Selenium.By.Id(by.Value);
 
 				case SearchType.IdContaining:
-					return OpenQA.Selenium.By.CssSelector($"id*={by.Value}");
+					return OpenQA.Selenium.By.CssSelector($"[id*='{by.Value}']");
+
+				case SearchType.InnerTextContaining:
+					return OpenQA.Selenium.By.XPath($"//*[contains(text(), '{by.Value}']");
 
 				case SearchType.LinkText:
 					return OpenQA.Selenium.By.LinkText(by.Value);

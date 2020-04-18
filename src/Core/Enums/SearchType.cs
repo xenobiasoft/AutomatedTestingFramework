@@ -7,6 +7,7 @@
 		CssSelector,
 		Id,
 		IdContaining,
+		InnerTextContaining,
 		LinkText,
 		Name,
 		Tag,
