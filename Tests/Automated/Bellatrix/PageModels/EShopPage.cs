@@ -1,5 +1,5 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Selenium.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using Bellatrix.PageModels.Sections;
 
 namespace Bellatrix.PageModels

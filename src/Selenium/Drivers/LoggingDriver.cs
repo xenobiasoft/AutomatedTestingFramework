@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutomatedTestingFramework.Core;
-using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.Elements;
-using AutomatedTestingFramework.Core.Enums;
-using AutomatedTestingFramework.Core.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using AutomatedTestingFramework.Selenium.Services;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
@@ -159,22 +158,16 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			Driver?.WaitForPageToLoad();
 		}
 
-		public override TElement WaitAndFindElement<TElement>(By by)
-		{
-			Console.WriteLine($"Waiting for element {typeof(TElement).Name} by {by.Type} with {by.Value}");
-			return Driver?.WaitAndFindElement<TElement>(by);
-		}
-
-		public override IElement WaitAndFindElement(By by)
-		{
-			Console.WriteLine($"Waiting for element by {by.Type} with {by.Value}");
-			return Driver?.WaitAndFindElement(by);
-		}
-
 		public override void WaitForElementToBeClickable(By by)
 		{
 			Console.WriteLine($"Waiting for element by {by.Type} with {by.Value} to be clickable");
 			Driver?.WaitForElementToBeClickable(by);
+		}
+
+		public override void WaitForElementToBeVisible(By by)
+		{
+			Console.WriteLine($"Waiting for element by {by.Type} with {by.Value} to be visible");
+			Driver?.WaitForElementToBeVisible(by);
 		}
 
 		public override void WaitForElementToExist(By by)

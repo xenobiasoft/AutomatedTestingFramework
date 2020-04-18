@@ -1,6 +1,6 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using FluentAssertions;
 using NUnit.Framework;
 

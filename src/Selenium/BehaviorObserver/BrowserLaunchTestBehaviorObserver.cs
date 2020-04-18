@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using AutomatedTestingFramework.Core.Attributes;
-using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.Enums;
-using AutomatedTestingFramework.Core.ExecutionEngine;
+using AutomatedTestingFramework.Selenium.Attributes;
+using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.ExecutionEngine;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {

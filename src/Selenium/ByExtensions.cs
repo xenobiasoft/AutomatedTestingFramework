@@ -1,6 +1,5 @@
 ﻿using System;
-using AutomatedTestingFramework.Core;
-using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Selenium.Enums;
 
 namespace AutomatedTestingFramework.Selenium
 {

@@ -1,10 +1,9 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.Elements;
-using AutomatedTestingFramework.Core.Enums;
-using AutomatedTestingFramework.Selenium.Elements;
+﻿using AutomatedTestingFramework.Selenium.Elements;
+using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {
@@ -74,6 +73,11 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 		public override void WaitForElementToBeClickable(By by)
 		{
 			Wait.Until(ExpectedConditions.ElementToBeClickable(by.ToSeleniumBy()));
+		}
+
+		public override void WaitForElementToBeVisible(By @by)
+		{
+			Wait.Until(ExpectedConditions.ElementIsVisible(by.ToSeleniumBy()));
 		}
 
 		public override void WaitForElementToExist(By by)

@@ -1,16 +1,16 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Selenium.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Main
 {
 	public class MainPage : NavigatableEShopPage<MainPage>
 	{
-		private readonly IBrowserService _browser;
+		private readonly IElementWaitService _waitService;
 
 		public MainPage()
 		{
 			var driver = LoggingDriver.Instance;
-			_browser = driver;
+			_waitService = driver;
 			Elements = new MainPageElements(driver);
 			Asserts = new MainPageAssertions(Elements);
 		}
@@ -23,13 +23,13 @@ namespace Bellatrix.PageModels.Main
 		{
 			Open();
 			Elements.GetAddToCartByName(rocketName).Click();
-			_browser.WaitForAjax();
+			_waitService.WaitForAjax();
 			Elements.ViewCartButton.Click();
 		}
 
 		protected override void WaitForPageLoad()
 		{
-			ElementFinder.WaitForElementToExist(Elements.AddToCartFalcon9Button.By);
+			_waitService.WaitForElementToExist(Elements.AddToCartFalcon9Button.By);
 		}
 	}
 }

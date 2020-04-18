@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using By = AutomatedTestingFramework.Core.By;
+using By = AutomatedTestingFramework.Selenium.By;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {

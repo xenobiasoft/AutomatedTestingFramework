@@ -1,5 +1,5 @@
-﻿using AutomatedTestingFramework.Core.Elements;
-using AutomatedTestingFramework.Selenium.Elements;
+﻿using AutomatedTestingFramework.Selenium.Elements;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;

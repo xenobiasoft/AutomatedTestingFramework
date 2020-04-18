@@ -1,17 +1,17 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Selenium.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using Bellatrix.Models;
 
 namespace Bellatrix.PageModels.Checkout
 {
 	public class CheckoutPage : EShopPage<CheckoutPage>
 	{
-		private readonly IBrowserService _browser;
+		private readonly IElementWaitService _waitService;
 
 		public CheckoutPage()
 		{
 			var driver = LoggingDriver.Instance;
-			_browser = driver;
+			_waitService = driver;
 			Elements = new CheckoutPageElements(driver);
 			Asserts = new CheckoutPageAssertions(Elements);
 		}
@@ -44,7 +44,7 @@ namespace Bellatrix.PageModels.Checkout
 			}
 
 			Elements.PlaceOrderButton.Click();
-			_browser.WaitForAjax();
+			_waitService.WaitForAjax();
 		}
 	}
 }

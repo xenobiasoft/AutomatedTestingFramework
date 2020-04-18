@@ -1,5 +1,5 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using AutomatedTestingFramework.Selenium.Services;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;

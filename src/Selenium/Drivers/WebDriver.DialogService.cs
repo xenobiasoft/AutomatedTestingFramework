@@ -1,6 +1,6 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {

@@ -1,4 +1,4 @@
-﻿using AutomatedTestingFramework.Core.Elements;
+﻿using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {

@@ -1,4 +1,4 @@
-﻿using AutomatedTestingFramework.Core.Enums;
+﻿using AutomatedTestingFramework.Selenium.Enums;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Selenium.Drivers

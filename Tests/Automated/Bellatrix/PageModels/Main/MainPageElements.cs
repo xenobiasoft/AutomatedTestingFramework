@@ -1,6 +1,6 @@
-﻿using AutomatedTestingFramework.Core;
-using AutomatedTestingFramework.Core.Drivers;
-using AutomatedTestingFramework.Core.Elements;
+﻿using AutomatedTestingFramework.Selenium;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace Bellatrix.PageModels.Main
 {

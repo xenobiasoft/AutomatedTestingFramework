@@ -1,5 +1,5 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Enums;
+using AutomatedTestingFramework.Selenium.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;

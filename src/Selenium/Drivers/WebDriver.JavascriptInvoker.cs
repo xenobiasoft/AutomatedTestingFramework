@@ -1,4 +1,4 @@
-﻿using AutomatedTestingFramework.Core.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using OpenQA.Selenium;
 
 namespace AutomatedTestingFramework.Selenium.Drivers

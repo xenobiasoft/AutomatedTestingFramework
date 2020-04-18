@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutomatedTestingFramework.Core.Elements;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using AutomatedTestingFramework.Selenium.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Core.By;
+using By = AutomatedTestingFramework.Selenium.By;
 using SeleniumBy = OpenQA.Selenium.By;
 
 namespace AutomatedTestingFramework.Tests.Selenium.Driver

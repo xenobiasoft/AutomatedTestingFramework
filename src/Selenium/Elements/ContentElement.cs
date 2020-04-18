@@ -1,7 +1,7 @@
-﻿using AutomatedTestingFramework.Core.Elements;
+﻿using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using By = AutomatedTestingFramework.Core.By;
+using By = AutomatedTestingFramework.Selenium.By;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {

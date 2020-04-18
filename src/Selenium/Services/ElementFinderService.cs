@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutomatedTestingFramework.Core.Elements;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Core.By;
 
 namespace AutomatedTestingFramework.Selenium.Services
 {
@@ -50,7 +49,8 @@ namespace AutomatedTestingFramework.Selenium.Services
 			{
 				controlType = GetType()
 						.Assembly
-						.GetTypes().First(x => x.GetInterfaces().Any(i => i == interfaceType));
+						.GetTypes()
+						.First(x => x.GetInterfaces().Any(i => i == interfaceType) && !x.IsInterface);
 
 				_controlMap.Add(interfaceType, controlType);
 			}

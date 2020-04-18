@@ -1,21 +1,21 @@
 ﻿using System;
-using AutomatedTestingFramework.Core.Drivers;
 using AutomatedTestingFramework.Selenium.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Cart
 {
 	public class CartPage : NavigatableEShopPage<CartPage>
 	{
-		private static readonly Lazy<CartPage> lazy = new Lazy<CartPage>(() => new CartPage());
+		private static readonly Lazy<CartPage> Lazy = new Lazy<CartPage>(() => new CartPage());
 
-		public static CartPage Instance => lazy.Value;
+		public static CartPage Instance => Lazy.Value;
 
-		private readonly IBrowserService _browser;
+		private readonly IElementWaitService _waitService;
 
 		public CartPage()
 		{
 			var driver = LoggingDriver.Instance;
-			_browser = driver;
+			_waitService = driver;
 			Elements = new CartPageElements(ElementFinder);
 			Asserts = new CartPageAssertions(Elements);
 		}
@@ -27,20 +27,20 @@ namespace Bellatrix.PageModels.Cart
 		{
 			Elements.CouponCodeTextBox.TypeText(coupon);
 			Elements.ApplyCouponButton.Click();
-			_browser.WaitForAjax();
+			_waitService.WaitForAjax();
 		}
 
 		public void IncreaseProductQuantity(int quantity)
 		{
 			Elements.QuantityTextBox.TypeText(quantity.ToString());
 			Elements.UpdateCartButton.Click();
-			_browser.WaitForAjax();
+			_waitService.WaitForAjax();
 		}
 
 		public void ProceedToCheckout()
 		{
 			Elements.CheckoutButton.Click();
-			_browser.WaitForPageToLoad();
+			_waitService.WaitForPageToLoad();
 		}
 
 		public string GetTotal()
@@ -57,7 +57,7 @@ namespace Bellatrix.PageModels.Cart
 
 		protected override void WaitForPageLoad()
 		{
-			ElementFinder.WaitForElementToExist(Elements.CouponCodeTextBox.By);
+			_waitService.WaitForElementToExist(Elements.CouponCodeTextBox.By);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
-using AutomatedTestingFramework.Core.Elements;
 using AutomatedTestingFramework.Selenium.Elements;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
