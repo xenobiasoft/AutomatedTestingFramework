@@ -6,7 +6,7 @@ namespace Bellatrix.PageModels.Checkout
 {
 	public class CheckoutPage : EShopPage<CheckoutPage>
 	{
-		private readonly IBrowser _browser;
+		private readonly IBrowserService _browser;
 
 		public CheckoutPage()
 		{

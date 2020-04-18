@@ -8,7 +8,7 @@ namespace AutomatedTestingFramework.Core.ExceptionAnalysis
 	{
 		public bool IsApplicable(Exception ex = null, params object[] context)
 		{
-			var browser = context.OfType<IBrowser>().FirstOrDefault();
+			var browser = context.OfType<IBrowserService>().FirstOrDefault();
 
 			return browser?.Source != null && browser.Source.Contains(TextToSearchInSource);
 		}

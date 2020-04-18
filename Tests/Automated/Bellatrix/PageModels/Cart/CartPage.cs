@@ -10,7 +10,7 @@ namespace Bellatrix.PageModels.Cart
 
 		public static CartPage Instance => lazy.Value;
 
-		private readonly IBrowser _browser;
+		private readonly IBrowserService _browser;
 
 		public CartPage()
 		{

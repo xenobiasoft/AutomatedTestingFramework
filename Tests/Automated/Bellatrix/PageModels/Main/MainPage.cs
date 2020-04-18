@@ -5,7 +5,7 @@ namespace Bellatrix.PageModels.Main
 {
 	public class MainPage : NavigatableEShopPage<MainPage>
 	{
-		private readonly IBrowser _browser;
+		private readonly IBrowserService _browser;
 
 		public MainPage()
 		{

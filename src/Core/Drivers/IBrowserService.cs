@@ -3,7 +3,7 @@ using AutomatedTestingFramework.Core.Enums;
 
 namespace AutomatedTestingFramework.Core.Drivers
 {
-	public interface IBrowser
+	public interface IBrowserService
 	{
 		void ClickBackButton();
 		void ClickForwardButton();

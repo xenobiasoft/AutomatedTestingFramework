@@ -6,7 +6,7 @@
 		ICookieService,
 		IDialogService,
 		IJavascriptInvoker,
-		IBrowser
+		IBrowserService
 	{
 	}
 }
