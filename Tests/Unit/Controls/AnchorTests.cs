@@ -1,6 +1,5 @@
 ﻿using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -21,7 +20,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var url = Sut.Href;
 
 			// Assert
-			url.Should().Be(expectedUrl);
+			Assert.That(url, Is.EqualTo(expectedUrl));
 		}
 	}
 }

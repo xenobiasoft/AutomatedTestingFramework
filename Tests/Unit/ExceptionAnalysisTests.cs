@@ -2,7 +2,6 @@
 using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace AutomatedTestingFramework.UnitTests
@@ -18,7 +17,7 @@ namespace AutomatedTestingFramework.UnitTests
 			public void FileNotFoundExceptionHandlerAppliesTo404Errors()
 			{
 				// Assemble
-				var expectedExceptionMessage = "*It is not a test problem. The page does not exist.*";
+				var expectedExceptionMessage = "It is not a test problem. The page does not exist.";
 				var mockBrowser = ResolveMock<IBrowserService>();
 				mockBrowser.Setup(x => x.Source).Returns("404 - File or directory not found.");
 				Sut.AddExceptionAnalyzationHandler(new FileNotFoundExceptionHandler());
@@ -27,7 +26,11 @@ namespace AutomatedTestingFramework.UnitTests
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				Assert.That(analyze,
+					Throws
+						.Exception
+						.TypeOf<AnalyzedTestException>()
+						.With.Message.Contains(expectedExceptionMessage));
 			}
 		}
 
@@ -39,7 +42,7 @@ namespace AutomatedTestingFramework.UnitTests
 			public void ServiceUnavailableExceptionHandlerAppliesTo500Errors()
 			{
 				// Assemble
-				var expectedExceptionMessage = "*It is not a test problem. The service is unavailable.*";
+				var expectedExceptionMessage = "It is not a test problem. The service is unavailable.";
 				var mockBrowser = ResolveMock<IBrowserService>();
 				mockBrowser.Setup(x => x.Source).Returns("HTTP Error 503. The service is unavailable.");
 				Sut.AddExceptionAnalyzationHandler(new ServiceUnavailableExceptionHandler());
@@ -48,7 +51,11 @@ namespace AutomatedTestingFramework.UnitTests
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				Assert.That(analyze,
+					Throws
+						.Exception
+						.TypeOf<AnalyzedTestException>()
+						.With.Message.Contains(expectedExceptionMessage));
 			}
 		}
 
@@ -70,7 +77,11 @@ namespace AutomatedTestingFramework.UnitTests
 				Action analyze = () => Sut.Analyze(new Exception(), mockBrowser.Object);
 
 				// Assert
-				analyze.Should().Throw<AnalyzedTestException>().WithMessage(expectedExceptionMessage);
+				Assert.That(analyze,
+					Throws
+						.Exception
+						.TypeOf<AnalyzedTestException>()
+						.With.Message.Contains(expectedExceptionMessage));
 			}
 		}
 	}

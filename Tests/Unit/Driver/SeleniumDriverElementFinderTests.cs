@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -24,7 +23,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var contentElement = Sut.Find<IElement>(cssSelector);
 
 			// Assert
-			contentElement.Should().NotBeNull();
+			Assert.That(contentElement, Is.Not.Null);
 		}
 
 		[Test]
@@ -46,7 +45,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var contentElements = Sut.FindAll<IElement>(cssSelector);
 
 			// Assert
-			contentElements.Should().BeEquivalentTo(expectedElements);
+			Assert.That(contentElements, Is.EquivalentTo(expectedElements));
 		}
 
 		[Test]
@@ -61,7 +60,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var isElementPresent = Sut.IsElementPresent(By.CssClass(Create<string>()));
 
 			// Assert
-			isElementPresent.Should().BeTrue();
+			Assert.That(isElementPresent, Is.True);
 		}
 	}
 }

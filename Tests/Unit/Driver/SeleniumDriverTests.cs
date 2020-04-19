@@ -1,6 +1,7 @@
 ﻿using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -11,6 +12,23 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 	public class SeleniumDriverTests : AutoMockingFixtureByInterface<WebDriver, IDriver>
 	{
 		private Mock<IWebDriver> _mockWebDriver;
+
+		public override void SetUp()
+		{
+			_mockWebDriver = ResolveMock<IWebDriver>();
+			ResolveMock<IDriverFactory>()
+				.Setup(x => x.CreateDriver(It.IsAny<Browser>()))
+				.Returns(_mockWebDriver.Object);
+			ResolveMock<IElementFinderService>();
+
+			Sut.Start(Browser.Chrome);
+		}
+
+		public override void TearDown()
+		{
+			_mockWebDriver.Object.Quit();
+			Sut.Quit();
+		}
 
 		[Test]
 		[Category(TestCategories.Selenium)]
@@ -23,22 +41,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 
 			// Assert
 			_mockWebDriver.Verify(x => x.Quit(), Times.Once);
-		}
-
-		public override void SetUp()
-		{
-			_mockWebDriver = ResolveMock<IWebDriver>();
-			ResolveMock<IDriverFactory>()
-				.Setup(x => x.CreateDriver(It.IsAny<Browser>()))
-				.Returns(_mockWebDriver.Object);
-
-			Sut.Start(Browser.Chrome);
-		}
-
-		public override void TearDown()
-		{
-			_mockWebDriver.Object.Quit();
-			Sut.Quit();
 		}
 
 		[TestFixture]

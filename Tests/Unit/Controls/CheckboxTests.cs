@@ -1,6 +1,5 @@
 ﻿using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +18,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			// Act
 
 			// Assert
-			Sut.IsChecked.Should().BeTrue();
+			Assert.That(Sut.IsChecked, Is.True);
 		}
 
 		[Test]

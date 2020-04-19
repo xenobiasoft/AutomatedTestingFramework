@@ -1,6 +1,5 @@
 ﻿using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -20,7 +19,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var actualText = Sut.Text;
 
 			// Assert
-			actualText.Should().Be(expectedText);
+			Assert.That(actualText, Is.EqualTo(expectedText));
 		}
 	}
 }

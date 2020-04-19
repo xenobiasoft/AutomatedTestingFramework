@@ -1,6 +1,5 @@
 ﻿using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,7 +19,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			// Act
 
 			// Assert
-			Sut.AltText.Should().Be(expectedValue);
+			Assert.That(Sut.AltText, Is.EqualTo(expectedValue));
 		}
 
 		[Test]
@@ -33,7 +32,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			// Act
 
 			// Assert
-			Sut.Src.Should().Be(expectedValue);
+			Assert.That(Sut.Src, Is.EqualTo(expectedValue));
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -23,7 +22,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var actualCookieValue = Sut.GetCookie(Create<string>(), cookieName);
 
 			// Assert
-			actualCookieValue.Should().Be(expectedCookieValue);
+			Assert.That(actualCookieValue, Is.EqualTo(expectedCookieValue));
 		}
 
 		[Test]

@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -20,7 +19,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var actualPageSource = Sut.Source;
 
 			// Assert
-			actualPageSource.Should().Be(expectedPageSource);
+			Assert.That(actualPageSource, Is.EqualTo(expectedPageSource));
 		}
 
 		[Test]
@@ -34,7 +33,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var actualFrame = Sut.GetFrame(expectedFrameName);
 
 			// Assert
-			actualFrame.Name.Should().Be(expectedFrameName);
+			Assert.That(actualFrame.Name, Is.EqualTo(expectedFrameName));
 		}
 
 		[Test]

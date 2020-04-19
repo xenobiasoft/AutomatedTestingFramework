@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -28,14 +27,14 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 		public void GetAttributeReturnsValueFromWebElement()
 		{
 			// Assemble
-			var expectedAttributeValue = Create<string>();
-			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.IsAny<string>())).Returns(expectedAttributeValue);
+			var expectedValue = Create<string>();
+			ResolveMock<IWebElement>().Setup(x => x.GetAttribute(It.IsAny<string>())).Returns(expectedValue);
 
 			// Act
 			var actualValue = Sut.GetAttribute(Create<string>());
 
 			// Assert
-			actualValue.Should().Be(expectedAttributeValue);
+			Assert.That(actualValue, Is.EqualTo(expectedValue));
 		}
 
 		[Test]
@@ -49,7 +48,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var actualValue = Sut.CssClass;
 
 			// Assert
-			actualValue.Should().Be(expectedValue);
+			Assert.That(actualValue, Is.EqualTo(expectedValue));
 		}
 
 		[Test]
@@ -62,7 +61,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var isVisible = Sut.Displayed;
 
 			// Assert
-			isVisible.Should().BeTrue();
+			Assert.That(isVisible, Is.True);
 		}
 
 		[Test]
@@ -76,7 +75,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var width = Sut.Width;
 
 			// Assert
-			width.Should().Be(50);
+			Assert.That(width, Is.EqualTo(50));
 		}
 
 		[Test]
@@ -90,7 +89,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var height = Sut.Height;
 
 			// Assert
-			height.Should().Be(25);
+			Assert.That(height, Is.EqualTo(25));
 		}
 	}
 }

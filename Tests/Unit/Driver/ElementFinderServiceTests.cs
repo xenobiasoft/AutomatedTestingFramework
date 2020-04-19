@@ -2,7 +2,6 @@
 using System.Linq;
 using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -42,7 +41,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				var control = Sut.Find<IElement>(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
-				control.Should().BeAssignableTo<IElement>();
+				Assert.That(control, Is.AssignableTo<IElement>());
 			}
 		}
 
@@ -75,7 +74,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				var buttons = Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
 
 				// Assert
-				buttons.ToList().ForEach(x => x.Should().BeAssignableTo<IElement>());
+				buttons.ToList().ForEach(x => Assert.That(x, Is.AssignableTo<IElement>()));
 			}
 		}
 
@@ -96,7 +95,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				var isElementPresent = Sut.IsElementPresent(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
-				isElementPresent.Should().BeTrue();
+				Assert.That(isElementPresent, Is.True);
 			}
 		}
 	}
