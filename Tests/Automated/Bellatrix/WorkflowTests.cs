@@ -17,19 +17,7 @@ namespace Bellatrix
 		[Test]
 		public void PurchaseFalcon9WithFacade()
 		{
-			var purchaseInfo = new PurchaseInfo
-			{
-				Email = "info@berlinspaceflowers.com",
-				FirstName = "Anton",
-				LastName = "Angelov",
-				Company = "Space Flowers",
-				Country = "Germany",
-				Address1 = "1 Willi Brandt Avenue Tiergarten",
-				Address2 = "Lützowplatz 17",
-				City = "Berlin",
-				Zip = "10115",
-				Phone = "+00498888999281",
-			};
+			var purchaseInfo = new PurchaseInfo();
 
 			_purchaseFacade.PurchaseItem("Falcon 9", "happybirthday", 2, "235.00€", purchaseInfo);
 		}
@@ -37,19 +25,7 @@ namespace Bellatrix
 		[Test]
 		public void PurchaseSaturnVWithFacade()
 		{
-			var purchaseInfo = new PurchaseInfo
-			{
-				Email = "info@berlinspaceflowers.com",
-				FirstName = "John",
-				LastName = "Atanasov",
-				Company = "Space Flowers",
-				Country = "Germany",
-				Address1 = "1 Willi Brandt Avenue Tiergarten",
-				Address2 = "Lützowplatz 17",
-				City = "Berlin",
-				Zip = "10115",
-				Phone = "+00498888999281",
-			};
+			var purchaseInfo = new PurchaseInfo();
 
 			_purchaseFacade.PurchaseItem("Saturn V", "happybirthday", 2, "235.00€", purchaseInfo);
 		}

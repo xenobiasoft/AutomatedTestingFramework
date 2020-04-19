@@ -1,18 +1,29 @@
-﻿namespace Bellatrix.Models
+﻿using AutomatedTestingFramework.Selenium.Configuration;
+using Bellatrix.Configuration;
+
+namespace Bellatrix.Models
 {
 	public class PurchaseInfo
 	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public string Company { get; set; }
-		public string Country { get; set; }
-		public string Address1 { get; set; }
-		public string Address2 { get; set; }
-		public string City { get; set; }
-		public string Zip { get; set; }
-		public string Phone { get; set; }
-		public string Email { get; set; }
-		public bool ShouldCreateAccount { get; set; } = false;
-		public bool ShouldCheckPayment { get; set; } = false;
+		private readonly BillingInfoDefaultValues _defaultBillingInfo;
+
+		public PurchaseInfo()
+		{
+			_defaultBillingInfo = ConfigurationService.Instance.GetSettings<BillingInfoDefaultValues>("billingInfoDefaultValues");
+		}
+
+		public string FirstName => _defaultBillingInfo.FirstName;
+		public string LastName => _defaultBillingInfo.LastName;
+		public string Company => _defaultBillingInfo.Company;
+		public string Country => _defaultBillingInfo.Country;
+		public string Address1 => _defaultBillingInfo.Address1;
+		public string Address2 => _defaultBillingInfo.Address2;
+		public string City => _defaultBillingInfo.City;
+		public string Zip => _defaultBillingInfo.Zip;
+		public string Phone => _defaultBillingInfo.Phone;
+		public string Email => _defaultBillingInfo.Email;
+		public bool ShouldCreateAccount { get; set; }
+		public bool ShouldCheckPayment { get; set; }
+		public string Notes { get; set; }
 	}
 }
