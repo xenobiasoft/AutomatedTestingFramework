@@ -14,7 +14,7 @@ namespace Bellatrix.PageModels.Sections
 		}
 
 		private IButton CartIcon => _elementFinder.Find<IButton>(By.CssClass("cart-contents"));
-		private IElement CartAmount => _elementFinder.Find<IElement>(By.CssClass("amount"));
+		private ILabel CartAmount => _elementFinder.Find<ILabel>(By.CssClass("amount"));
 
 		public string GetCurrentAmount()
 		{

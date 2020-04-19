@@ -1,7 +1,8 @@
 ﻿namespace AutomatedTestingFramework.Selenium.Interfaces.Elements
 {
-	public interface ITextBox : IContentElement
+	public interface ITextBox : IElement
 	{
-		string Text { get; set; }
+		string Text { get; }
+		void TypeText(string text);
 	}
 }

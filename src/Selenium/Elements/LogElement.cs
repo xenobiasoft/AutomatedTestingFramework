@@ -26,19 +26,16 @@ namespace AutomatedTestingFramework.Selenium.Elements
 			}
 		}
 
-		public override string Text
-		{
-			get
-			{
-				Console.WriteLine($"Element Text = {Element?.Text}");
-				return Element?.Text;
-			}
-		}
-
 		public override void Click()
 		{
 			Console.WriteLine("Element Clicked");
 			Element?.Click();
+		}
+
+		public override void Focus()
+		{
+			Console.WriteLine("Focus on element");
+			Element?.Focus();
 		}
 
 		public override string GetAttribute(string attributeName)
@@ -47,10 +44,10 @@ namespace AutomatedTestingFramework.Selenium.Elements
 			return Element?.GetAttribute(attributeName);
 		}
 
-		public override void TypeText(string text)
+		public override void Hover()
 		{
-			Console.WriteLine($"Element Type Text = {text}");
-			Element?.TypeText(text);
+			Console.WriteLine("Hover on Element");
+			Element?.Hover();
 		}
 	}
 }

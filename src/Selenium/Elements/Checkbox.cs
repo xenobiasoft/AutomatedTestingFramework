@@ -1,10 +1,9 @@
 ﻿using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Selenium.By;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {
-	public class Checkbox : ContentElement, ICheckbox
+	public class Checkbox : WebElement, ICheckbox
 	{
 		public Checkbox(IWebDriver driver, IWebElement webElement, By by)
 			: base(driver, webElement, by)

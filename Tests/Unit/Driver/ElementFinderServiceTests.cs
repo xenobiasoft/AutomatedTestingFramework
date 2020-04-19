@@ -25,7 +25,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				mockSearchContext.Setup(x => x.FindElement(It.IsAny<SeleniumBy>())).Returns(ResolveMock<IWebElement>().Object);
 
 				// Act
-				Sut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
+				Sut.Find<IElement>(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
 				mockSearchContext.Verify(x => x.FindElement(It.IsAny<SeleniumBy>()), Times.Once);
@@ -39,10 +39,10 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				mockSearchContext.Setup(x => x.FindElement(It.IsAny<SeleniumBy>())).Returns(ResolveMock<IWebElement>().Object);
 
 				// Act
-				var control = Sut.Find<IContentElement>(mockSearchContext.Object, By.Id(Create<string>()));
+				var control = Sut.Find<IElement>(mockSearchContext.Object, By.Id(Create<string>()));
 
 				// Assert
-				control.Should().BeAssignableTo<IContentElement>();
+				control.Should().BeAssignableTo<IElement>();
 			}
 		}
 
@@ -75,7 +75,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 				var buttons = Sut.FindAll<IButton>(mockSearchContext.Object, By.CssClass("btn"));
 
 				// Assert
-				buttons.ToList().ForEach(x => x.Should().BeAssignableTo<IContentElement>());
+				buttons.ToList().ForEach(x => x.Should().BeAssignableTo<IElement>());
 			}
 		}
 

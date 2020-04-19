@@ -1,23 +1,20 @@
 ﻿using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Selenium.By;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {
-	public class TextBox : ContentElement, ITextBox
+	public class TextBox : WebElement, ITextBox
 	{
 		public TextBox(IWebDriver driver, IWebElement webElement, By by)
 			: base(driver, webElement, by)
 		{ }
 
-		public string Text
+		public string Text => Element.GetAttribute("value");
+
+		public void TypeText(string textToType)
 		{
-			get => Element.GetAttribute("value");
-			set
-			{
-				Element.Clear();
-				Element.SendKeys(value);
-			}
+			Element?.Clear();
+			Element?.SendKeys(textToType);
 		}
 	}
 }

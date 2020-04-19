@@ -1,8 +1,5 @@
-﻿using System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-using By = AutomatedTestingFramework.Selenium.By;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace AutomatedTestingFramework.Selenium.Elements
 {
@@ -23,28 +20,27 @@ namespace AutomatedTestingFramework.Selenium.Elements
 		public override bool? Displayed => Element?.Displayed;
 		public override bool? Enabled => Element?.Enabled;
 		public override int? Height => Element?.Size.Height;
-		public override string Text => Element?.Text;
 		public override int? Width => Element?.Size.Width;
 
 		public override void Click()
 		{
-			WaitToByClickable();
 			Element?.Click();
+		}
+
+		public override void Focus()
+		{
+			var action = new Actions(Driver);
+
+			action.MoveToElement(Element).Perform();
 		}
 
 		public override string GetAttribute(string attributeName) => Element?.GetAttribute(attributeName);
 
-		public override void TypeText(string text)
+		public override void Hover()
 		{
-			Element?.Clear();
-			Element?.SendKeys(text);
-		}
+			var action = new Actions(Driver);
 
-		private void WaitToByClickable()
-		{
-			var webDriverWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-
-			webDriverWait.Until(ExpectedConditions.ElementToBeClickable(By.ToSeleniumBy()));
+			action.MoveToElement(Element).Perform();
 		}
 	}
 }

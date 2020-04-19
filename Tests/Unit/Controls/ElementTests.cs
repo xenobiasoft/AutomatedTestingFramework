@@ -53,20 +53,6 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 		}
 
 		[Test]
-		public void ContentPullsValueFromWebElementTextProperty()
-		{
-			// Assemble
-			var expectedText = "<State Enabled=\"false\" Fallthrough=\"false\" UseLatency=\"false\" />";
-			ResolveMock<IWebElement>().Setup(x => x.Text).Returns(expectedText);
-
-			// Act
-			var actual = Sut.Text;
-
-			// Assert
-			actual.Should().Be(expectedText);
-		}
-
-		[Test]
 		public void IsVisibleReturnsValueOfWebElementIsDisplayed()
 		{
 			// Assemble

@@ -31,7 +31,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Sut.Text = Create<string>();
+			Sut.TypeText(Create<string>());
 
 			// Assert
 			mockWebElement.Verify(x => x.Clear(), Times.AtLeast(1));
@@ -45,7 +45,7 @@ namespace AutomatedTestingFramework.UnitTests.Controls
 			var mockWebElement = ResolveMock<IWebElement>();
 
 			// Act
-			Sut.Text = expectedValue;
+			Sut.TypeText(expectedValue);
 
 			// Assert
 			mockWebElement.Verify(x => x.SendKeys(It.Is<string>(y => y == expectedValue)), Times.Once());

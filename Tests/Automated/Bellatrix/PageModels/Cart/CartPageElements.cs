@@ -21,9 +21,9 @@ namespace Bellatrix.PageModels.Cart
 
 		public IButton UpdateCartButton => _elementFinder.Find<IButton>(By.CssSelector("[value*='Update Cart']"));
 
-		public IContentElement MessageAlert => _elementFinder.Find<IContentElement>(By.CssSelector("[class*='woocommerce-message']"));
+		public ILabel MessageAlert => _elementFinder.Find<ILabel>(By.CssSelector("[class*='woocommerce-message']"));
 
-		public IContentElement Total => _elementFinder.Find<IContentElement>(By.XPath("//*[@class='order-total']//span"));
+		public ILabel Total => _elementFinder.Find<ILabel>(By.XPath("//*[@class='order-total']//span"));
 
 		public IButton CheckoutButton => _elementFinder.Find<IButton>(By.CssSelector("[class*='checkout-button button alt wc-forward']"));
 	}

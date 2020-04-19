@@ -1,6 +1,6 @@
 ﻿namespace AutomatedTestingFramework.Selenium.Interfaces.Elements
 {
-	public interface ILabel : IContentElement
+	public interface ILabel : IElement
 	{
 		string Text { get; }
 	}

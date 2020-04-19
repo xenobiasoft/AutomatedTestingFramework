@@ -13,7 +13,7 @@ namespace Bellatrix.PageModels.Sections
 			_driver = driver;
 		}
 
-		private IContentElement Breadcrumb => _driver.Find<IContentElement>(By.CssClass("woocommerce-breadcrumb"));
+		private IElement Breadcrumb => _driver.Find<IElement>(By.CssClass("woocommerce-breadcrumb"));
 
 		public void OpenBreadcrumbItem(string itemToOpen)
 		{

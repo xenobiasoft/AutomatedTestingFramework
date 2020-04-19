@@ -18,7 +18,7 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			var cssSelector = By.CssSelector(Create<string>());
 			ResolveMock<IElementFinderService>()
 				.Setup(x => x.Find<IElement>(It.IsAny<ISearchContext>(), It.IsAny<By>()))
-				.Returns(ResolveMock<IContentElement>().Object);
+				.Returns(ResolveMock<IElement>().Object);
 
 			// Act
 			var contentElement = Sut.Find<IElement>(cssSelector);
