@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
 
-namespace AutomatedTestingFramework.Tests
+namespace AutomatedTestingFramework.UnitTests
 {
 	public abstract class AutoMockingFixtureByInterface<TTestType, TInterfaceType> : AutoMockingTestFixture where TTestType : class, TInterfaceType
 	{

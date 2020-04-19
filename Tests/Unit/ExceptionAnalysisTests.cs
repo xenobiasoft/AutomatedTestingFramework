@@ -5,7 +5,7 @@ using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace AutomatedTestingFramework.Tests.Core.ExceptionAnalysis
+namespace AutomatedTestingFramework.UnitTests
 {
 	[TestFixture]
 	public class ExceptionAnalysisTests : AutoMockingFixtureByInterface<ExceptionAnalyzer, IExceptionAnalyzer>

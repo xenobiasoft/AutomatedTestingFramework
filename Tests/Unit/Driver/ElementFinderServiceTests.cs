@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Selenium.By;
 using SeleniumBy = OpenQA.Selenium.By;
 
-namespace AutomatedTestingFramework.Tests.Selenium.Driver
+namespace AutomatedTestingFramework.UnitTests.Driver
 {
 	[TestFixture]
 	public class ElementFinderServiceTests : AutoMockingFixtureByInterface<ElementFinderService, IElementFinderService>

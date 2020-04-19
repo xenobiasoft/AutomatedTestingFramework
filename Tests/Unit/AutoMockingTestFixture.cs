@@ -4,7 +4,7 @@ using AutoFixture.AutoMoq;
 using Moq;
 using NUnit.Framework;
 
-namespace AutomatedTestingFramework.Tests
+namespace AutomatedTestingFramework.UnitTests
 {
 	public abstract class AutoMockingTestFixture
 	{

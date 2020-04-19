@@ -6,7 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using By = AutomatedTestingFramework.Selenium.By;
 
-namespace AutomatedTestingFramework.Tests.Selenium.Driver
+namespace AutomatedTestingFramework.UnitTests.Driver
 {
 	[TestFixture]
 	public class SeleniumDriverElementFinderTests : SeleniumDriverTests

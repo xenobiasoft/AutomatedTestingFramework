@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>AutomatedTestingFramework.Tests</AssemblyName>
+    <AssemblyName>AutomatedTestingFramework.UnitTests</AssemblyName>
 
-    <RootNamespace>AutomatedTestingFramework.Tests</RootNamespace>
+    <RootNamespace>AutomatedTestingFramework.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

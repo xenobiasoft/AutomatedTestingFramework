@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace AutomatedTestingFramework.Tests.Selenium.Driver
+namespace AutomatedTestingFramework.UnitTests.Driver
 {
 	[TestFixture]
 	public class SeleniumDriverTests : AutoMockingFixtureByInterface<WebDriver, IDriver>

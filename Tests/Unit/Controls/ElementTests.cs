@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace AutomatedTestingFramework.Tests.Selenium.Controls
+namespace AutomatedTestingFramework.UnitTests.Controls
 {
 	[TestFixture]
 	public class ElementTests : AutoMockingFixtureByInterface<WebElement, IElement>

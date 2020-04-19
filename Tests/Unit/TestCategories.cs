@@ -1,4 +1,4 @@
-﻿namespace AutomatedTestingFramework.Tests
+﻿namespace AutomatedTestingFramework.UnitTests
 {
 	public struct TestCategories
 	{
