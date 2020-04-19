@@ -1,7 +1,7 @@
 using System.Reflection;
 using AutomatedTestingFramework.Selenium.Enums;
 
-namespace AutomatedTestingFramework.Selenium.BehaviorObserver
+namespace AutomatedTestingFramework.Selenium.Interfaces
 {
 	public interface ITestExecutionSubject
 	{

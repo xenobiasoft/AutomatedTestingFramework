@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.Interfaces;
 
 namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {

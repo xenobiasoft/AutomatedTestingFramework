@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutomatedTestingFramework.Selenium.Interfaces;
 
 namespace AutomatedTestingFramework.Selenium.ExceptionAnalysis
 {

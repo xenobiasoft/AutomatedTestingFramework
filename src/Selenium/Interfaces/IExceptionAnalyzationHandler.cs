@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutomatedTestingFramework.Selenium.ExceptionAnalysis
+namespace AutomatedTestingFramework.Selenium.Interfaces
 {
 	public interface IExceptionAnalyzationHandler
 	{

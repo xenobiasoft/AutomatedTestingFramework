@@ -2,6 +2,7 @@
 using System.Reflection;
 using AutomatedTestingFramework.Selenium.Attributes;
 using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace AutomatedTestingFramework.Selenium.BehaviorObserver

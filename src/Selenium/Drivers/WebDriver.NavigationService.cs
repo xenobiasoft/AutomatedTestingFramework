@@ -1,5 +1,6 @@
 ﻿using System;
 using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace AutomatedTestingFramework.Selenium.Drivers

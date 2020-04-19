@@ -1,4 +1,6 @@
-namespace AutomatedTestingFramework.Selenium.BehaviorObserver
+using AutomatedTestingFramework.Selenium.BehaviorObserver;
+
+namespace AutomatedTestingFramework.Selenium.Interfaces
 {
 	public interface ITestObserver
 	{

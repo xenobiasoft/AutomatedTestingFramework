@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
+using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
