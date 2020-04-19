@@ -10,7 +10,7 @@ namespace Bellatrix.Facades
 			AddRocketToShoppingCart(rocketName);
 			ApplyCoupon(couponCode);
 			AssertCouponAppliedSuccessfully();
-			IncreaseProductQuantity(3);
+			IncreaseProductQuantity(quantity);
 			AssertTotalPrice(expectedPrice);
 			ProceedToCheckout();
 			FillBillingInfo(purchaseInfo);

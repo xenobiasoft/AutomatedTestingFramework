@@ -19,17 +19,17 @@ namespace Bellatrix.PageModels.Main
 		public MainPageElements Elements { get; }
 		public MainPageAssertions Asserts { get; }
 
-		public void AddRocketToShoppingCart(string rocketName)
+		public void SelectARocket(string rocketName)
 		{
-			Open();
-			Elements.GetAddToCartByName(rocketName).Click();
-			_waitService.WaitForAjax();
-			Elements.ViewCartButton.Click();
+			Elements
+				.GetProductBoxByName(rocketName)
+				.Click();
+			_waitService.WaitForPageToLoad();
 		}
 
 		protected override void WaitForPageLoad()
 		{
-			_waitService.WaitForElementToExist(Elements.AddToCartFalcon9Button.By);
+			_waitService.WaitForElementToExist(Elements.GetProductBoxByName("Falcon 9").By);
 		}
 	}
 }

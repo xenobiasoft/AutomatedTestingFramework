@@ -15,11 +15,11 @@ namespace Bellatrix.PageModels.Cart
 
 		public ITextBox CouponCodeTextBox => _elementFinder.Find<ITextBox>(By.Id("coupon_code"));
 
-		public IButton ApplyCouponButton => _elementFinder.Find<IButton>(By.CssSelector("[value*='Apply Coupon']"));
+		public IButton ApplyCouponButton => _elementFinder.Find<IButton>(By.Name("apply_coupon"));
 
-		public ITextBox QuantityTextBox => _elementFinder.Find<ITextBox>(By.CssSelector("[class*=input-text qty text]"));
+		public ITextBox QuantityTextBox => _elementFinder.Find<ITextBox>(By.CssClass("qty"));
 
-		public IButton UpdateCartButton => _elementFinder.Find<IButton>(By.CssSelector("[value*='Update Cart']"));
+		public IButton UpdateCartButton => _elementFinder.Find<IButton>(By.Name("update_cart"));
 
 		public ILabel MessageAlert => _elementFinder.Find<ILabel>(By.CssSelector("[class*='woocommerce-message']"));
 

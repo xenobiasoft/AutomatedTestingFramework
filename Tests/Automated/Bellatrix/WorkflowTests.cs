@@ -31,7 +31,7 @@ namespace Bellatrix
 				Phone = "+00498888999281",
 			};
 
-			_purchaseFacade.PurchaseItem("Falcon 9", "happybirthday", 2, "114.00€", purchaseInfo);
+			_purchaseFacade.PurchaseItem("Falcon 9", "happybirthday", 2, "235.00€", purchaseInfo);
 		}
 
 		[Test]
@@ -51,7 +51,7 @@ namespace Bellatrix
 				Phone = "+00498888999281",
 			};
 
-			_purchaseFacade.PurchaseItem("Saturn V", "happybirthday", 2, "355.00€", purchaseInfo);
+			_purchaseFacade.PurchaseItem("Saturn V", "happybirthday", 2, "235.00€", purchaseInfo);
 		}
 	}
 }

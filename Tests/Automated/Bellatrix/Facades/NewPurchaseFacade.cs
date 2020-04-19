@@ -2,18 +2,21 @@
 using Bellatrix.PageModels.Cart;
 using Bellatrix.PageModels.Checkout;
 using Bellatrix.PageModels.Main;
+using Bellatrix.PageModels.Product;
 
 namespace Bellatrix.Facades
 {
 	public class NewPurchaseFacade : PurchaseFacade
 	{
 		private readonly MainPage _mainPage;
+		private readonly ProductPage _productPage;
 		private readonly CartPage _cartPage;
 		private readonly CheckoutPage _checkoutPage;
 
 		public NewPurchaseFacade()
 		{
 			_mainPage = MainPage.Instance;
+			_productPage = ProductPage.Instance;
 			_cartPage = CartPage.Instance;
 			_checkoutPage = CheckoutPage.Instance;
 		}
@@ -21,7 +24,8 @@ namespace Bellatrix.Facades
 		protected override void AddRocketToShoppingCart(string rocketName)
 		{
 			_mainPage.Open();
-			_mainPage.AddRocketToShoppingCart(rocketName);
+			_mainPage.SelectARocket(rocketName);
+			_productPage.AddRocketToShoppingCart();
 		}
 
 		public override void ApplyCoupon(string couponCode)

@@ -9,11 +9,11 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
 	public class BrowserLaunchTestBehaviorObserver : BaseTestObserver
 	{
-		private readonly Driver _driver;
+		private readonly IDriver _driver;
 		private BrowserConfiguration _currentBrowserConfiguration;
 		private BrowserConfiguration _previousBrowserConfiguration;
 
-		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, Driver driver) : base(testExecutionSubject)
+		public BrowserLaunchTestBehaviorObserver(ITestExecutionSubject testExecutionSubject, IDriver driver) : base(testExecutionSubject)
 		{
 			_driver = driver;
 		}

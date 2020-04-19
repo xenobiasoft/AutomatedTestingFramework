@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.BehaviorObserver;
+﻿using AutomatedTestingFramework.Selenium.Attributes;
+using AutomatedTestingFramework.Selenium.BehaviorObserver;
 using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces;
@@ -8,6 +9,7 @@ using NUnit.Framework;
 namespace Bellatrix
 {
 	[TestFixture]
+	[ExecutionBrowser(Browser.Chrome, BrowserBehavior.ReuseIfStarted)]
 	public class BaseTest
 	{
 		public static readonly IDriver Driver;
@@ -17,10 +19,8 @@ namespace Bellatrix
 		static BaseTest()
 		{
 			CurrentTestExecutionSubject = new UnitTestExecutionSubject();
-
 			Driver = LoggingDriver.Instance;
-			Driver.Start(Browser.Chrome);
-			Driver.MaximizeBrowserWindow();
+			new BrowserLaunchTestBehaviorObserver(CurrentTestExecutionSubject, Driver);
 		}
 
 		public TestContext TestContext => TestContext.CurrentContext;
@@ -30,7 +30,7 @@ namespace Bellatrix
 		[SetUp]
 		public void BaseSetup()
 		{
-			var memberInfo = GetType().GetMethod(TestContext.Test.Name);
+			var memberInfo = GetType().GetMethod(TestContext.Test.MethodName);
 			CurrentTestExecutionSubject.PreTestInit(GetTestOutcome(), TestName, memberInfo);
 			Setup();
 			CurrentTestExecutionSubject.PostTestInit(GetTestOutcome(), TestName, memberInfo);
