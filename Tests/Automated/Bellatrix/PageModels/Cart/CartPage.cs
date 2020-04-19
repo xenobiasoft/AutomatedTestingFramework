@@ -39,21 +39,12 @@ namespace Bellatrix.PageModels.Cart
 
 		public void ProceedToCheckout()
 		{
+			_waitService.WaitForElementToBeClickable(Elements.CheckoutButton.By);
 			Elements.CheckoutButton.Click();
-			_waitService.WaitForPageToLoad();
+			_waitService.WaitForAjax();
 		}
 
-		public string GetTotal()
-		{
-			return Elements.Total.Text;
-		}
-
-		public string GetMessageNotification()
-		{
-			return Elements.MessageAlert.Text;
-		}
-
-		protected override string Url => "http://demos.bellatrix.solutions/cart/";
+		protected override string Url => PageUrls.GetPageUrl("cart/");
 
 		protected override void WaitForPageLoad()
 		{

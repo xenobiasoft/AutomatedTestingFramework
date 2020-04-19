@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Drivers;
+﻿using System.Threading;
+using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using Bellatrix.Models;
 
@@ -21,6 +22,8 @@ namespace Bellatrix.PageModels.Checkout
 
 		public void FillBillingInfo(PurchaseInfo purchaseInfo)
 		{
+			Thread.Sleep(4000);
+
 			Elements.BillingFirstName.TypeText(purchaseInfo.FirstName);
 			Elements.BillingLastName.TypeText(purchaseInfo.LastName);
 			Elements.BillingCompany.TypeText(purchaseInfo.Company);
@@ -33,6 +36,7 @@ namespace Bellatrix.PageModels.Checkout
 			Elements.BillingZip.TypeText(purchaseInfo.Zip);
 			Elements.BillingPhone.TypeText(purchaseInfo.Phone);
 			Elements.BillingEmail.TypeText(purchaseInfo.Email);
+
 			if (purchaseInfo.ShouldCreateAccount)
 			{
 				Elements.CreateAccountCheckBox.Click();

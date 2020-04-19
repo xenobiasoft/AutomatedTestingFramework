@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Configuration;
+using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Main
@@ -15,7 +16,7 @@ namespace Bellatrix.PageModels.Main
 			Asserts = new MainPageAssertions(Elements);
 		}
 
-		protected override string Url => "http://demos.bellatrix.solutions/";
+		protected override string Url => ConfigurationService.Instance.GetSettings<WebSettings>("webSettings").BaseUrl;
 		public MainPageElements Elements { get; }
 		public MainPageAssertions Asserts { get; }
 
