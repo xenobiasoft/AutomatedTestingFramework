@@ -28,10 +28,6 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 			{
 				RestartBrowser();
 			}
-			else
-			{
-				_driver.DeleteAllCookies();
-			}
 
 			_previousBrowserConfiguration = _currentBrowserConfiguration;
 		}
