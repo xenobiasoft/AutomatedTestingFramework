@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
-using AutomatedTestingFramework.Selenium.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

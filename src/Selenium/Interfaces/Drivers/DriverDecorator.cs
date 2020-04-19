@@ -131,8 +131,6 @@ namespace AutomatedTestingFramework.Selenium.Interfaces.Drivers
 			set => Driver.ExceptionAnalyzer = value;
 		}
 
-		public override event EventHandler<PageEventArgs> Navigated;
-
 		public override string Source => Driver?.Source;
 
 		public override string Title => Driver?.Title;

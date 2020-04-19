@@ -1,5 +1,6 @@
 ﻿using System;
 using AutomatedTestingFramework.Selenium.Enums;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;

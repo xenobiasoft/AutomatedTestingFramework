@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
-using AutomatedTestingFramework.Selenium.Services;
+using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
 {

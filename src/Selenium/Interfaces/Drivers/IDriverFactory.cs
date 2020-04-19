@@ -1,7 +1,7 @@
 ﻿using AutomatedTestingFramework.Selenium.Enums;
 using OpenQA.Selenium;
 
-namespace AutomatedTestingFramework.Selenium.Drivers
+namespace AutomatedTestingFramework.Selenium.Interfaces.Drivers
 {
 	public interface IDriverFactory
 	{

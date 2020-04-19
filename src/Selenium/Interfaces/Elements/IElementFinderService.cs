@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
-using By = AutomatedTestingFramework.Selenium.By;
 
-namespace AutomatedTestingFramework.Selenium.Services
+namespace AutomatedTestingFramework.Selenium.Interfaces.Elements
 {
 	public interface IElementFinderService
 	{

@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using AutomatedTestingFramework.Selenium.Enums;
 
-namespace AutomatedTestingFramework.Selenium.ExecutionEngine
+namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
 	public class TestExecutionEventArgs : EventArgs
 	{

@@ -1,7 +1,6 @@
 ﻿using AutomatedTestingFramework.Selenium.BehaviorObserver;
 using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Enums;
-using AutomatedTestingFramework.Selenium.ExecutionEngine;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using NUnit.Framework;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
 
-namespace AutomatedTestingFramework.Selenium.Services
+namespace AutomatedTestingFramework.Selenium.Elements
 {
 	public class ElementFinderService : IElementFinderService
 	{

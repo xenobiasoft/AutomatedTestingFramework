@@ -6,8 +6,6 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	public partial class WebDriver : Driver, INavigationService
 	{
-		public override event EventHandler<PageEventArgs> Navigated;
-
 		public override void GoToUrl(string url)
 		{
 			try
@@ -19,11 +17,6 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 				ExceptionAnalyzer.Analyze(ex, this);
 				throw;
 			}
-		}
-
-		private void RaiseNavigated(string url)
-		{
-			Navigated?.Invoke(this, new PageEventArgs(url));
 		}
 
 		public override string Url => _driver.Url;

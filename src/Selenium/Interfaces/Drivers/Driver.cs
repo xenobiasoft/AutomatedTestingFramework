@@ -11,7 +11,6 @@ namespace AutomatedTestingFramework.Selenium.Interfaces.Drivers
 		public abstract TElement Find<TElement>(By by) where TElement : class, IElement;
 		public abstract IEnumerable<TElement> FindAll<TElement>(By by) where TElement : class, IElement;
 		public abstract bool IsElementPresent(By by);
-		public abstract event EventHandler<PageEventArgs> Navigated;
 		public abstract string Url { get; }
 		public abstract string Title { get; }
 		public abstract IExceptionAnalyzer ExceptionAnalyzer { get; set; }
