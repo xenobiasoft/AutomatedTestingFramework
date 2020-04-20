@@ -14,20 +14,13 @@ namespace Bellatrix
 			_purchaseFacade = new NewPurchaseFacade();
 		}
 
-		[Test]
-		public void PurchaseFalcon9WithFacade()
+		[TestCase("Falcon 9", "happybirthday", 2, "114.00€")]
+		[TestCase("Saturn V", "happybirthday", 3, "355.00€")]
+		public void PurchaseRocket(string rocketName, string couponCode, int quantity, string expectedPrice)
 		{
 			var purchaseInfo = new PurchaseInfo();
 
-			_purchaseFacade.PurchaseItem("Falcon 9", "happybirthday", 2, "235.00€", purchaseInfo);
-		}
-
-		[Test]
-		public void PurchaseSaturnVWithFacade()
-		{
-			var purchaseInfo = new PurchaseInfo();
-
-			_purchaseFacade.PurchaseItem("Saturn V", "happybirthday", 2, "235.00€", purchaseInfo);
+			_purchaseFacade.PurchaseItem(rocketName, couponCode, quantity, expectedPrice, purchaseInfo);
 		}
 	}
 }
