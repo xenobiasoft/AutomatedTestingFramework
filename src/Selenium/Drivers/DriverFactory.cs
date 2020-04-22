@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomatedTestingFramework.Selenium.Configuration;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using OpenQA.Selenium;
@@ -14,25 +15,56 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	internal class DriverFactory : IDriverFactory
 	{
-		private static readonly string DriverLocation = Environment.CurrentDirectory;
+		private static readonly WebSettings _webSettings;
+
+		static DriverFactory()
+		{
+			_webSettings = ConfigurationService.Instance.GetSettings<WebSettings>("webSettings");
+		}
 
 		public IWebDriver CreateDriver(Browser browser)
 		{
-			switch (browser)
+			if (_webSettings.EnableAutoConfiguredDriver)
 			{
-				case Browser.Chrome:
-					new DriverManager().SetUpDriver(new ChromeConfig());
-					return new ChromeDriver();
-				case Browser.Edge:
-					return new EdgeDriver(DriverLocation);
-				case Browser.Firefox:
-					return new FirefoxDriver(DriverLocation);
-				case Browser.InternetExplorer:
-					return new InternetExplorerDriver(DriverLocation);
-				case Browser.Safari:
-					return new SafariDriver(DriverLocation);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
+				var driverManager = new DriverManager();
+
+				switch (browser)
+				{
+					case Browser.Chrome:
+						driverManager.SetUpDriver(new ChromeConfig());
+						return new ChromeDriver();
+					case Browser.Edge:
+						driverManager.SetUpDriver(new EdgeConfig());
+						return new EdgeDriver();
+					case Browser.Firefox:
+						driverManager.SetUpDriver(new FirefoxConfig());
+						return new FirefoxDriver();
+					case Browser.InternetExplorer:
+						driverManager.SetUpDriver(new InternetExplorerConfig());
+						return new InternetExplorerDriver();
+					case Browser.Safari:
+						throw new ApplicationException("Safari cannot be auto-configured");
+					default:
+						throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
+				}
+			}
+			else
+			{
+				switch (browser)
+				{
+					case Browser.Chrome:
+						return new ChromeDriver(_webSettings.DriverPath);
+					case Browser.Edge:
+						return new EdgeDriver(_webSettings.DriverPath);
+					case Browser.Firefox:
+						return new FirefoxDriver(_webSettings.DriverPath);
+					case Browser.InternetExplorer:
+						return new InternetExplorerDriver(_webSettings.DriverPath);
+					case Browser.Safari:
+						return new SafariDriver(_webSettings.DriverPath);
+					default:
+						throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
+				}
 			}
 		}
 	}

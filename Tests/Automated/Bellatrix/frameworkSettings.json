@@ -1,7 +1,9 @@
 {
 	"webSettings": {
 		"baseUrl": "http://demos.bellatrix.solutions/",
+		"driverPath": "E:\\Github\\AutomatedTestingFramework\\Tests\\Automated\\Bellatrix\\Drivers",
 		"elementWaitTime": 30,
+		"enableAutoConfiguredDriver": false,
 		"chrome": {
 			"pageLoadTimeout": 60,
 			"scriptTimeout": 5

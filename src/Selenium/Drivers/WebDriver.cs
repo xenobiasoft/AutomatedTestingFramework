@@ -12,7 +12,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 		private WebDriverWait _webDriverWait;
 		private readonly IDriverFactory _driverFactory;
 
-		public WebDriver(IElementFinderService elementFinderService, IDriverFactory driverFactory)
+		internal WebDriver(IElementFinderService elementFinderService, IDriverFactory driverFactory)
 		{
 			_driverFactory = driverFactory;
 			ElementFinderService = elementFinderService;
