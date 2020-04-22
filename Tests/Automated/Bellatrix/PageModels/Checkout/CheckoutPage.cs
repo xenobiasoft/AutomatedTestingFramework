@@ -11,7 +11,7 @@ namespace Bellatrix.PageModels.Checkout
 
 		public CheckoutPage()
 		{
-			var driver = LoggingDriver.Instance;
+			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new CheckoutPageElements(driver);
 			Asserts = new CheckoutPageAssertions(Elements);

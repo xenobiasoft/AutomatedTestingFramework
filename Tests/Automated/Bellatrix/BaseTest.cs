@@ -19,7 +19,7 @@ namespace Bellatrix
 		static BaseTest()
 		{
 			CurrentTestExecutionSubject = new UnitTestExecutionSubject();
-			Driver = LoggingDriver.Instance;
+			Driver = WebDriverFactory.Instance;
 			new BrowserLaunchTestBehaviorObserver(CurrentTestExecutionSubject, Driver);
 		}
 

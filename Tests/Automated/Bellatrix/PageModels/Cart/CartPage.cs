@@ -14,7 +14,7 @@ namespace Bellatrix.PageModels.Cart
 
 		public CartPage()
 		{
-			var driver = LoggingDriver.Instance;
+			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new CartPageElements(ElementFinder);
 			Asserts = new CartPageAssertions(Elements);

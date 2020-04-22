@@ -12,7 +12,7 @@ namespace Bellatrix
 
 		public App(Browser browser = Browser.Chrome)
 		{
-			_driver = LoggingDriver.Instance;
+			_driver = WebDriverFactory.Instance;
 			_driver.Start(browser);
 			BrowserService = _driver;
 			CookieService = _driver;

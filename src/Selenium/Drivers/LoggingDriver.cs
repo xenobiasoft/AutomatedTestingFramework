@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutomatedTestingFramework.Selenium.Elements;
 using AutomatedTestingFramework.Selenium.Enums;
-using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
@@ -11,19 +9,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	public class LoggingDriver : DriverDecorator
 	{
-		private static LoggingDriver _instance;
-
-		public static LoggingDriver Instance =>
-			_instance ??= new LoggingDriver(new WebDriver(new ElementFinderService(), new DriverFactory()))
-			{
-				ExceptionAnalyzer = new ExceptionAnalyzer(new List<IExceptionAnalyzationHandler>
-				{
-					new ServiceUnavailableExceptionHandler(),
-					new FileNotFoundExceptionHandler()
-				})
-			};
-
-		private LoggingDriver(Driver driver) : base(driver)
+		internal LoggingDriver(Driver driver) : base(driver)
 		{
 		}
 

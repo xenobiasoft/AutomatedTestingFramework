@@ -9,7 +9,7 @@ namespace Bellatrix.PageModels
 
 		protected NavigatableEShopPage()
 		{
-			NavigationService = LoggingDriver.Instance;
+			NavigationService = WebDriverFactory.Instance;
 		}
 
 		protected abstract string Url { get; }

@@ -9,7 +9,7 @@ namespace Bellatrix.PageModels.Product
 
 		public ProductPage()
 		{
-			var driver = LoggingDriver.Instance;
+			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new ProductPageElements(driver);
 			Asserts = new ProductPageAssertions(Elements);

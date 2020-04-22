@@ -12,7 +12,7 @@ namespace Bellatrix.PageModels
 
 		protected EShopPage()
 		{
-			ElementFinder = LoggingDriver.Instance;
+			ElementFinder = WebDriverFactory.Instance;
 			SearchSection = new SearchSection(ElementFinder);
 			MainMenuSection = new MainMenuSection(ElementFinder);
 			CartInfoSection = new CartInfoSection(ElementFinder);

@@ -10,7 +10,7 @@ namespace Bellatrix.PageModels.Main
 
 		public MainPage()
 		{
-			var driver = LoggingDriver.Instance;
+			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new MainPageElements(driver);
 			Asserts = new MainPageAssertions(Elements);
