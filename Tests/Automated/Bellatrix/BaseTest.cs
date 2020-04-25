@@ -20,9 +20,9 @@ namespace Bellatrix
 		static BaseTest()
 		{
 			_scope = Container.Root.BeginLifetimeScope();
-			_currentTestExecutionSubject = _scope.Resolve<ITestExecutionSubject>();
 			Driver = _scope.Resolve<IDriver>();
 			_scope.Resolve<IEnumerable<ITestObserver>>();
+			_currentTestExecutionSubject = _scope.Resolve<ITestExecutionSubject>();
 		}
 
 		public TestContext TestContext => TestContext.CurrentContext;

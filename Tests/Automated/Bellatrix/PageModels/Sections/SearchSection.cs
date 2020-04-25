@@ -4,11 +4,11 @@ using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace Bellatrix.PageModels.Sections
 {
-	public class SearchSection : EShopPage<SearchSection>
+	public class SearchSection
 	{
 		private readonly IElementFinder _elementFinder;
 
-		public SearchSection(IElementFinder elementFinder) : base(elementFinder)
+		public SearchSection(IElementFinder elementFinder)
 		{
 			_elementFinder = elementFinder;
 		}

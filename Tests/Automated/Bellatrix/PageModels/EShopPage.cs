@@ -10,9 +10,9 @@ namespace Bellatrix.PageModels
 		protected EShopPage(IElementFinder elementFinder)
 		{
 			ElementFinder = elementFinder;
-			SearchSection = new SearchSection(ElementFinder);
-			MainMenuSection = new MainMenuSection(ElementFinder);
-			CartInfoSection = new CartInfoSection(ElementFinder);
+			SearchSection = new SearchSection(elementFinder);
+			MainMenuSection = new MainMenuSection(elementFinder);
+			CartInfoSection = new CartInfoSection(elementFinder);
 		}
 
 		public SearchSection SearchSection { get; }

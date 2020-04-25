@@ -17,9 +17,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 	{
 		private readonly AppSettings _appSettings;
 
-		public DriverFactory(AppSettings appSettings)
-		{
-		}
+		public DriverFactory(AppSettings appSettings) => _appSettings = appSettings;
 
 		public IWebDriver CreateDriver(Browser browser)
 		{

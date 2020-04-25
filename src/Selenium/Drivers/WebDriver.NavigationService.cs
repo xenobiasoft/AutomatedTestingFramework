@@ -1,5 +1,4 @@
 ﻿using System;
-using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
@@ -15,7 +14,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			}
 			catch (Exception ex)
 			{
-				ExceptionAnalyzer.Analyze(ex, this);
+				ExceptionAnalyzer?.Analyze(ex, this);
 				throw;
 			}
 		}

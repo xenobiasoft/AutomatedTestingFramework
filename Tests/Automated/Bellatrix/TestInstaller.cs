@@ -9,11 +9,11 @@ namespace Bellatrix
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterAssemblyTypes(ThisAssembly)
-				.Where(x => x.IsAssignableFrom(typeof(EShopPage<>)))
+				.AsClosedTypesOf(typeof(EShopPage<>))
 				.AsSelf()
 				.InstancePerDependency();
 			builder.RegisterAssemblyTypes(ThisAssembly)
-				.Where(x => x.IsAssignableFrom(typeof(PurchaseFacade)))
+				.AssignableTo<PurchaseFacade>()
 				.AsSelf()
 				.InstancePerDependency();
 		}

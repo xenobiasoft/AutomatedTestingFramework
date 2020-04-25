@@ -6,7 +6,7 @@ namespace Bellatrix.PageModels
 	{
 		public static string GetPageUrl(string partialPageUrl)
 		{
-			return $"{ConfigurationService.Instance.GetSettings<AppSettings>("webSettings").BaseUrl}{partialPageUrl}";
+			return $"{ConfigurationService.Instance.GetSettings<AppSettings>("appSettings").BaseUrl}{partialPageUrl}";
 		}
 	}
 }

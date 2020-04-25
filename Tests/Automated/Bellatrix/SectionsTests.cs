@@ -1,9 +1,12 @@
-﻿using Bellatrix.PageModels.Main;
+﻿using AutomatedTestingFramework.Selenium.Attributes;
+using AutomatedTestingFramework.Selenium.Enums;
+using Bellatrix.PageModels.Main;
 using NUnit.Framework;
 
 namespace Bellatrix
 {
 	[TestFixture]
+	[ExecutionBrowser(Browser.Chrome, BrowserBehavior.ReuseIfStarted)]
 	public class SectionsTests : BaseTest
 	{
 		[TestCase("Falcon 9", "falcon-9")]

@@ -6,24 +6,24 @@ namespace AutomatedTestingFramework.Selenium.ExceptionAnalysis
 {
 	public class ExceptionAnalyzer : IExceptionAnalyzer
 	{
-		private readonly List<IExceptionAnalyzationHandler> _exceptionAnalyzationHandlers;
+		private readonly List<IExceptionAnalyzationHandler> _exceptionHandlers;
 
-		public ExceptionAnalyzer(IEnumerable<IExceptionAnalyzationHandler> exceptionAnalyzationHandlers)
+		public ExceptionAnalyzer(IEnumerable<IExceptionAnalyzationHandler> exceptionHandlers)
 		{
-			_exceptionAnalyzationHandlers = new List<IExceptionAnalyzationHandler>();
+			_exceptionHandlers = new List<IExceptionAnalyzationHandler>();
 
-			foreach (var exceptionAnalyzationHandler in exceptionAnalyzationHandlers)
+			foreach (var exceptionHandler in exceptionHandlers)
 			{
-				_exceptionAnalyzationHandlers.Add(exceptionAnalyzationHandler);
+				_exceptionHandlers.Add(exceptionHandler);
 			}
 		}
 
 		public ExceptionAnalyzer() : this(new List<IExceptionAnalyzationHandler>())
-		{}
+		{ }
 
 		public void Analyze(Exception ex = null, params object[] context)
 		{
-			foreach (var exceptionHandler in _exceptionAnalyzationHandlers)
+			foreach (var exceptionHandler in _exceptionHandlers)
 			{
 				if (exceptionHandler.IsApplicable(ex, context))
 				{
@@ -34,7 +34,7 @@ namespace AutomatedTestingFramework.Selenium.ExceptionAnalysis
 
 		public void AddExceptionAnalyzationHandler<THandler>(THandler exceptionAnalyzationHandler) where THandler : IExceptionAnalyzationHandler
 		{
-			_exceptionAnalyzationHandlers.Insert(0, exceptionAnalyzationHandler);
+			_exceptionHandlers.Insert(0, exceptionAnalyzationHandler);
 		}
 
 		public void AddExceptionAnalyzationHandler(string textToSearchInSource, string detailedIssueExplanation)

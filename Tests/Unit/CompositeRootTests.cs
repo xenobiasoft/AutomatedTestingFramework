@@ -25,7 +25,7 @@ namespace AutomatedTestingFramework.UnitTests
 			{
 				var registrationServices = registration
 					.Services
-					.Where(x => !x.Description.StartsWith("Decorator"))
+					.Where(x => !x.Description.StartsWith("Decorator") && !x.Description.StartsWith("exceptionHandlers"))
 					.ToList();
 				foreach (var service in registrationServices)
 				{

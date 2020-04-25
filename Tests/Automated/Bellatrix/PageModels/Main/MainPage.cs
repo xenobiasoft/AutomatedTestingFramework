@@ -14,7 +14,7 @@ namespace Bellatrix.PageModels.Main
 			Asserts = new MainPageAssertions(Elements);
 		}
 
-		protected override string Url => ConfigurationService.Instance.GetSettings<AppSettings>("webSettings").BaseUrl;
+		protected override string Url => ConfigurationService.Instance.GetSettings<AppSettings>("appSettings").BaseUrl;
 		public MainPageElements Elements { get; }
 		public MainPageAssertions Asserts { get; }
 

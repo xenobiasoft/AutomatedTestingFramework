@@ -20,13 +20,12 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 				.SingleInstance();
 
 			builder.RegisterAssemblyTypes(ThisAssembly)
-				.Where(x => x.IsAssignableFrom(typeof(IExceptionAnalyzationHandler)))
-				.As<IExceptionAnalyzationHandler>()
-				.InstancePerDependency();
-			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>();
+				.Named<IExceptionAnalyzationHandler>("exceptionHandlers")
+				.SingleInstance();
+			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>().SingleInstance();
 
-			builder.RegisterType<ElementFinderService>().As<IElementFinderService>();
-			builder.RegisterType<DriverFactory>().As<IDriverFactory>();
+			builder.RegisterType<ElementFinderService>().As<IElementFinderService>().SingleInstance();
+			builder.RegisterType<DriverFactory>().As<IDriverFactory>().SingleInstance();
 
 			builder.RegisterType<WebDriver>()
 				.As<IDriver>()
@@ -38,12 +37,12 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 				.As<IJavascriptInvoker>()
 				.As<INavigationService>()
 				.As<Driver>()
-				.InstancePerLifetimeScope();
+				.SingleInstance();
 
 			builder.RegisterDecorator<LoggingDriver, IDriver>();
 
-			builder.RegisterType<UnitTestExecutionSubject>().As<ITestExecutionSubject>();
-			builder.RegisterType<BrowserLaunchTestBehaviorObserver>().As<ITestObserver>();
+			builder.RegisterType<UnitTestExecutionSubject>().As<ITestExecutionSubject>().SingleInstance();
+			builder.RegisterType<BrowserLaunchTestBehaviorObserver>().As<ITestObserver>().SingleInstance();
 		}
 	}
 }
