@@ -4,11 +4,11 @@ using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace Bellatrix.PageModels.Sections
 {
-	public class MainMenuSection
+	public class MainMenuSection : EShopPage<MainMenuSection>
 	{
 		private readonly IElementFinder _elementFinder;
 
-		public MainMenuSection(IElementFinder elementFinder)
+		public MainMenuSection(IElementFinder elementFinder) : base(elementFinder)
 		{
 			_elementFinder = elementFinder;
 		}

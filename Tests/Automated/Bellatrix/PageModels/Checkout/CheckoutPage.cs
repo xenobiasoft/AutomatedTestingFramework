@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using Bellatrix.Models;
 
@@ -9,9 +8,8 @@ namespace Bellatrix.PageModels.Checkout
 	{
 		private readonly IElementWaitService _waitService;
 
-		public CheckoutPage()
+		public CheckoutPage(IDriver driver) : base(driver)
 		{
-			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new CheckoutPageElements(driver);
 			Asserts = new CheckoutPageAssertions(Elements);

@@ -13,12 +13,12 @@ namespace Bellatrix.Facades
 		private readonly CartPage _cartPage;
 		private readonly CheckoutPage _checkoutPage;
 
-		public NewPurchaseFacade()
+		public NewPurchaseFacade(MainPage mainPage, ProductPage productPage, CartPage cartPage, CheckoutPage checkoutPage)
 		{
-			_mainPage = MainPage.Instance;
-			_productPage = ProductPage.Instance;
-			_cartPage = CartPage.Instance;
-			_checkoutPage = CheckoutPage.Instance;
+			_checkoutPage = checkoutPage;
+			_cartPage = cartPage;
+			_productPage = productPage;
+			_mainPage = mainPage;
 		}
 
 		protected override void AddRocketToShoppingCart(string rocketName)

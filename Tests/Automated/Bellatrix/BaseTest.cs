@@ -1,6 +1,6 @@
-﻿using AutomatedTestingFramework.Selenium.Attributes;
-using AutomatedTestingFramework.Selenium.BehaviorObserver;
-using AutomatedTestingFramework.Selenium.Drivers;
+﻿using System.Collections.Generic;
+using Autofac;
+using AutomatedTestingFramework.Selenium.Attributes;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
@@ -14,41 +14,46 @@ namespace Bellatrix
 	{
 		public static readonly IDriver Driver;
 
-		private static readonly ITestExecutionSubject CurrentTestExecutionSubject;
+		private static readonly ITestExecutionSubject _currentTestExecutionSubject;
+		private static readonly ILifetimeScope _scope;
 
 		static BaseTest()
 		{
-			CurrentTestExecutionSubject = new UnitTestExecutionSubject();
-			Driver = WebDriverFactory.Instance;
-			new BrowserLaunchTestBehaviorObserver(CurrentTestExecutionSubject, Driver);
+			_scope = Container.Root.BeginLifetimeScope();
+			_currentTestExecutionSubject = _scope.Resolve<ITestExecutionSubject>();
+			Driver = _scope.Resolve<IDriver>();
+			_scope.Resolve<IEnumerable<ITestObserver>>();
 		}
 
 		public TestContext TestContext => TestContext.CurrentContext;
 
 		public string TestName => TestContext.Test.Name;
 
+		protected TPage GetPage<TPage>() => _scope.Resolve<TPage>();
+
 		[SetUp]
 		public void BaseSetup()
 		{
 			var memberInfo = GetType().GetMethod(TestContext.Test.MethodName);
-			CurrentTestExecutionSubject.PreTestInit(GetTestOutcome(), TestName, memberInfo);
+			_currentTestExecutionSubject.PreTestInit(GetTestOutcome(), TestName, memberInfo);
 			Setup();
-			CurrentTestExecutionSubject.PostTestInit(GetTestOutcome(), TestName, memberInfo);
+			_currentTestExecutionSubject.PostTestInit(GetTestOutcome(), TestName, memberInfo);
 		}
 
 		[TearDown]
 		public void BaseTearDown()
 		{
 			var memberInfo = GetType().GetMethod(TestContext.Test.Name);
-			CurrentTestExecutionSubject.PreTestCleanup(GetTestOutcome(), TestName, memberInfo);
+			_currentTestExecutionSubject.PreTestCleanup(GetTestOutcome(), TestName, memberInfo);
 			TearDown();
-			CurrentTestExecutionSubject.PostTestCleanup(GetTestOutcome(), TestName, memberInfo);
+			_currentTestExecutionSubject.PostTestCleanup(GetTestOutcome(), TestName, memberInfo);
 		}
 
 		[OneTimeTearDown]
 		public void OneTimeTearDown()
 		{
 			Driver?.Quit();
+			_scope.Dispose();
 		}
 
 		public virtual void Setup()

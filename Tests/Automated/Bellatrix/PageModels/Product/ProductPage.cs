@@ -1,5 +1,4 @@
-﻿using AutomatedTestingFramework.Selenium.Drivers;
-using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Product
 {
@@ -7,9 +6,8 @@ namespace Bellatrix.PageModels.Product
 	{
 		private readonly IElementWaitService _waitService;
 
-		public ProductPage()
+		public ProductPage(IDriver driver) : base(driver)
 		{
-			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new ProductPageElements(driver);
 			Asserts = new ProductPageAssertions(Elements);

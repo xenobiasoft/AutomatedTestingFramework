@@ -11,7 +11,7 @@ namespace Bellatrix
 
 		public override void Setup()
 		{
-			_purchaseFacade = new NewPurchaseFacade();
+			_purchaseFacade = GetPage<NewPurchaseFacade>();
 		}
 
 		[TestCase("Falcon 9", "happybirthday", 2, "114.00€")]

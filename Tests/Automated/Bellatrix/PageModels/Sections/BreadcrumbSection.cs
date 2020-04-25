@@ -4,20 +4,20 @@ using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace Bellatrix.PageModels.Sections
 {
-	public class BreadcrumbSection
+	public class BreadcrumbSection : EShopPage<BreadcrumbSection>
 	{
-		private readonly IDriver _driver;
+		private readonly IElementFinder _elementFinder;
 
-		public BreadcrumbSection(IDriver driver)
+		public BreadcrumbSection(IElementFinder elementFinder) : base(elementFinder)
 		{
-			_driver = driver;
+			_elementFinder = elementFinder;
 		}
 
-		private IElement Breadcrumb => _driver.Find<IElement>(By.CssClass("woocommerce-breadcrumb"));
+		private IElement Breadcrumb => _elementFinder.Find<IElement>(By.CssClass("woocommerce-breadcrumb"));
 
 		public void OpenBreadcrumbItem(string itemToOpen)
 		{
-			_driver.Find<IAnchor>(By.LinkText(itemToOpen, Breadcrumb)).Click();
+			_elementFinder.Find<IAnchor>(By.LinkText(itemToOpen, Breadcrumb)).Click();
 		}
 	}
 }

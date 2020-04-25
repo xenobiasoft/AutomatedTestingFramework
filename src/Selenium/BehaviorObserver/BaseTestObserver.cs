@@ -4,12 +4,9 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 {
 	public class BaseTestObserver : ITestObserver
 	{
-		private readonly ITestExecutionSubject _testExecutionProvider;
-
 		public BaseTestObserver(ITestExecutionSubject testExecutionProvider)
 		{
-			_testExecutionProvider = testExecutionProvider;
-			_testExecutionProvider.Attach(this);
+			testExecutionProvider.Attach(this);
 		}
 
 		public virtual void PreTestInit(object sender, TestExecutionEventArgs e)

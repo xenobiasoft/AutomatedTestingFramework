@@ -4,11 +4,11 @@ using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace Bellatrix.PageModels.Sections
 {
-	public class CartInfoSection
+	public class CartInfoSection : EShopPage<CartInfoSection>
 	{
 		private readonly IElementFinder _elementFinder;
 
-		public CartInfoSection(IElementFinder elementFinder)
+		public CartInfoSection(IElementFinder elementFinder) : base(elementFinder)
 		{
 			_elementFinder = elementFinder;
 		}

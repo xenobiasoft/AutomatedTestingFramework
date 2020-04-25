@@ -10,8 +10,9 @@ namespace Bellatrix
 		[TestCase("Saturn V", "saturn-v")]
 		public void LinkAddsCorrectProduct(string linkText, string productName)
 		{
-			MainPage.Instance.Open();
-			MainPage.Instance.Asserts.AssertProductBoxLink(linkText, $"http://demos.bellatrix.solutions/product/{productName}/");
+			var mainPage = GetPage<MainPage>();
+			mainPage.Open();
+			mainPage.Asserts.AssertProductBoxLink(linkText, $"http://demos.bellatrix.solutions/product/{productName}/");
 		}
 	}
 }

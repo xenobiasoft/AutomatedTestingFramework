@@ -1,5 +1,4 @@
 ﻿using System;
-using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
@@ -8,12 +7,11 @@ namespace Bellatrix
 	public class App : IDisposable
 	{
 		private readonly IDriver _driver;
-		private bool _disposed = false;
+		private bool _disposed;
 
-		public App(Browser browser = Browser.Chrome)
+		public App(IDriver driver, Browser browser = Browser.Chrome)
 		{
-			_driver = WebDriverFactory.Instance;
-			_driver.Start(browser);
+			_driver = driver;
 			BrowserService = _driver;
 			CookieService = _driver;
 			DialogService = _driver;

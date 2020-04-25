@@ -9,9 +9,8 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	public class LoggingDriver : DriverDecorator
 	{
-		internal LoggingDriver(Driver driver) : base(driver)
-		{
-		}
+		public LoggingDriver(Driver driver) : base(driver)
+		{ }
 
 		public override void Start(Browser browser)
 		{

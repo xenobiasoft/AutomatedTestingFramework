@@ -1,9 +1,9 @@
 {
-	"webSettings": {
+	"appSettings": {
 		"baseUrl": "http://demos.bellatrix.solutions/",
-		"driverPath": "E:\\Github\\AutomatedTestingFramework\\Tests\\Automated\\Bellatrix\\Drivers",
+		"driverPath": "E:\\Github\\AutomatedTestingFramework\\Drivers",
 		"elementWaitTime": 30,
-		"enableAutoConfiguredDriver": false,
+		"enableAutoBrowserConfiguration": false,
 		"chrome": {
 			"pageLoadTimeout": 60,
 			"scriptTimeout": 5

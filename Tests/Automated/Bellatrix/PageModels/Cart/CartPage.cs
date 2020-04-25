@@ -1,20 +1,14 @@
-﻿using System;
-using AutomatedTestingFramework.Selenium.Drivers;
-using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+﻿using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Cart
 {
 	public class CartPage : NavigatableEShopPage<CartPage>
 	{
-		private static readonly Lazy<CartPage> Lazy = new Lazy<CartPage>(() => new CartPage());
-
-		public static CartPage Instance => Lazy.Value;
-
 		private readonly IElementWaitService _waitService;
 
-		public CartPage()
+		public CartPage(IElementWaitService waitService) : base(waitService as INavigationService)
 		{
-			var driver = WebDriverFactory.Instance;
+			var driver = waitService;
 			_waitService = driver;
 			Elements = new CartPageElements(ElementFinder);
 			Asserts = new CartPageAssertions(Elements);

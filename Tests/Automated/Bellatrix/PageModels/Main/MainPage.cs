@@ -1,5 +1,4 @@
 ﻿using AutomatedTestingFramework.Selenium.Configuration;
-using AutomatedTestingFramework.Selenium.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Main
@@ -8,15 +7,14 @@ namespace Bellatrix.PageModels.Main
 	{
 		private readonly IElementWaitService _waitService;
 
-		public MainPage()
+		public MainPage(IDriver driver) : base(driver)
 		{
-			var driver = WebDriverFactory.Instance;
 			_waitService = driver;
 			Elements = new MainPageElements(driver);
 			Asserts = new MainPageAssertions(Elements);
 		}
 
-		protected override string Url => ConfigurationService.Instance.GetSettings<WebSettings>("webSettings").BaseUrl;
+		protected override string Url => ConfigurationService.Instance.GetSettings<AppSettings>("webSettings").BaseUrl;
 		public MainPageElements Elements { get; }
 		public MainPageAssertions Asserts { get; }
 

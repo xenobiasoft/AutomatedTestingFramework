@@ -15,16 +15,16 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	internal class DriverFactory : IDriverFactory
 	{
-		private static readonly WebSettings _webSettings;
+		private static readonly AppSettings AppSettings;
 
 		static DriverFactory()
 		{
-			_webSettings = ConfigurationService.Instance.GetSettings<WebSettings>("webSettings");
+			AppSettings = ConfigurationService.Instance.GetSettings<AppSettings>("webSettings");
 		}
 
 		public IWebDriver CreateDriver(Browser browser)
 		{
-			if (_webSettings.EnableAutoConfiguredDriver)
+			if (AppSettings.EnableAutoBrowserConfiguration)
 			{
 				var driverManager = new DriverManager();
 
@@ -48,23 +48,21 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 						throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
 				}
 			}
-			else
+
+			switch (browser)
 			{
-				switch (browser)
-				{
-					case Browser.Chrome:
-						return new ChromeDriver(_webSettings.DriverPath);
-					case Browser.Edge:
-						return new EdgeDriver(_webSettings.DriverPath);
-					case Browser.Firefox:
-						return new FirefoxDriver(_webSettings.DriverPath);
-					case Browser.InternetExplorer:
-						return new InternetExplorerDriver(_webSettings.DriverPath);
-					case Browser.Safari:
-						return new SafariDriver(_webSettings.DriverPath);
-					default:
-						throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
-				}
+				case Browser.Chrome:
+					return new ChromeDriver(AppSettings.DriverPath);
+				case Browser.Edge:
+					return new EdgeDriver(AppSettings.DriverPath);
+				case Browser.Firefox:
+					return new FirefoxDriver(AppSettings.DriverPath);
+				case Browser.InternetExplorer:
+					return new InternetExplorerDriver(AppSettings.DriverPath);
+				case Browser.Safari:
+					return new SafariDriver(AppSettings.DriverPath);
+				default:
+					throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
 			}
 		}
 	}
