@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutomatedTestingFramework.Selenium.Enums;
-using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 
 namespace AutomatedTestingFramework.Selenium.Interfaces.Drivers

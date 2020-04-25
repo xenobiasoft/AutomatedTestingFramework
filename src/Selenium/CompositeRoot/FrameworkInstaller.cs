@@ -15,10 +15,14 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterType<ConfigurationService>().SingleInstance();
-			builder.Register(x => x.Resolve<ConfigurationService>().GetSettings<AppSettings>("appSettings"));
+			builder.Register(x => x.Resolve<ConfigurationService>().GetSettings<AppSettings>("appSettings"))
+				.As<AppSettings>()
+				.SingleInstance();
 
-			builder.RegisterType<ServiceUnavailableExceptionHandler>().As<IExceptionAnalyzationHandler>();
-			builder.RegisterType<FileNotFoundExceptionHandler>().As<IExceptionAnalyzationHandler>();
+			builder.RegisterAssemblyTypes(ThisAssembly)
+				.Where(x => x.IsAssignableFrom(typeof(IExceptionAnalyzationHandler)))
+				.As<IExceptionAnalyzationHandler>()
+				.InstancePerDependency();
 			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>();
 
 			builder.RegisterType<ElementFinderService>().As<IElementFinderService>();
@@ -33,6 +37,7 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 				.As<IElementWaitService>()
 				.As<IJavascriptInvoker>()
 				.As<INavigationService>()
+				.As<Driver>()
 				.InstancePerLifetimeScope();
 
 			builder.RegisterDecorator<LoggingDriver, IDriver>();

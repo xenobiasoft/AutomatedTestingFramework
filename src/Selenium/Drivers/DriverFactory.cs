@@ -15,16 +15,15 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 {
 	internal class DriverFactory : IDriverFactory
 	{
-		private static readonly AppSettings AppSettings;
+		private readonly AppSettings _appSettings;
 
-		static DriverFactory()
+		public DriverFactory(AppSettings appSettings)
 		{
-			AppSettings = ConfigurationService.Instance.GetSettings<AppSettings>("webSettings");
 		}
 
 		public IWebDriver CreateDriver(Browser browser)
 		{
-			if (AppSettings.EnableAutoBrowserConfiguration)
+			if (_appSettings.EnableAutoBrowserConfiguration)
 			{
 				var driverManager = new DriverManager();
 
@@ -52,15 +51,15 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			switch (browser)
 			{
 				case Browser.Chrome:
-					return new ChromeDriver(AppSettings.DriverPath);
+					return new ChromeDriver(_appSettings.DriverPath);
 				case Browser.Edge:
-					return new EdgeDriver(AppSettings.DriverPath);
+					return new EdgeDriver(_appSettings.DriverPath);
 				case Browser.Firefox:
-					return new FirefoxDriver(AppSettings.DriverPath);
+					return new FirefoxDriver(_appSettings.DriverPath);
 				case Browser.InternetExplorer:
-					return new InternetExplorerDriver(AppSettings.DriverPath);
+					return new InternetExplorerDriver(_appSettings.DriverPath);
 				case Browser.Safari:
-					return new SafariDriver(AppSettings.DriverPath);
+					return new SafariDriver(_appSettings.DriverPath);
 				default:
 					throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
 			}

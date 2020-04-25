@@ -1,0 +1,40 @@
+{
+	"appSettings": {
+		"baseUrl": "http://demos.bellatrix.solutions/",
+		"driverPath": "E:\\Github\\AutomatedTestingFramework\\Drivers",
+		"elementWaitTime": 30,
+		"enableAutoBrowserConfiguration": false,
+		"chrome": {
+			"pageLoadTimeout": 60,
+			"scriptTimeout": 5
+		},
+		"fireFox": {
+			"pageLoadTimeout": 30,
+			"scriptTimeout": 1
+		},
+		"edge": {
+			"pageLoadTimeout": 30,
+			"scriptTimeout": 1
+		},
+		"internetExplorer": {
+			"pageLoadTimeout": 30,
+			"scriptTimeout": 1
+		},
+		"safari": {
+			"pageLoadTimeout": 30,
+			"scriptTimeout": 1
+		}
+	},
+	"billingInfoDefaultValues": {
+		"email": "info@spaceFlowers.com",
+		"company": "Space Flowers",
+		"country": "Germany",
+		"firstName": "Anton",
+		"lastName": "Angelov",
+		"phone": "+00498888999281",
+		"zip": "10115",
+		"city": "Berlin",
+		"address1": "1 Willi Brandt Avenue Tiergarten",
+		"address2": "2 Willi Brandt Avenue Tiergarten"
+	} 
+}
