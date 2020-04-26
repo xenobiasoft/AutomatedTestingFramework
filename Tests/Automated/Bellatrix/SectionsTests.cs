@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Bellatrix
 {
 	[TestFixture]
-	[ExecutionBrowser(Browser.Chrome, BrowserBehavior.ReuseIfStarted)]
+	[ExecutionBrowser(Browser.Edge, BrowserBehavior.ReuseIfStarted)]
 	public class SectionsTests : BaseTest
 	{
 		[TestCase("Falcon 9", "falcon-9")]

@@ -2,9 +2,9 @@
 using AutomatedTestingFramework.Selenium.Configuration;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+using Microsoft.Edge.SeleniumTools;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Safari;
@@ -39,8 +39,10 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 					case Browser.InternetExplorer:
 						driverManager.SetUpDriver(new InternetExplorerConfig());
 						return new InternetExplorerDriver();
+					case Browser.HeadlessChrome:
+					case Browser.HeadlessFirefox:
 					case Browser.Safari:
-						throw new ApplicationException("Safari cannot be auto-configured");
+						throw new ApplicationException($"{browser} cannot be auto-configured");
 					default:
 						throw new ArgumentOutOfRangeException(nameof(browser), browser, null);
 				}
@@ -51,9 +53,19 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 				case Browser.Chrome:
 					return new ChromeDriver(_appSettings.DriverPath);
 				case Browser.Edge:
-					return new EdgeDriver(_appSettings.DriverPath);
+					var edgeOptions = new EdgeOptions();
+					edgeOptions.UseChromium = true;
+					return new EdgeDriver(_appSettings.DriverPath, edgeOptions);
 				case Browser.Firefox:
 					return new FirefoxDriver(_appSettings.DriverPath);
+				case Browser.HeadlessChrome:
+					var chromeOptions = new ChromeOptions();
+					chromeOptions.AddArgument("--headless");
+					return new ChromeDriver(_appSettings.DriverPath, chromeOptions);
+				case Browser.HeadlessFirefox:
+					var firefoxOptions = new FirefoxOptions();
+					firefoxOptions.AddArgument("--headless");
+					return new FirefoxDriver(_appSettings.DriverPath, firefoxOptions);
 				case Browser.InternetExplorer:
 					return new InternetExplorerDriver(_appSettings.DriverPath);
 				case Browser.Safari:
