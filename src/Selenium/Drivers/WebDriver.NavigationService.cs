@@ -1,5 +1,4 @@
 ﻿using System;
-using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace AutomatedTestingFramework.Selenium.Drivers
@@ -21,6 +20,5 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 
 		public override string Url => _driver.Url;
 		public override string Title => _driver.Title;
-		public override IExceptionAnalyzer ExceptionAnalyzer { get; set; }
 	}
 }

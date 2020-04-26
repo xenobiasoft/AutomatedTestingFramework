@@ -17,7 +17,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			}
 			catch (Exception ex)
 			{
-				ExceptionAnalyzer.Analyze(ex, this);
+				ExceptionAnalyzer?.Analyze(ex, this);
 				throw;
 			}
 		}
@@ -30,7 +30,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			}
 			catch (Exception ex)
 			{
-				ExceptionAnalyzer.Analyze(ex, this);
+				ExceptionAnalyzer?.Analyze(ex, this);
 				throw;
 			}
 		}
@@ -43,7 +43,7 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 			}
 			catch (Exception ex)
 			{
-				ExceptionAnalyzer.Analyze(ex, this);
+				ExceptionAnalyzer?.Analyze(ex, this);
 				throw;
 			}
 		}

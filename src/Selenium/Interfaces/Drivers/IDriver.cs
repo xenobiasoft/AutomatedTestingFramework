@@ -9,5 +9,6 @@
 		IBrowserService,
 		IElementWaitService
 	{
+		IExceptionAnalyzer ExceptionAnalyzer { get; set; }
 	}
 }

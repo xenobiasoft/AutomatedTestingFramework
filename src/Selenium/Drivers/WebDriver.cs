@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
 using OpenQA.Selenium;
@@ -19,5 +20,6 @@ namespace AutomatedTestingFramework.Selenium.Drivers
 		}
 
 		public WebDriverWait Wait => _webDriverWait ??= new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+		public override IExceptionAnalyzer ExceptionAnalyzer { get; set; }
 	}
 }

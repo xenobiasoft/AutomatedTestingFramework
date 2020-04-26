@@ -21,6 +21,8 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 
 			builder.RegisterAssemblyTypes(ThisAssembly)
 				.Named<IExceptionAnalyzationHandler>("exceptionHandlers")
+				.Except<CustomHtmlExceptionHandler>()
+				.As<IExceptionAnalyzationHandler>()
 				.SingleInstance();
 			builder.RegisterType<ExceptionAnalyzer>().As<IExceptionAnalyzer>().SingleInstance();
 
@@ -28,6 +30,7 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 			builder.RegisterType<DriverFactory>().As<IDriverFactory>().SingleInstance();
 
 			builder.RegisterType<WebDriver>()
+				.OnActivated(e => e.Instance.ExceptionAnalyzer = e.Context.Resolve<IExceptionAnalyzer>())
 				.As<IDriver>()
 				.As<IBrowserService>()
 				.As<ICookieService>()
