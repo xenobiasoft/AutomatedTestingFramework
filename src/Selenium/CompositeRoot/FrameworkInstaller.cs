@@ -7,6 +7,7 @@ using AutomatedTestingFramework.Selenium.ExceptionAnalysis;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using AutomatedTestingFramework.Selenium.Interfaces.Elements;
+using AutomatedTestingFramework.Selenium.Media;
 
 namespace AutomatedTestingFramework.Selenium.CompositeRoot
 {
@@ -44,8 +45,12 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 
 			builder.RegisterDecorator<LoggingDriver, IDriver>();
 
+			builder.RegisterType<VideoRecorderOutputProvider>().As<IVideoRecorderOutputProvider>();
+			builder.RegisterType<MpegVideoRecorder>().As<IVideoRecorder>();
+
 			builder.RegisterType<UnitTestExecutionSubject>().As<ITestExecutionSubject>().SingleInstance();
-			builder.RegisterType<BrowserLaunchTestBehaviorObserver>().As<ITestObserver>().SingleInstance();
+			builder.RegisterType<BrowserLaunchTestBehaviorObserver>().As<ITestObserver>().InstancePerDependency();
+			builder.RegisterType<VideoRecordingTestFlowObserver>().As<ITestObserver>().InstancePerDependency();
 		}
 	}
 }

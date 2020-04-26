@@ -1,10 +1,13 @@
-﻿using Bellatrix.Facades;
+﻿using AutomatedTestingFramework.Selenium.Attributes;
+using AutomatedTestingFramework.Selenium.Enums;
+using Bellatrix.Facades;
 using Bellatrix.Models;
 using NUnit.Framework;
 
 namespace Bellatrix
 {
 	[TestFixture]
+	[VideoRecording(VideoRecordingMode.Always)]
 	public class WorkflowTests : BaseTest
 	{
 		private static NewPurchaseFacade _purchaseFacade;

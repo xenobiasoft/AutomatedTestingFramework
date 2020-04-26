@@ -6,6 +6,7 @@
 		public string DriverPath { get; set; }
 		public int ElementWaitTime { get; set; }
 		public bool EnableAutoBrowserConfiguration { get; set; }
+		public VideoRecordingSettings VideoRecording { get; set; }
 		public BrowserSettings Chrome { get; set; }
 		public BrowserSettings Firefox { get; set; }
 		public BrowserSettings Edge { get; set; }

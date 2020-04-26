@@ -2,6 +2,11 @@
 	"appSettings": {
 		"baseUrl": "http://demos.bellatrix.solutions/",
 		"driverPath": "E:\\Github\\AutomatedTestingFramework\\Drivers",
+		"videoRecording": {
+			"enableVideoRecording": true,
+			"mediaFolderPath": "E:\\VideoRecordings",
+			"ffMpegPath": "E:\\Github\\AutomatedTestingFramework\\FFMpeg"
+		}, 
 		"elementWaitTime": 30,
 		"enableAutoBrowserConfiguration": false,
 		"chrome": {
