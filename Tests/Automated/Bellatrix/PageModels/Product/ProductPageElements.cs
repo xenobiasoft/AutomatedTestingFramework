@@ -13,7 +13,7 @@ namespace Bellatrix.PageModels.Product
 			_elementFinder = elementFinder;
 		}
 
-		public IButton AddToCartButton => _elementFinder.Find<IButton>(By.LinkText("Add to cart"));
+		public IButton AddToCartButton => _elementFinder.Find<IButton>(By.CssSelector("button[name='add-to-cart']"));
 		public ITextBox QuantityTextBox => _elementFinder.Find<ITextBox>(By.CssClass("[class=*'input-text qty text']"));
 		public IAnchor ViewCartLink => _elementFinder.Find<IAnchor>(By.LinkText("View cart"));
 	}

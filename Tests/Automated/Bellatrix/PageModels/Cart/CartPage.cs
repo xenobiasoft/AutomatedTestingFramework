@@ -1,4 +1,5 @@
-﻿using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
+﻿using System.Threading;
+using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 
 namespace Bellatrix.PageModels.Cart
 {
@@ -34,6 +35,7 @@ namespace Bellatrix.PageModels.Cart
 		public void ProceedToCheckout()
 		{
 			_waitService.WaitForElementToBeClickable(Elements.CheckoutButton.By);
+			Thread.Sleep(1000);
 			Elements.CheckoutButton.Click();
 			_waitService.WaitForAjax();
 		}

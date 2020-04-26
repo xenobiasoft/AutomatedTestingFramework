@@ -19,8 +19,9 @@ namespace Bellatrix.PageModels.Product
 		public void AddRocketToShoppingCart()
 		{
 			Elements.AddToCartButton.Click();
-			_waitService.WaitForAjax();
+			_waitService.WaitForElementToBeClickable(Elements.ViewCartLink.By);
 			Elements.ViewCartLink.Click();
+			_waitService.WaitForAjax();
 			_waitService.WaitForPageToLoad();
 		}
 	}

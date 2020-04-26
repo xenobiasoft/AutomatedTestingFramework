@@ -45,6 +45,7 @@ namespace Bellatrix.PageModels.Checkout
 				Elements.CheckPaymentsRadioButton.Click();
 			}
 
+			_waitService.WaitForElementToBeClickable(Elements.PlaceOrderButton.By);
 			Elements.PlaceOrderButton.Click();
 			_waitService.WaitForAjax();
 		}
