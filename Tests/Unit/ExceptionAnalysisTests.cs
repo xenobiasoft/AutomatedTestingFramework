@@ -13,7 +13,6 @@ namespace AutomatedTestingFramework.UnitTests
 		public class FileNotFoundExceptionHandlerTests : ExceptionAnalysisTests
 		{
 			[Test]
-			[Category(TestCategories.Core)]
 			public void FileNotFoundExceptionHandlerAppliesTo404Errors()
 			{
 				// Assemble
@@ -38,7 +37,6 @@ namespace AutomatedTestingFramework.UnitTests
 		public class ServiceUnavailableExceptionHandlerTests : ExceptionAnalysisTests
 		{
 			[Test]
-			[Category(TestCategories.Core)]
 			public void ServiceUnavailableExceptionHandlerAppliesTo500Errors()
 			{
 				// Assemble
@@ -63,7 +61,6 @@ namespace AutomatedTestingFramework.UnitTests
 		public class CustomHtmlExceptionHandlerTests : ExceptionAnalysisTests
 		{
 			[Test]
-			[Category(TestCategories.Core)]
 			public void CanAddCustomExceptionHandlers()
 			{
 				// Assemble

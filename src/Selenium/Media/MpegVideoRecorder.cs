@@ -24,18 +24,6 @@ namespace AutomatedTestingFramework.Selenium.Media
 			var videoPath = Path.Combine(filePath, fileName);
 			var videoPathWithExtension = GetFilePathWithExtensionByOS(videoPath);
 
-			try
-			{
-				if (!Directory.Exists(filePath))
-				{
-					Directory.CreateDirectory(filePath);
-				}
-			}
-			catch (Exception ex)
-			{
-				throw new ArgumentException($"A problem occurred trying to create the directory {filePath}", ex);
-			}
-
 			if (!_isRunning)
 			{
 				var startInfo = GetProcessStartInfoByOS(videoPathWithExtension);
@@ -52,7 +40,7 @@ namespace AutomatedTestingFramework.Selenium.Media
 		{
 			if (!_isRunning) return;
 
-			Thread.Sleep(500);
+			Thread.Sleep(1000);
 
 			if (!_recorderProcess.HasExited)
 			{
@@ -99,7 +87,7 @@ namespace AutomatedTestingFramework.Selenium.Media
 
 		private string GetFilePathWithExtensionByOS(string filePath)
 		{
-			var pathWithExtension = string.Empty;
+			string pathWithExtension;
 
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{

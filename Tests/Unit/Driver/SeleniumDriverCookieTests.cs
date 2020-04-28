@@ -8,7 +8,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 	public class SeleniumDriverCookieTests : SeleniumDriverTests.WebDriverOptionsTests
 	{
 		[Test]
-		[Category(TestCategories.Selenium)]
 		public void GetCookieCallsGetCookieNameOnCookieJar()
 		{
 			// Assemble

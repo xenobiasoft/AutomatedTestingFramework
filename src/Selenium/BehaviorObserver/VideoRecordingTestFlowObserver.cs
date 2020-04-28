@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using AutomatedTestingFramework.Selenium.Attributes;
 using AutomatedTestingFramework.Selenium.Enums;
@@ -10,12 +9,12 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 	public class VideoRecordingTestFlowObserver : BaseTestObserver
 	{
 		private readonly IVideoRecorder _videoRecorder;
-		private readonly IVideoRecorderOutputProvider _videoRecorderOutputProvider;
+		private readonly IVideoRecordingProvider _videoRecorderOutputProvider;
 
 		private VideoRecordingMode _recordingMode;
 		private string _videoRecordingPath;
 
-		public VideoRecordingTestFlowObserver(ITestExecutionSubject testExecutionProvider, IVideoRecorder videoRecorder, IVideoRecorderOutputProvider videoRecorderOutputProvider) : base(testExecutionProvider)
+		public VideoRecordingTestFlowObserver(ITestExecutionSubject testExecutionProvider, IVideoRecorder videoRecorder, IVideoRecordingProvider videoRecorderOutputProvider) : base(testExecutionProvider)
 		{
 			_videoRecorderOutputProvider = videoRecorderOutputProvider;
 			_videoRecorder = videoRecorder;
@@ -26,48 +25,44 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 		{
 			_recordingMode = ConfigureTestVideoRecordingMode(e.MemberInfo);
 
-			if (_recordingMode != VideoRecordingMode.DoNotRecord)
-			{
-				var fullTestName = $"{e.MemberInfo.DeclaringType.Name}.{e.TestName}";
-				var videoRecordingDir = _videoRecorderOutputProvider.GetOutputFolder();
-				var videoRecordingFileName = _videoRecorderOutputProvider.GetUniqueFileName(fullTestName);
+			if (_recordingMode == VideoRecordingMode.DoNotRecord) return;
 
-				_videoRecordingPath = _videoRecorder.Record(videoRecordingDir, videoRecordingFileName);
-			}
+			var fullTestName = $"{e.MemberInfo.DeclaringType.Name}.{e.TestName}";
+			var videoRecordingDir = _videoRecorderOutputProvider.GetOutputFolder();
+			var videoRecordingFileName = _videoRecorderOutputProvider.GetUniqueFileName(fullTestName);
+
+			_videoRecordingPath = _videoRecorder.Record(videoRecordingDir, videoRecordingFileName);
 		}
 
 		public override void PostTestCleanup(object sender, TestExecutionEventArgs e)
 		{
-			if (_recordingMode != VideoRecordingMode.DoNotRecord)
+			_recordingMode = ConfigureTestVideoRecordingMode(e.MemberInfo);
+
+			if (_recordingMode == VideoRecordingMode.DoNotRecord) return;
+
+			try
 			{
-				try
-				{
-					var hasTestPassed = e.TestOutcome == TestOutcome.Passed;
-					DeleteVideoDependingOnTestOutcome(hasTestPassed);
-				}
-				finally
-				{
-					_videoRecorder.Dispose();
-				}
+				DeleteVideoDependingOnTestOutcome(e.TestOutcome);
+			}
+			finally
+			{
+				_videoRecorder.Dispose();
 			}
 		}
 
-		private void DeleteVideoDependingOnTestOutcome(bool hasTestPassed)
+		private void DeleteVideoDependingOnTestOutcome(TestOutcome testOutcome)
 		{
 			if (_recordingMode == VideoRecordingMode.DoNotRecord) return;
 
 			var shouldRecordAlways = _recordingMode == VideoRecordingMode.Always;
-			var shouldRecordAllPassed = hasTestPassed && _recordingMode == VideoRecordingMode.OnlyPass;
-			var shouldRecordAllFailed = !hasTestPassed && _recordingMode == VideoRecordingMode.OnlyFail;
+			var shouldRecordAllPassed = testOutcome == TestOutcome.Passed && _recordingMode == VideoRecordingMode.OnlyPass;
+			var shouldRecordAllFailed = testOutcome == TestOutcome.Failed && _recordingMode == VideoRecordingMode.OnlyFail;
 
 			if (shouldRecordAlways || shouldRecordAllFailed || shouldRecordAllPassed) return;
 
 			_videoRecorder.Stop();
 
-			if (File.Exists(_videoRecordingPath))
-			{
-				File.Delete(_videoRecordingPath);
-			}
+			_videoRecorderOutputProvider.DeleteRecording(_videoRecordingPath);
 		}
 
 		private VideoRecordingMode ConfigureTestVideoRecordingMode(MemberInfo memberInfo)
@@ -99,12 +94,7 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 
 			var recordingModeMethodAttribute = memberInfo.GetCustomAttribute<VideoRecordingAttribute>(true);
 
-			if (recordingModeMethodAttribute != null)
-			{
-				return recordingModeMethodAttribute.VideoRecording;
-			}
-
-			return VideoRecordingMode.Ignore;
+			return recordingModeMethodAttribute?.VideoRecording ?? VideoRecordingMode.Ignore;
 		}
 
 		private VideoRecordingMode GetVideoRecordingModeFromAttribute(Type currentType)
@@ -116,12 +106,7 @@ namespace AutomatedTestingFramework.Selenium.BehaviorObserver
 
 			var recordingModeClassAttribute = currentType.GetCustomAttribute<VideoRecordingAttribute>(true);
 
-			if (recordingModeClassAttribute != null)
-			{
-				return recordingModeClassAttribute.VideoRecording;
-			}
-
-			return VideoRecordingMode.Ignore;
+			return recordingModeClassAttribute?.VideoRecording ?? VideoRecordingMode.Ignore;
 		}
 	}
 }

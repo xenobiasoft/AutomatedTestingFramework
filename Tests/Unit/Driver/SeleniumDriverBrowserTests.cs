@@ -8,7 +8,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 	public class SeleniumDriverBrowserTests : SeleniumDriverTests
 	{
 		[Test]
-		[Category(TestCategories.Selenium)]
 		public void PageSourceReturnsWebDriverSourceProperty()
 		{
 			// Assemble
@@ -23,7 +22,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		}
 
 		[Test]
-		[Category(TestCategories.Selenium)]
 		public void GetFrameByNameReturnsFrameObjectWithMatchingName()
 		{
 			// Assemble
@@ -37,7 +35,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		}
 
 		[Test]
-		[Category(TestCategories.Selenium)]
 		public void QuitDelegatesCallToWebDriver()
 		{
 			// Assemble
@@ -53,7 +50,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		public class NavigateTests : SeleniumDriverBrowserTests
 		{
 			[Test]
-			[Category(TestCategories.Selenium)]
 			public void ClickBackButtonCallsNavigateBack()
 			{
 				// Assemble
@@ -67,7 +63,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			}
 
 			[Test]
-			[Category(TestCategories.Selenium)]
 			public void ClickForwardButtonCallsNavigateForward()
 			{
 				// Assemble
@@ -81,7 +76,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 			}
 
 			[Test]
-			[Category(TestCategories.Selenium)]
 			public void ClickRefreshCallsNavigateRefresh()
 			{
 				// Assemble
@@ -106,7 +100,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		public class TargetLocatorTests : SeleniumDriverTests
 		{
 			[Test]
-			[Category(TestCategories.Selenium)]
 			public void SwitchToFrameSwitchesContextToThatFrame()
 			{
 				// Assemble

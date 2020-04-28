@@ -31,7 +31,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		}
 
 		[Test]
-		[Category(TestCategories.Selenium)]
 		public void QuitCallsCloseOnWebDriver()
 		{
 			// Assemble
@@ -47,7 +46,6 @@ namespace AutomatedTestingFramework.UnitTests.Driver
 		public class WebDriverOptionsTests : SeleniumDriverTests
 		{
 			[Test]
-			[Category(TestCategories.Selenium)]
 			public void MaximizeBrowserWindowCallsWindowMaximize()
 			{
 				// Assemble

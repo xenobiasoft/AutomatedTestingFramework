@@ -2,15 +2,15 @@
 {
 	public class AppSettings
 	{
-		public string BaseUrl { get; set; }
-		public string DriverPath { get; set; }
-		public int ElementWaitTime { get; set; }
-		public bool EnableAutoBrowserConfiguration { get; set; }
-		public VideoRecordingSettings VideoRecording { get; set; }
-		public BrowserSettings Chrome { get; set; }
-		public BrowserSettings Firefox { get; set; }
-		public BrowserSettings Edge { get; set; }
-		public BrowserSettings InternetExplorer { get; set; }
-		public BrowserSettings Safari { get; set; }
+		public virtual string BaseUrl { get; set; }
+		public virtual string DriverPath { get; set; }
+		public virtual int ElementWaitTime { get; set; }
+		public virtual bool EnableAutoBrowserConfiguration { get; set; }
+		public virtual VideoRecordingSettings VideoRecording { get; set; }
+		public virtual BrowserSettings Chrome { get; set; }
+		public virtual BrowserSettings Firefox { get; set; }
+		public virtual BrowserSettings Edge { get; set; }
+		public virtual BrowserSettings InternetExplorer { get; set; }
+		public virtual BrowserSettings Safari { get; set; }
 	}
 }

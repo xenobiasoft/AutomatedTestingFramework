@@ -45,7 +45,7 @@ namespace AutomatedTestingFramework.Selenium.CompositeRoot
 
 			builder.RegisterDecorator<LoggingDriver, IDriver>();
 
-			builder.RegisterType<VideoRecorderOutputProvider>().As<IVideoRecorderOutputProvider>();
+			builder.RegisterType<VideoRecordingProvider>().As<IVideoRecordingProvider>();
 			builder.RegisterType<MpegVideoRecorder>().As<IVideoRecorder>();
 
 			builder.RegisterType<UnitTestExecutionSubject>().As<ITestExecutionSubject>().SingleInstance();

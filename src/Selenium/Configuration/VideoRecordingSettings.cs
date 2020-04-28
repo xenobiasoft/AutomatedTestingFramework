@@ -2,8 +2,8 @@
 {
 	public class VideoRecordingSettings
 	{
-		public bool EnableVideoRecording { get; set; }
-		public string MediaFolderPath { get; set; }
-		public string FFMpegPath { get; set; }
+		public virtual bool EnableVideoRecording { get; set; }
+		public virtual string MediaFolderPath { get; set; }
+		public virtual string FFMpegPath { get; set; }
 	}
 }
