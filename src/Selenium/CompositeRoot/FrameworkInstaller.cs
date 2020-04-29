@@ -11,7 +11,7 @@ using AutomatedTestingFramework.Selenium.Media;
 
 namespace AutomatedTestingFramework.Selenium.CompositeRoot
 {
-	public class FrameworkInstaller : Module
+	internal class FrameworkInstaller : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{

@@ -8,7 +8,7 @@ namespace Bellatrix
 {
 	[TestFixture]
 	[VideoRecording(VideoRecordingMode.Always)]
-	public class WorkflowTests : BaseTest
+	public class WorkflowTests : BellatrixBaseTest
 	{
 		private static NewPurchaseFacade _purchaseFacade;
 

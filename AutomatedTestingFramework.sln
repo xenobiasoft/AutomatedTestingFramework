@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7982FC00-312A-434A-8650-05860F9B36DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selenium", "src\Selenium\Selenium.csproj", "{EF09CD83-7B48-44A9-92B4-7A1FFDAEF9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatedTestingFramework.Selenium", "src\Selenium\AutomatedTestingFramework.Selenium.csproj", "{EF09CD83-7B48-44A9-92B4-7A1FFDAEF9BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E065A06C-0DF9-421D-B087-8BB1D4D0B5ED}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Automated", "Automated", "{128DF338-0C7F-45FF-BCCD-C7DF88AB71BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bellatrix", "Tests\Automated\Bellatrix\Bellatrix.csproj", "{836DB5A1-BD7E-4142-9F27-DCA3B675D1FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingFramework.NUnit", "src\NUnit\AutomatedTestingFramework.NUnit.csproj", "{ED027EB7-4873-4CEA-8464-516FDC6C193A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{836DB5A1-BD7E-4142-9F27-DCA3B675D1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{836DB5A1-BD7E-4142-9F27-DCA3B675D1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{836DB5A1-BD7E-4142-9F27-DCA3B675D1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED027EB7-4873-4CEA-8464-516FDC6C193A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED027EB7-4873-4CEA-8464-516FDC6C193A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED027EB7-4873-4CEA-8464-516FDC6C193A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED027EB7-4873-4CEA-8464-516FDC6C193A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{478F46D6-3037-439D-9D80-3E6D1DFE4E2C} = {5B860FEC-8406-4E6F-97C1-64167580866D}
 		{128DF338-0C7F-45FF-BCCD-C7DF88AB71BC} = {E065A06C-0DF9-421D-B087-8BB1D4D0B5ED}
 		{836DB5A1-BD7E-4142-9F27-DCA3B675D1FF} = {128DF338-0C7F-45FF-BCCD-C7DF88AB71BC}
+		{ED027EB7-4873-4CEA-8464-516FDC6C193A} = {7982FC00-312A-434A-8650-05860F9B36DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C71FBE6-D67E-42B3-BDA4-D2A4971BEFE7}

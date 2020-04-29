@@ -1,35 +1,28 @@
 ﻿using System.Collections.Generic;
 using Autofac;
-using AutomatedTestingFramework.Selenium.Attributes;
 using AutomatedTestingFramework.Selenium.Enums;
 using AutomatedTestingFramework.Selenium.Interfaces;
 using AutomatedTestingFramework.Selenium.Interfaces.Drivers;
 using NUnit.Framework;
 
-namespace Bellatrix
+namespace AutomatedTestingFramework.NUnit
 {
 	[TestFixture]
-	[ExecutionBrowser(Browser.Chrome, BrowserBehavior.ReuseIfStarted)]
-	public class BaseTest
+	public abstract class BaseTest
 	{
-		public static readonly IDriver Driver;
-
-		private static readonly ITestExecutionSubject _currentTestExecutionSubject;
-		private static readonly ILifetimeScope _scope;
-
-		static BaseTest()
-		{
-			_scope = Container.Root.BeginLifetimeScope();
-			Driver = _scope.Resolve<IDriver>();
-			_scope.Resolve<IEnumerable<ITestObserver>>();
-			_currentTestExecutionSubject = _scope.Resolve<ITestExecutionSubject>();
-		}
+		private IDriver _driver;
+		private ITestExecutionSubject _currentTestExecutionSubject;
+		private ILifetimeScope _scope;
 
 		public TestContext TestContext => TestContext.CurrentContext;
 
 		public string TestName => TestContext.Test.Name;
 
 		protected TPage GetPage<TPage>() => _scope.Resolve<TPage>();
+
+		protected abstract void RegisterDIModules();
+
+		protected abstract ILifetimeScope GetLifetimeScope();
 
 		[SetUp]
 		public void BaseSetup()
@@ -43,23 +36,41 @@ namespace Bellatrix
 		[TearDown]
 		public void BaseTearDown()
 		{
-			var memberInfo = GetType().GetMethod(TestContext.Test.Name);
+			var memberInfo = GetType().GetMethod(TestContext.Test.MethodName);
 			_currentTestExecutionSubject.PreTestCleanup(GetTestOutcome(), TestName, memberInfo);
 			TearDown();
 			_currentTestExecutionSubject.PostTestCleanup(GetTestOutcome(), TestName, memberInfo);
 		}
 
-		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		[OneTimeSetUp]
+		public void BaseOneTimeSetup()
 		{
-			Driver?.Quit();
+			RegisterDIModules();
+			_scope = GetLifetimeScope();
+			_driver = _scope.Resolve<IDriver>();
+			_scope.Resolve<IEnumerable<ITestObserver>>();
+			_currentTestExecutionSubject = _scope.Resolve<ITestExecutionSubject>();
+			OneTimeSetup();
+		}
+
+		[OneTimeTearDown]
+		public void BaseOneTimeTearDown()
+		{
+			_driver?.Quit();
 			_scope.Dispose();
+			OneTimeTearDown();
 		}
 
 		public virtual void Setup()
 		{ }
 
+		public virtual void OneTimeSetup()
+		{ }
+
 		public virtual void TearDown()
+		{ }
+
+		public virtual void OneTimeTearDown()
 		{ }
 
 		private TestOutcome GetTestOutcome()

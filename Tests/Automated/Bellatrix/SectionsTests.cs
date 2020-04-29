@@ -7,7 +7,7 @@ namespace Bellatrix
 {
 	[TestFixture]
 	[ExecutionBrowser(Browser.HeadlessChrome, BrowserBehavior.ReuseIfStarted)]
-	public class SectionsTests : BaseTest
+	public class SectionsTests : BellatrixBaseTest
 	{
 		[TestCase("Falcon 9", "falcon-9")]
 		[TestCase("Saturn V", "saturn-v")]
