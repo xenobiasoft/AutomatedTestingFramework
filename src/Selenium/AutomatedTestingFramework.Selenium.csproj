@@ -4,6 +4,20 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>AutomatedTestingFramework.Selenium</AssemblyName>
     <RootNamespace>AutomatedTestingFramework.Selenium</RootNamespace>
+    <Authors>Shannon Stewart</Authors>
+    <Company>XenobiaSoft</Company>
+    <Description>Selenium Automated Testing Framework</Description>
+    <PackageIcon>Final.png</PackageIcon>
+    <PackageTags>Selenium</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +30,13 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="WebDriverManager" Version="2.9.1" />
     <PackageReference Include="Xabe.FFmpeg" Version="3.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\OneDrive\Photos\Purchaced Images\XenobiaSoft\Final\Final.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
